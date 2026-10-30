@@ -1,0 +1,293 @@
+.events-page > .foreground,
+.rsvp-page > .foreground {
+  left: auto;
+  right: -55px;
+  transform: scaleX(-1);
+}
+.event-list {
+  display: grid;
+  gap: 19px;
+}
+.event-card {
+  display: grid;
+  grid-template-columns: 46px 1fr clamp(52px, 14vw, 72px);
+  padding: 10px 12px 10px 8px;
+  gap: 8px;
+  min-height: 135px;
+  align-items: center;
+  box-sizing: border-box;
+  border: 1px solid #cfb98d !important;
+  border-right: 1px solid #cfb98d !important;
+  border-radius: 18px !important;
+  position: relative;
+}
+.event-card.paper-card::after {
+  inset: 5px;
+  border-radius: 13px !important;
+  border: 1px solid rgba(214, 197, 160, 0.55);
+  pointer-events: none;
+}
+.event-details {
+  min-width: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+}
+.event-day {
+  background: linear-gradient(140deg, #a84846, #822b30);
+  color: #fff0d7;
+  text-align: center;
+  padding: 8px 3px 5px;
+  clip-path: polygon(10% 0, 90% 0, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0 90%, 0 10%);
+  align-self: center;
+  width: 44px;
+  box-sizing: border-box;
+}
+.event-day strong {
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1;
+}
+.event-day span {
+  display: block;
+  font-size: 11px;
+  margin-top: 1px;
+}
+.event-day small {
+  font-size: 7px;
+  letter-spacing: 1px;
+}
+.event-details h3,
+.event-title {
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #8c322d;
+  font-size: clamp(13px, 3.5vw, 18px);
+  margin: 0;
+  letter-spacing: 0.25px;
+  white-space: nowrap !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.15;
+}
+.event-meta {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+  white-space: nowrap !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: clamp(7.8px, 2vw, 9.6px);
+  line-height: 1.25;
+}
+.event-time {
+  font-size: inherit;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin: 0;
+  white-space: nowrap !important;
+  flex-shrink: 0;
+  color: #123432;
+}
+.event-sep {
+  opacity: 0.6;
+  flex-shrink: 0;
+  font-size: 9px;
+  color: #a88950;
+}
+.event-place {
+  font-size: inherit;
+  line-height: 1.25;
+  margin: 0;
+  letter-spacing: 0.2px;
+  white-space: nowrap !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #2b4541;
+  font-weight: 500;
+}
+.event-details > small,
+.event-tagline {
+  font-size: clamp(7.4px, 1.9vw, 9.2px);
+  letter-spacing: 0.15px;
+  color: #553425;
+  font-weight: 500;
+  border-top: 1px dashed rgba(186, 151, 90, 0.45);
+  display: block;
+  padding-top: 3px;
+  margin-top: 2px;
+  white-space: nowrap !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.25;
+}
+.event-card > img {
+  width: 100%;
+  max-width: 72px;
+  height: clamp(65px, 15vw, 82px);
+  object-fit: contain;
+  justify-self: center;
+}
+
+.events-total {
+  font: 8px Arial;
+  letter-spacing: 1px;
+  text-align: center;
+  margin: 0 0 17px;
+  color: #5b6e62;
+}
+.events-carousel {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  gap: 20px;
+  overscroll-behavior-x: contain;
+  padding: 8px 6px 14px 6px;
+  box-sizing: border-box;
+}
+.events-carousel::-webkit-scrollbar {
+  display: none;
+}
+.event-slide {
+  flex: 0 0 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 0 2px;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+.events-navigation {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+  margin: 18px auto 0;
+  font-size: 12px;
+  color: #724f37;
+}
+.events-navigation button:not(.event-dot) {
+  background: #fff1d8;
+  border: 1px solid #b69b67;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  color: #174c50;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    transform 0.2s,
+    background 0.2s,
+    box-shadow 0.2s;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+.events-navigation button:not(.event-dot):hover:not(:disabled) {
+  background: #f7e4be;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(23, 76, 80, 0.2);
+}
+.events-navigation button:not(.event-dot):active:not(:disabled) {
+  transform: translateY(0);
+}
+.events-dots {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 4px 6px;
+}
+.event-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid #bba06b;
+  background: #fff5e0;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.4, 1);
+}
+.event-dot:hover {
+  background: #e2c995;
+  transform: scale(1.2);
+}
+.event-dot.active {
+  background: #17575c;
+  border-color: #ba975a;
+  transform: scale(1.35);
+  box-shadow: 0 0 6px rgba(186, 151, 90, 0.6);
+}
+.event-card {
+  transition: box-shadow 0.25s ease;
+}
+.event-card:hover {
+  transform: none !important;
+  box-shadow: 0 6px 20px rgba(22, 75, 76, 0.14);
+}
+.event-day.date-tbc strong {
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+.event-day.date-tbc span {
+  font-size: 11px;
+}
+.event-details h3,
+.event-title {
+  font-size: clamp(13px, 3.5vw, 18px);
+  white-space: nowrap !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.event-details > small,
+.event-tagline {
+  white-space: nowrap !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.25;
+  font-size: clamp(7.4px, 1.9vw, 9.2px);
+  letter-spacing: 0.15px;
+}
+.event-time {
+  font-size: inherit;
+  white-space: nowrap !important;
+}
+.event-place {
+  font-size: inherit;
+  white-space: nowrap !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.event-card {
+  min-height: 130px;
+}
+.event-slide .event-card:nth-child(3) {
+  margin-bottom: 0;
+}
+@media (max-width: 360px) {
+  .event-card {
+    grid-template-columns: 40px 1fr 54px;
+    gap: 6px;
+    padding: 8px 8px 8px 6px;
+  }
+  .event-card > img {
+    max-width: 54px;
+    height: 54px;
+  }
+  .event-details h3,
+  .event-title {
+    font-size: 13px;
+  }
+  .event-meta {
+    font-size: 7.6px;
+  }
+  .event-details > small,
+  .event-tagline {
+    font-size: 7.2px;
+  }
+  .event-time {
+    font-size: 7.8px;
+  }
+}

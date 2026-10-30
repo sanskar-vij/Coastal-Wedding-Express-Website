@@ -1,0 +1,409 @@
+// Edit invitation content here. Keep this object JSON-compatible.
+export const content = {
+  "site": {
+    "title": "Aarav & Meera · Coastal Wedding Express",
+    "description": "Eight stops, one beautiful journey. A coastal wedding invitation.",
+    "draft": true,
+    "sampleSchedule": true
+  },
+  "groom": "Aarav",
+  "bride": "Meera",
+  "date": "2027-11-20T18:00:00+05:30",
+  "dateLabel": "20 NOVEMBER 2027",
+  "venue": "The Palm Pavilion",
+  "location": "Goa",
+  "families": {
+    "groom": ["Mr. Rajesh Sharma", "Mrs. Sunita Sharma"],
+    "bride": ["Mr. Vikram Iyer", "Mrs. Lakshmi Iyer"]
+  },
+  "assets": {
+    "welcome":
+      "assets/library/compositions__coastal-scenes__welcome-station-background__psa-local-000148__main__v01.webp",
+    "bridge":
+      "assets/library/compositions__coastal-scenes__coastal-bridge-background__psa-local-000149__user-reference__v02.png",
+    "garden":
+      "assets/library/compositions__coastal-scenes__guest-guide-garden-background__psa-local-000150__main__v01.webp",
+    "aarav": "assets/aarav-train-portrait.webp",
+    "meera": "assets/meera-train-portrait.webp",
+    "trainWindow": "assets/train-window-original.jpg",
+    "trainWindowFrame": "assets/train-window-frame.png",
+    "trainWindowSash": "assets/train-window-sash.webp",
+    "memory1": "assets/library/people__couples__couple-closeup__psa-local-000133__main__v01.webp",
+    "memory2":
+      "assets/library/people__couples__couple-sunset-embrace__psa-local-000134__main__v01.webp",
+    "memory3": "assets/library/people__couples__couple-seated__psa-local-000135__main__v01.webp",
+    "memory4":
+      "assets/library/people__couples__couple-beach-walk__psa-local-000136__main__v01.webp",
+    "memory1Framed": "assets/memory1-train-portrait.webp",
+    "memory2Framed": "assets/memory2-train-portrait.webp",
+    "memory3Framed": "assets/memory3-train-portrait.webp",
+    "memory4Framed": "assets/memory4-train-portrait.webp",
+    "mumbai":
+      "assets/library/architecture__buildings__gateway-monument__psa-local-000117__main__v01.webp",
+    "kerala": "assets/library/vehicles__boats__kerala-houseboat__psa-local-000118__main__v01.webp",
+    "goa": "assets/library/landscapes__beaches__coastal-bay__psa-local-000113__main__v01.webp",
+    "venue":
+      "assets/library/compositions__venue-scenes__seaside-wedding-venue__psa-local-000122__main__v01.webp",
+    "map":
+      "assets/library/compositions__travel-scenes__coastal-travel-map__psa-local-000123__empty-track__v02.webp",
+    "haldi":
+      "assets/library/ceremony__ritual-vessels__haldi-bowl__psa-local-000119__main__v01.webp",
+    "sangeet":
+      "assets/library/objects__musical-instruments__sangeet-instrument-arrangement__psa-local-000154__main__v01.webp",
+    "mandap":
+      "assets/library/ceremony__mandaps__beach-wedding-mandap__psa-local-000121__floral-arch__v01.webp",
+    "palm": "assets/library/botanicals__leaves__palm-frond__psa-local-000106__main__v01.webp",
+    "flowers":
+      "assets/library/botanicals__flowers__pink-hibiscus__psa-local-000107__cluster__v01.webp",
+    "vine":
+      "assets/library/botanicals__vines__bougainvillea-vine__psa-local-000109__cluster__v01.webp",
+    "postmark": "assets/library/graphics__badges__palm-postmark__psa-local-000131__main__v01.webp",
+    "outfit":
+      "assets/library/objects__accessories__festive-outfit__psa-local-000125__main__v01.webp",
+    "mapPalms": "assets/library/botanicals__trees__coconut-palm__psa-local-000105__main__v01.webp",
+    "event_mehndi": "assets/library/ceremony__event-art__mehndi__psa-local-000161__main__v01.png",
+    "event_mayra": "assets/library/ceremony__event-art__mayra__psa-local-000162__main__v01.png",
+    "event_shagun": "assets/library/ceremony__event-art__shagun__psa-local-000163__main__v01.png",
+    "event_cocktail":
+      "assets/library/ceremony__event-art__cocktail__psa-local-000164__main__v01.png",
+    "event_tilak": "assets/library/ceremony__event-art__tilak__psa-local-000165__main__v01.png",
+    "event_engagement":
+      "assets/library/ceremony__event-art__engagement__psa-local-000166__main__v01.png",
+    "event_baraat": "assets/library/ceremony__event-art__baraat__psa-local-000167__main__v01.png",
+    "event_varmala": "assets/library/ceremony__event-art__varmala__psa-local-000168__main__v01.png",
+    "event_pheras": "assets/library/ceremony__event-art__pheras__psa-local-000169__main__v01.png",
+    "event_reception":
+      "assets/library/ceremony__event-art__reception__psa-local-000170__main__v01.png",
+    "event_vidai": "assets/library/ceremony__event-art__vidai__psa-local-000171__main__v01.png",
+    "event_roka": "assets/library/ceremony__event-art__roka__psa-local-000172__main__v01.png"
+  },
+  "entrance": {
+    "enabled": true,
+    "background":
+      "assets/library/compositions__coastal-scenes__welcome-station-background__psa-local-000148__main__v01.webp",
+    "label": "Your journey begins here",
+    "button": "BEGIN YOUR JOURNEY"
+  },
+  "music": {
+    "enabled": true,
+    "src": "assets/wedding-song.mp3",
+    "volume": 0.35,
+    "playOnBoard": true
+  },
+  "countdown": {
+    "enabled": true,
+    "label": "UNTIL OUR NEXT CHAPTER"
+  },
+  "events": [
+    {
+      "name": "ROKA",
+      "dayOffset": -3,
+      "dateTBC": false,
+      "time": "10:00 AM",
+      "title": "Roka",
+      "description":
+        "We look forward to celebrating this occasion with you. Details will be shared soon.",
+      "place": "THE PALM PAVILION · GOA",
+      "attire": "Details to follow",
+      "tagline": "Where our forever first begins.",
+      "id": "roka",
+      "art": "event_roka",
+      "day": "17",
+      "month": "NOV",
+      "year": "2027",
+      "date": "2027-11-17"
+    },
+    {
+      "name": "ENGAGEMENT",
+      "dayOffset": -3,
+      "dateTBC": false,
+      "time": "7:00 PM",
+      "title": "Engagement",
+      "description":
+        "We look forward to celebrating this occasion with you. Details will be shared soon.",
+      "place": "THE PALM PAVILION · GOA",
+      "attire": "Details to follow",
+      "tagline": "One question. A beautiful forever.",
+      "id": "engagement",
+      "art": "event_engagement",
+      "day": "17",
+      "month": "NOV",
+      "year": "2027",
+      "date": "2027-11-17"
+    },
+    {
+      "name": "SHAGUN",
+      "dayOffset": -2,
+      "dateTBC": false,
+      "time": "10:00 AM",
+      "title": "Shagun",
+      "description":
+        "We look forward to celebrating this occasion with you. Details will be shared soon.",
+      "place": "THE PALM PAVILION · GOA",
+      "attire": "Details to follow",
+      "tagline": "An auspicious beginning.",
+      "id": "shagun",
+      "art": "event_shagun",
+      "day": "18",
+      "month": "NOV",
+      "year": "2027",
+      "date": "2027-11-18"
+    },
+    {
+      "name": "TILAK",
+      "dayOffset": -2,
+      "dateTBC": false,
+      "time": "11:00 AM",
+      "title": "Tilak",
+      "description":
+        "We look forward to celebrating this occasion with you. Details will be shared soon.",
+      "place": "THE PALM PAVILION · GOA",
+      "attire": "Details to follow",
+      "tagline": "A promise blessed by tradition.",
+      "id": "tilak",
+      "art": "event_tilak",
+      "day": "18",
+      "month": "NOV",
+      "year": "2027",
+      "date": "2027-11-18"
+    },
+    {
+      "name": "MAYRA",
+      "dayOffset": -2,
+      "dateTBC": false,
+      "time": "1:00 PM",
+      "title": "Mayra",
+      "description":
+        "We look forward to celebrating this occasion with you. Details will be shared soon.",
+      "place": "THE PALM PAVILION · GOA",
+      "attire": "Details to follow",
+      "tagline": "Blessings, wrapped in tradition.",
+      "id": "mayra",
+      "art": "event_mayra",
+      "day": "18",
+      "month": "NOV",
+      "year": "2027",
+      "date": "2027-11-18"
+    },
+    {
+      "name": "MEHNDI",
+      "dayOffset": -2,
+      "dateTBC": false,
+      "time": "4:00 PM",
+      "title": "Mehndi",
+      "description":
+        "We look forward to celebrating this occasion with you. Details will be shared soon.",
+      "place": "THE PALM PAVILION · GOA",
+      "attire": "Details to follow",
+      "tagline": "A little colour. A lifetime of love.",
+      "id": "mehndi",
+      "art": "event_mehndi",
+      "day": "18",
+      "month": "NOV",
+      "year": "2027",
+      "date": "2027-11-18"
+    },
+    {
+      "name": "COCKTAIL",
+      "dayOffset": -2,
+      "dateTBC": false,
+      "time": "8:00 PM",
+      "title": "Cocktail",
+      "description":
+        "We look forward to celebrating this occasion with you. Details will be shared soon.",
+      "place": "THE PALM PAVILION · GOA",
+      "attire": "Details to follow",
+      "tagline": "A toast to everything ahead.",
+      "id": "cocktail",
+      "art": "event_cocktail",
+      "day": "18",
+      "month": "NOV",
+      "year": "2027",
+      "date": "2027-11-18"
+    },
+    {
+      "name": "HALDI",
+      "dayOffset": -1,
+      "dateTBC": false,
+      "time": "10:00 AM",
+      "title": "Haldi",
+      "description":
+        "We look forward to celebrating this occasion with you. Details will be shared soon.",
+      "place": "THE PALM PAVILION · GOA",
+      "attire": "Details to follow",
+      "tagline": "Golden moments, glowing hearts.",
+      "id": "haldi",
+      "art": "haldi",
+      "day": "19",
+      "month": "NOV",
+      "year": "2027",
+      "date": "2027-11-19"
+    },
+    {
+      "name": "SANGEET",
+      "dayOffset": -1,
+      "dateTBC": false,
+      "time": "7:00 PM",
+      "title": "Sangeet",
+      "description":
+        "We look forward to celebrating this occasion with you. Details will be shared soon.",
+      "place": "THE PALM PAVILION · GOA",
+      "attire": "Details to follow",
+      "tagline": "Our kind of rhythm. Our kind of night.",
+      "id": "sangeet",
+      "art": "sangeet",
+      "day": "19",
+      "month": "NOV",
+      "year": "2027",
+      "date": "2027-11-19"
+    },
+    {
+      "name": "BARAAT",
+      "dayOffset": 0,
+      "dateTBC": false,
+      "time": "4:00 PM",
+      "title": "Baraat",
+      "description":
+        "We look forward to celebrating this occasion with you. Details will be shared soon.",
+      "place": "THE PALM PAVILION · GOA",
+      "attire": "Details to follow",
+      "tagline": "Make way for a grand arrival.",
+      "id": "baraat",
+      "art": "event_baraat",
+      "day": "20",
+      "month": "NOV",
+      "year": "2027",
+      "date": "2027-11-20"
+    },
+    {
+      "name": "WEDDING",
+      "dayOffset": 0,
+      "dateTBC": false,
+      "time": "6:00 PM",
+      "title": "Wedding",
+      "description":
+        "We look forward to celebrating this occasion with you. Details will be shared soon.",
+      "place": "THE PALM PAVILION · GOA",
+      "attire": "Details to follow",
+      "tagline": "Two hearts. One beautiful beginning.",
+      "id": "wedding",
+      "art": "mandap",
+      "day": "20",
+      "month": "NOV",
+      "year": "2027",
+      "date": "2027-11-20"
+    },
+    {
+      "name": "VARMALA",
+      "dayOffset": 0,
+      "dateTBC": false,
+      "time": "6:30 PM",
+      "title": "Varmala",
+      "description":
+        "We look forward to celebrating this occasion with you. Details will be shared soon.",
+      "place": "THE PALM PAVILION · GOA",
+      "attire": "Details to follow",
+      "tagline": "Choosing each other, all over again.",
+      "id": "varmala",
+      "art": "event_varmala",
+      "day": "20",
+      "month": "NOV",
+      "year": "2027",
+      "date": "2027-11-20"
+    },
+    {
+      "name": "PHERAS",
+      "dayOffset": 0,
+      "dateTBC": false,
+      "time": "7:30 PM",
+      "title": "Pheras",
+      "description":
+        "We look forward to celebrating this occasion with you. Details will be shared soon.",
+      "place": "THE PALM PAVILION · GOA",
+      "attire": "Details to follow",
+      "tagline": "Seven steps towards forever.",
+      "id": "pheras",
+      "art": "event_pheras",
+      "day": "20",
+      "month": "NOV",
+      "year": "2027",
+      "date": "2027-11-20"
+    },
+    {
+      "name": "VIDAI",
+      "dayOffset": 1,
+      "dateTBC": false,
+      "time": "8:00 AM",
+      "title": "Vidai",
+      "description":
+        "We look forward to celebrating this occasion with you. Details will be shared soon.",
+      "place": "THE PALM PAVILION · GOA",
+      "attire": "Details to follow",
+      "tagline": "New journeys. The same love.",
+      "id": "vidai",
+      "art": "event_vidai",
+      "day": "21",
+      "month": "NOV",
+      "year": "2027",
+      "date": "2027-11-21"
+    },
+    {
+      "name": "RECEPTION",
+      "dayOffset": 1,
+      "dateTBC": false,
+      "time": "7:00 PM",
+      "title": "Reception",
+      "description":
+        "We look forward to celebrating this occasion with you. Details will be shared soon.",
+      "place": "THE PALM PAVILION · GOA",
+      "attire": "Details to follow",
+      "tagline": "The beginning deserves a celebration.",
+      "id": "reception",
+      "art": "event_reception",
+      "day": "21",
+      "month": "NOV",
+      "year": "2027",
+      "date": "2027-11-21"
+    }
+  ],
+  "stories": [
+    {
+      "title": "The First Meet",
+      "city": "Mumbai",
+      "date": "12 MARCH 2022",
+      "iso": "2022-03-12",
+      "description": "A chance encounter on a train, and everything changed.",
+      "image": "mumbai"
+    },
+    {
+      "title": "The Adventure",
+      "city": "Kerala",
+      "date": "21 AUGUST 2024",
+      "iso": "2024-08-21",
+      "description": "Different journeys, same direction.",
+      "image": "kerala"
+    },
+    {
+      "title": "The Forever",
+      "city": "Goa",
+      "date": "20 NOVEMBER 2027",
+      "iso": "2027-11-20",
+      "description": "Next stop: a lifetime together.",
+      "image": "goa"
+    }
+  ],
+  "copy": {
+    "welcomeKicker": "NEXT STOP",
+    "welcomeSubtitle": "A LIFETIME TOGETHER",
+    "boardButton": "BOARD OUR JOURNEY",
+    "rsvpPreviewNote": "Design preview only. Your response is not sent or saved."
+  },
+  "settings": {
+    "trainCycleSeconds": 32,
+    "mapTrainCycleSeconds": 36,
+    "foliage": true,
+    "photoViewer": true,
+    "rsvpMode": "preview"
+  },
+  "stage": "coastal-wedding-express-complete"
+};

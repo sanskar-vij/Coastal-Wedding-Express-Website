@@ -1,0 +1,10 @@
+COASTAL WEDDING EXPRESS - FULL WEBSITE
+
+Run npm ci, then npm run dev. Open http://localhost:4331/.
+Or double-click START-WEBSITE.bat.
+
+Edit src/data/content.ts for wording, dates and settings.
+All eight sections are in src/pages/index.astro.
+Run npm run build to regenerate the upload-ready dist/ folder.
+
+Event dates are editable template dates. RSVP is a preview only.

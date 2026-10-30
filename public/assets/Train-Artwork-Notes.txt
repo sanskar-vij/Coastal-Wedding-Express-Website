@@ -1,0 +1,2 @@
+Built-in image_gen used. References: two user-provided teal, cream and gold train images. Prompt: Transparent two-row sprite sheet: short right-facing vintage teal-and-gold locomotive in row one; matching independent passenger coach in row two. Elevated three-quarter side view, horizontal wheel baseline, no tracks/scenery/text. Follow-up edit: remove all cloudy background and exterior glow, preserve vehicles and layout on genuine alpha.
+Animation: independently place three vehicles on sampled curved welcome railway, tangent rotation, perspective scale and looping travel.

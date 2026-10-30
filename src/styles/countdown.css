@@ -1,0 +1,16 @@
+.countdown-panel {
+  position: relative;
+  z-index: 4;
+  text-align: center;
+}
+#countdown {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.journey-controls #music {
+  font: 17px Georgia;
+}
+#music[aria-pressed='true'] {
+  color: #a1423b;
+}

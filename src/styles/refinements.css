@@ -1,0 +1,641 @@
+/* Review changes: no top header; railway geometry is handled by the full-scene canvas. */
+.track-train {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+.railway,
+.map-train {
+  display: none !important;
+}
+.memory-photo img {
+  object-fit: cover;
+  image-rendering: auto;
+}
+.venue-picture {
+  height: auto;
+  aspect-ratio: 2/1;
+}
+.venue-picture img {
+  object-fit: contain;
+  display: block;
+}
+.travel-map {
+  height: auto;
+  aspect-ratio: 1/1.08;
+}
+.travel-map > img:first-child {
+  object-fit: cover;
+  object-position: center 48%;
+}
+.map-venue {
+  top: 12%;
+  right: 6%;
+}
+.map-airport {
+  left: 4%;
+  bottom: 30%;
+}
+.map-station {
+  right: 4%;
+  bottom: 9%;
+}
+.venue-page .page-content {
+  padding-bottom: 90px;
+}
+.guide-page .page-content {
+  padding-bottom: 100px;
+}
+.venue-page,
+.guide-page {
+  min-height: 0;
+}
+
+.paused .cover-intro {
+  animation: none !important;
+  opacity: 1;
+  transform: none;
+}
+.journey-controls {
+  backdrop-filter: none;
+  background: #fff3d9;
+  box-shadow: 0 3px 12px #00252c30;
+}
+
+/* Clear source artwork replaces every remaining PDF image crop. */
+.story-card:nth-child(1) > img {
+  object-fit: contain;
+  background: linear-gradient(#bde5ee 0%, #e9ead3 63%, #3699a8 64%, #136981);
+  padding: 5px 0 0;
+}
+.story-card:nth-child(2) > img {
+  object-fit: contain;
+  background-color: #1a7f87;
+  background-image:
+    url('/assets/library/botanicals__trees__coconut-palm__psa-local-000105__main__v01.webp'),
+    linear-gradient(#c6e6e4, #6ca778 42%, #237f80 64%, #237d91);
+  background-size:
+    54% 95%,
+    100% 100%;
+  background-repeat: repeat-x, no-repeat;
+  background-position:
+    center top,
+    center;
+  padding-top: 28px;
+}
+.story-card:nth-child(3) > img {
+  object-fit: cover;
+}
+.portrait-card > img {
+  object-fit: contain;
+  background: radial-gradient(ellipse at center, #cbd5a9, #8c9a65);
+}
+.venue-page .page-content {
+  padding-bottom: 0;
+}
+.venue-page {
+  min-height: 0;
+}
+.map-motion {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+.travel-map > img:first-of-type {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 48%;
+  display: block;
+}
+
+.station-clock {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Soft masked copies move only the botanical regions of the painted scenery. */
+.living-scenery {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -3;
+  overflow: hidden;
+}
+.living-botanical {
+  position: absolute;
+  inset: 0;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  will-change: transform;
+  animation: botanical-breeze 8s ease-in-out infinite alternate;
+  transform-origin: 0 0;
+}
+.living-botanical.top-left {
+  mask-image: radial-gradient(ellipse 28% 18% at 4% 3%, #000 50%, transparent 100%);
+}
+.living-botanical.top-right {
+  mask-image: radial-gradient(ellipse 32% 19% at 98% 2%, #000 50%, transparent 100%);
+  transform-origin: 100% 0;
+  animation-delay: -3s;
+  animation-duration: 10s;
+}
+.living-botanical.bottom-left {
+  mask-image: radial-gradient(ellipse 26% 20% at 1% 98%, #000 45%, transparent 100%);
+  transform-origin: 0 100%;
+  animation-delay: -5s;
+  animation-duration: 7s;
+}
+.living-botanical.bottom-right {
+  mask-image: radial-gradient(ellipse 27% 20% at 99% 99%, #000 45%, transparent 100%);
+  transform-origin: 100% 100%;
+  animation-delay: -2s;
+  animation-duration: 9s;
+}
+@keyframes botanical-breeze {
+  from {
+    transform: rotate(-0.25deg) translateX(-0.5px);
+  }
+  to {
+    transform: rotate(0.45deg) translateX(1px);
+  }
+}
+.foreground {
+  animation: flower-breeze 7s ease-in-out infinite alternate;
+}
+@keyframes flower-breeze {
+  from {
+    rotate: -2deg;
+    translate: 0 1px;
+  }
+  to {
+    rotate: 2.5deg;
+    translate: 2px -2px;
+  }
+}
+.event-card > img {
+  transform-origin: 50% 85%;
+}
+.map-sailboat {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+  mask-image: radial-gradient(ellipse 5% 9% at 18% 48%, #000 65%, transparent 100%);
+}
+.map-sailboat img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 48%;
+  transform-origin: 18% 48%;
+  animation: boat-rock 6s ease-in-out infinite alternate;
+}
+@keyframes boat-rock {
+  from {
+    transform: rotate(-0.6deg) translateY(-1px);
+  }
+  to {
+    transform: rotate(0.6deg) translateY(1px);
+  }
+}
+.foliage-offscreen .living-botanical,
+.foliage-offscreen .map-sailboat img {
+  animation-play-state: paused;
+}
+.foliage-disabled .living-scenery {
+  display: none;
+}
+/* Four individual keepsake prints, with a quiet editorial heading and caption. */
+.memory-album,
+.memory-album.reveal.visible {
+  background: transparent;
+  box-shadow: none;
+  padding: 10px 0 0;
+  transform: none;
+}
+.memory-grid {
+  gap: 20px 16px;
+  align-items: start;
+  padding: 0 5px;
+}
+.memory-photo {
+  position: relative;
+  height: auto;
+  aspect-ratio: 3/4;
+  padding: 7px 7px 28px;
+  background: #fff9eb;
+  box-shadow: 0 5px 15px #123b3d26;
+  border: 1px solid #c9ad794d;
+  transform: rotate(-3deg);
+  transition:
+    transform 0.5s,
+    box-shadow 0.5s;
+  overflow: visible;
+}
+.memory-photo:nth-child(2) {
+  transform: rotate(3deg);
+  margin-top: 24px;
+}
+.memory-photo:nth-child(3) {
+  transform: rotate(2deg);
+}
+.memory-photo:nth-child(4) {
+  transform: rotate(-3deg);
+  margin-top: 24px;
+}
+.memory-photo img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+.memory-photo::after {
+  content: '01 · A LITTLE CLOSER';
+  position: absolute;
+  bottom: 9px;
+  left: 0;
+  right: 0;
+  font:
+    7px Georgia,
+    serif;
+  letter-spacing: 1px;
+  color: #795f40;
+  text-align: center;
+}
+.memory-photo:nth-child(2)::after {
+  content: '02 · GOLDEN HOUR';
+}
+.memory-photo:nth-child(3)::after {
+  content: '03 · OUR HAPPY PLACE';
+}
+.memory-photo:nth-child(4)::after {
+  content: '04 · ALWAYS, TOGETHER';
+}
+.memory-photo:hover,
+.memory-photo:focus-visible {
+  transform: rotate(0) translateY(-5px);
+  box-shadow: 0 12px 22px #123b3d36;
+  z-index: 2;
+}
+.memory-photo:hover img {
+  transform: none;
+}
+.album-caption {
+  margin-top: 26px;
+  padding: 22px 5px 0;
+  border-top: 1px solid #b6986266;
+  gap: 10px;
+}
+.album-caption p {
+  font-size: 27px;
+  line-height: 1.2;
+  transform: none;
+  color: #173e40;
+}
+.album-caption p span {
+  padding-left: 0;
+}
+.album-caption img {
+  width: 82px;
+  height: 82px;
+}
+@media (max-width: 360px) {
+  .memory-grid {
+    gap: 14px 12px;
+  }
+  .memory-photo {
+    padding: 5px 5px 26px;
+  }
+  .memory-photo::after {
+    font-size: 6px;
+    letter-spacing: 0.5px;
+  }
+  .album-caption p {
+    font-size: 23px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .living-botanical,
+  .map-sailboat img,
+  .foreground,
+  .event-card > img {
+    animation: none !important;
+  }
+}
+
+/* Both chains extend beyond the upper edge as the sign swings. */
+.hanging-sign .chain {
+  height: 330px;
+}
+.hanging-sign {
+  border-radius: 10px;
+}
+.hanging-sign > div {
+  border-radius: 5px;
+}
+.paper-card,
+.portrait-card,
+.postcard,
+.guide-card,
+.event-card,
+.venue-ticket,
+.rsvp-form,
+.farewell {
+  border-radius: 18px;
+}
+.portrait-card {
+  overflow: hidden;
+}
+.story-card > img,
+.guide-icon,
+.venue-picture,
+.venue-picture img,
+.travel-map,
+.travel-map > img,
+.memory-photo,
+.memory-photo img {
+  border-radius: 12px;
+}
+.venue-picture,
+.travel-map {
+  overflow: hidden;
+}
+.primary-button {
+  border-radius: 14px;
+  clip-path: none !important;
+}
+.text-button {
+  border-radius: 9px;
+}
+input,
+select,
+textarea {
+  border-radius: 10px !important;
+}
+#info-dialog,
+#photo-dialog,
+#large-photo {
+  border-radius: 18px;
+}
+.living-botanical.flower-column {
+  mask-image: radial-gradient(ellipse 9% 42% at 3% 34%, #000 40%, transparent 100%);
+  transform-origin: 0 35%;
+  animation-duration: 6s;
+}
+.living-botanical.palm {
+  mask-image: radial-gradient(ellipse 24% 19% at 93% 88%, #000 40%, transparent 100%);
+  transform-origin: 96% 100%;
+  animation-duration: 9s;
+  animation-delay: -4s;
+}
+.living-botanical.sea {
+  mask-image: radial-gradient(ellipse 29% 9% at 76% 71%, #000 40%, transparent 100%);
+  animation: sea-drift 7s ease-in-out infinite alternate;
+  transform-origin: center;
+}
+@keyframes sea-drift {
+  from {
+    transform: translate(-1px, 0) scaleX(1);
+  }
+  to {
+    transform: translate(2px, 1px) scaleX(1.008);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .living-botanical.sea {
+    animation: none !important;
+  }
+}
+
+/* Readable labels remain on a solid warm paper ground. */
+.stop-label {
+  color: #244b4b !important;
+  font-weight: 600;
+  text-shadow: 0 1px 2px #fff8e7;
+}
+.back-top {
+  display: block;
+  padding: 14px 12px;
+  margin: 28px auto 20px;
+  background: #fff3da;
+  border: 1px solid #a67f42;
+  border-radius: 12px;
+  color: #143d40 !important;
+  font-size: 10px;
+  font-weight: 700;
+  box-shadow: 0 3px 10px #123b3d22;
+}
+.guide-rail-scene {
+  position: relative;
+  height: 260px;
+  background-image: var(--bridge);
+  background-size: 100% 100%;
+  overflow: hidden;
+  margin-top: 0;
+}
+.guide-page .page-content {
+  padding-bottom: 18px;
+}
+.guide-rail-scene .track-train {
+  z-index: 1;
+}
+
+/* Keep the railway clear of the floating scroll label. */
+.scroll-cue {
+  bottom: 225px;
+  left: auto;
+  right: 5%;
+  transform: none;
+  font-size: 7px;
+}
+
+/* Dedicated event illustrations sit in a consistent, softly rounded frame. */
+.event-card > img {
+  border-radius: 14px;
+  object-fit: contain;
+  background: #fff3df;
+  padding: 3px;
+  box-sizing: border-box;
+}
+.guide-page .page-content {
+  padding-bottom: 90px;
+}
+
+/* Foreground scenery remains in front of passing trains. */
+.scenery-occlusion {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+.welcome-occlusion {
+  clip-path: polygon(
+    83% 81%,
+    78% 79%,
+    86% 80%,
+    89% 79%,
+    94% 80%,
+    100% 82%,
+    94% 82%,
+    100% 85%,
+    93% 83%,
+    96% 86%,
+    91% 84%,
+    90% 100%,
+    88% 100%,
+    89% 84%,
+    82% 87%,
+    85% 83%,
+    79% 84%
+  );
+}
+.bridge-occlusion {
+  clip-path: polygon(
+    100% 57%,
+    96% 58%,
+    96% 60%,
+    92% 61%,
+    98% 61%,
+    93% 63%,
+    99% 62%,
+    98% 72%,
+    93% 73%,
+    89% 76%,
+    96% 75%,
+    90% 79%,
+    97% 77%,
+    95% 82%,
+    99% 79%,
+    99% 100%,
+    100% 100%
+  );
+}
+.stop-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  font-size: 17px;
+  font-weight: 500;
+  text-indent: 0;
+}
+
+/* Continuous foreground strip covers the complete right-hand palm cluster. */
+.bridge-occlusion {
+  clip-path: polygon(86% 0, 100% 0, 100% 100%, 86% 100%);
+}
+.map-boat-water {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background-size: 100% auto;
+  background-position: 45px 48%;
+  mask-image: radial-gradient(ellipse 9% 12% at 18% 45%, #000 55%, transparent 100%);
+}
+.map-sailboat {
+  z-index: 3;
+  mask-image: radial-gradient(ellipse 11% 14% at 18% 45%, #000 50%, transparent 85%);
+}
+.map-sailboat img {
+  transform-origin: 18% 45%;
+  animation: boat-sailing 8s ease-in-out infinite alternate;
+}
+@keyframes boat-sailing {
+  0% {
+    transform: translate(-5px, 2px) rotate(-1deg);
+  }
+  50% {
+    transform: translate(3px, -2px) rotate(1deg);
+  }
+  100% {
+    transform: translate(10px, 2px) rotate(-0.5deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .map-sailboat img {
+    animation: none !important;
+  }
+}
+
+.welcome-countdown-strip {
+  position: relative;
+  padding: 18px 25px;
+  background: #fff3df;
+  border-block: 1px solid #c8ab71;
+}
+.welcome-countdown-strip .countdown-panel {
+  position: relative;
+  inset: auto;
+  padding: 0;
+  background: none;
+  border: 0;
+  box-shadow: none;
+}
+#welcome .scroll-cue {
+  bottom: 210px;
+}
+
+#welcome .scroll-cue {
+  display: none;
+}
+
+/* Keep the welcome train clear of decorative foliage overlays. */
+#welcome .welcome-occlusion,
+#welcome .living-botanical.palm,
+#welcome .living-botanical.bottom-right,
+#welcome .living-botanical.bottom-left {
+  display: none !important;
+}
+
+/* Full-width invitation shell, with readable content widths on larger screens. */
+.site-shell {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  box-shadow: none;
+}
+.desktop-label,
+.desktop-route {
+  display: none !important;
+}
+.page-content {
+  width: 100%;
+  max-width: 960px;
+  margin-inline: auto;
+}
+.cover-content {
+  width: 100%;
+  max-width: 760px;
+  margin-inline: auto;
+}
+@media (min-width: 700px) {
+  .portrait-card > img {
+    height: 390px;
+  }
+  .memory-photo {
+    aspect-ratio: 4/5;
+  }
+  .cover-intro h1 {
+    font-size: 100px;
+  }
+  .page h2 {
+    font-size: 46px;
+  }
+}

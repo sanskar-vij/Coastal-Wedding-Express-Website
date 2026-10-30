@@ -1,0 +1,26 @@
+{
+  "name": "coastal-wedding-express-website",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/sync.mjs && astro dev --host 0.0.0.0 --port 4331",
+    "start": "npm run dev",
+    "sync": "node scripts/sync.mjs",
+    "check": "node scripts/check.mjs",
+    "verify": "node scripts/verify.mjs",
+    "build": "node scripts/sync.mjs && node scripts/check.mjs && astro build && node scripts/verify.mjs",
+    "preview": "astro preview --host 0.0.0.0 --port 4331",
+    "format": "prettier --write src scripts astro.config.mjs package.json"
+  },
+  "dependencies": {
+    "astro": "7.4.0"
+  },
+  "engines": {
+    "node": ">=22.22.0"
+  },
+  "devDependencies": {
+    "prettier": "^3.9.10",
+    "prettier-plugin-astro": "^1.1.2"
+  }
+}

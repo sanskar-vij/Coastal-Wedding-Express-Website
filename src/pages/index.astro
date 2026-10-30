@@ -1,0 +1,1174 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CoastalEntrance from '../components/CoastalEntrance.astro';
+import { content } from '../data/content';
+---
+
+<Layout>
+  <CoastalEntrance />
+  <a class="skip" href="#couple">
+    Skip welcome
+  </a>
+  <div class="site-shell">
+    <nav id="menu" aria-label="Invitation menu" hidden>
+      <p class="eyebrow">YOUR JOURNEY, AT A GLANCE</p>
+      <button class="menu-close" aria-label="Close invitation menu">
+        ×
+      </button>
+      <ol>
+        <li>
+          <a href="#welcome">
+            <span>01</span>Welcome aboard
+          </a>
+        </li>
+        <li>
+          <a href="#couple">
+            <span>02</span>Our journey together
+          </a>
+        </li>
+        <li>
+          <a href="#story">
+            <span>03</span>Our story
+          </a>
+        </li>
+        <li>
+          <a href="#celebrations">
+            <span>04</span>Our celebrations
+          </a>
+        </li>
+        <li>
+          <a href="#memories">
+            <span>05</span>Our memories
+          </a>
+        </li>
+        <li>
+          <a href="#venue">
+            <span>06</span>Venue & travel
+          </a>
+        </li>
+        <li>
+          <a href="#rsvp">
+            <span>07</span>RSVP
+          </a>
+        </li>
+        <li>
+          <a href="#guide">
+            <span>08</span>Guest guide
+          </a>
+        </li>
+      </ol>
+      <p class="menu-foot">{content.dateLabel} · GOA</p>
+    </nav>
+    <main>
+      <section
+        id="welcome"
+        class="page cover"
+        aria-label="Welcome aboard"
+        data-label="Welcome aboard"
+      >
+        <div class="scene welcome-scene" aria-hidden="true">
+          <video
+            class="welcome-video"
+            muted
+            autoplay
+            loop
+            playsinline
+            preload="auto"
+            poster={import.meta.env.BASE_URL + content.assets.welcome}
+            aria-hidden="true"
+            tabindex="-1"
+          >
+            <source src={import.meta.env.BASE_URL + 'assets/welcome-bg.mp4'} type="video/mp4" />
+          </video>
+        </div>
+        <div class="shimmer" aria-hidden="true"></div>
+        <div class="cover-content">
+          <div class="hanging-sign">
+            <i class="chain left"></i>
+            <i class="chain right"></i>
+            <div>
+              COASTAL
+              <br />
+              <span>WEDDING EXPRESS</span>
+            </div>
+          </div>
+          <div class="cover-intro">
+            <p class="eyebrow">
+              {content.copy.welcomeKicker}
+              <br />
+              {content.copy.welcomeSubtitle}
+            </p>
+            <h1>
+              {content.groom} <em>&</em>
+              <br />
+              <span>{content.bride}</span>
+            </h1>
+            <p class="date">{content.dateLabel}</p>
+            <div class="ornament" aria-hidden="true">
+              <span></span>✧<span></span>
+            </div>
+          </div>
+        </div>
+        <div class="petals" aria-hidden="true">
+          <i></i>
+          <i></i>
+          <i></i>
+          <i></i>
+        </div>
+        <div class="station-countdown">
+          {content.countdown.enabled && (
+            <div class="countdown-panel" aria-label="Wedding countdown">
+              <div class="countdown-badge">
+                <span class="countdown-spark" aria-hidden="true">
+                  ✧
+                </span>
+                <p class="board-kicker">DEPARTURE TO FOREVER</p>
+                <span class="countdown-spark" aria-hidden="true">
+                  ✧
+                </span>
+              </div>
+              <p class="board-subtitle">{content.countdown.label}</p>
+              <div id="countdown">
+                <div class="time-box">
+                  <b data-count="days">—</b>
+                  <small>DAYS</small>
+                </div>
+                <span class="time-sep" aria-hidden="true">
+                  :
+                </span>
+                <div class="time-box">
+                  <b data-count="hours">—</b>
+                  <small>HRS</small>
+                </div>
+                <span class="time-sep" aria-hidden="true">
+                  :
+                </span>
+                <div class="time-box">
+                  <b data-count="minutes">—</b>
+                  <small>MIN</small>
+                </div>
+                <span class="time-sep" aria-hidden="true">
+                  :
+                </span>
+                <div class="time-box">
+                  <b data-count="seconds">—</b>
+                  <small>SEC</small>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+        <a class="scroll-cue" href="#couple">
+          SCROLL TO EXPLORE ↓
+        </a>
+      </section>
+      <section
+        id="couple"
+        class="page"
+        aria-label="Our journey together"
+        data-label="Our journey together"
+      >
+        <div class="scene bridge-scene" aria-hidden="true">
+          <video
+            class="scene-video"
+            muted
+            loop
+            playsinline
+            preload="none"
+            poster={import.meta.env.BASE_URL + content.assets.bridge}
+            aria-hidden="true"
+            tabindex="-1"
+          >
+            <source src={import.meta.env.BASE_URL + 'assets/train2.mp4'} type="video/mp4" />
+          </video>
+        </div>
+        <div class="haze" aria-hidden="true"></div>
+        <div class="page-content">
+          <div class="page-heading reveal">
+            <p class="stop-label">STOP 02 · COASTAL WEDDING EXPRESS</p>
+            <h2>
+              Our
+              <br />
+              Journey Together
+            </h2>
+            <p class="subtitle">TWO FAMILIES · ONE BEAUTIFUL DESTINATION</p>
+            <div class="ornament" aria-hidden="true">
+              <span></span>✧<span></span>
+            </div>
+          </div>
+          <div class="couple-grid">
+            <article class="portrait-card reveal">
+              <div
+                class="portrait-window-wrapper"
+                tabindex="0"
+                role="button"
+                aria-expanded="false"
+                aria-label="Tap to open train window and reveal Aarav"
+              >
+                <img
+                  src={content.assets.aarav}
+                  alt="Aarav"
+                  class="portrait-train-window"
+                  loading="lazy"
+                />
+                <div class="window-sash-container" aria-hidden="true">
+                  <div class="window-sash">
+                    <img
+                      src={content.assets.trainWindowSash}
+                      alt=""
+                      class="sash-image"
+                      loading="lazy"
+                    />
+                    <div class="sash-brass-handle">
+                      <span class="handle-bar"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="window-tap-cue" aria-hidden="true">
+                  <span class="tap-hand">👆</span>
+                  <span class="tap-text">Tap to open</span>
+                </div>
+                <canvas class="portrait-confetti-canvas" aria-hidden="true"></canvas>
+              </div>
+              <div>
+                <h3>{content.groom}</h3>
+                <p>
+                  Son of
+                  <br />
+                  {content.families.groom[0]}
+                  <br />&<br />
+                  {content.families.groom[1]}
+                </p>
+              </div>
+            </article>
+            <article class="portrait-card reveal">
+              <div
+                class="portrait-window-wrapper"
+                tabindex="0"
+                role="button"
+                aria-expanded="false"
+                aria-label="Tap to open train window and reveal Meera"
+              >
+                <img
+                  src={content.assets.meera}
+                  alt="Meera"
+                  class="portrait-train-window"
+                  loading="lazy"
+                />
+                <div class="window-sash-container" aria-hidden="true">
+                  <div class="window-sash">
+                    <img
+                      src={content.assets.trainWindowSash}
+                      alt=""
+                      class="sash-image"
+                      loading="lazy"
+                    />
+                    <div class="sash-brass-handle">
+                      <span class="handle-bar"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="window-tap-cue" aria-hidden="true">
+                  <span class="tap-hand">👆</span>
+                  <span class="tap-text">Tap to open</span>
+                </div>
+                <canvas class="portrait-confetti-canvas" aria-hidden="true"></canvas>
+              </div>
+              <div>
+                <h3>{content.bride}</h3>
+                <p>
+                  Daughter of
+                  <br />
+                  {content.families.bride[0]}
+                  <br />&<br />
+                  {content.families.bride[1]}
+                </p>
+              </div>
+            </article>
+          </div>
+          <div class="postcard tilted reveal">
+            <p class="eyebrow">
+              DIFFERENT PATHS
+              <br />
+              SAME DESTINATION
+              <br />
+              TOGETHER
+            </p>
+            <img src={content.assets.postmark} alt="" class="stamp" loading="lazy" />
+          </div>
+        </div>
+      </section>
+      <section id="story" class="page" aria-label="Our story" data-label="Our story">
+        <div class="scene bridge-scene" aria-hidden="true">
+          <video
+            class="scene-video"
+            muted
+            loop
+            playsinline
+            preload="none"
+            poster={import.meta.env.BASE_URL + content.assets.bridge}
+            aria-hidden="true"
+            tabindex="-1"
+          >
+            <source src={import.meta.env.BASE_URL + 'assets/train2.mp4'} type="video/mp4" />
+          </video>
+        </div>
+        <div class="haze" aria-hidden="true"></div>
+        <div class="page-content">
+          <div class="page-heading reveal">
+            <p class="stop-label">STOP 03 · COASTAL WEDDING EXPRESS</p>
+            <h2>Our Story</h2>
+            <p class="subtitle">THREE STOPS · A LIFETIME AHEAD</p>
+            <div class="ornament" aria-hidden="true">
+              <span></span>✧<span></span>
+            </div>
+          </div>
+          <ol class="timeline story-interactive-timeline">
+            {content.stories.map((story, index) => (
+              <li class="story-card paper-card reveal" data-story-index={index}>
+                <div class="story-station-header">
+                  <span class="story-rail-stop">{story.city.toUpperCase()}</span>
+                  <span class="story-milestone-tag">MILESTONE</span>
+                </div>
+
+                <div
+                  class="story-scratch-container"
+                  tabindex="0"
+                  role="region"
+                  aria-label={`Interactive scratch card: scratch to reveal memory of ${story.title} in ${story.city}`}
+                >
+                  <div class="story-photo-wrapper">
+                    <img
+                      src={content.assets[story.image]}
+                      alt={`${story.title} in ${story.city}`}
+                      loading="lazy"
+                      class="story-photo"
+                    />
+                    <div class="story-photo-shimmer" aria-hidden="true"></div>
+                  </div>
+                  <canvas class="story-scratch-canvas" aria-hidden="true"></canvas>
+                  <div class="scratch-cue" aria-hidden="true">
+                    <span class="scratch-hand">✨</span>
+                    <span class="scratch-text">Scratch to reveal</span>
+                  </div>
+                  <button
+                    type="button"
+                    class="scratch-reveal-btn"
+                    aria-label={`Tap to reveal ${story.title}`}
+                  >
+                    Tap to reveal
+                  </button>
+                </div>
+
+                <div class="story-card-body">
+                  <h4>{story.city}</h4>
+                  <h3>{story.title}</h3>
+                  <time datetime={story.iso}>
+                    <span class="story-cal-spark" aria-hidden="true">✧</span> {story.date}
+                  </time>
+                  <p>{story.description}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+        <img src={content.assets.vine} alt="" class="foreground" loading="lazy" />
+      </section>
+      <section
+        id="celebrations"
+        class="page events-page"
+        aria-label="Our celebrations"
+        data-label="Our celebrations"
+      >
+        <div class="scene bridge-scene" aria-hidden="true">
+          <video
+            class="scene-video"
+            muted
+            loop
+            playsinline
+            preload="none"
+            poster={import.meta.env.BASE_URL + content.assets.bridge}
+            aria-hidden="true"
+            tabindex="-1"
+          >
+            <source src={import.meta.env.BASE_URL + 'assets/train2.mp4'} type="video/mp4" />
+          </video>
+        </div>
+        <div class="haze" aria-hidden="true"></div>
+        <div class="page-content">
+          <div class="page-heading reveal">
+            <p class="stop-label">STOP 04 · COASTAL WEDDING EXPRESS</p>
+            <h2>
+              Our
+              <br />
+              Celebrations
+            </h2>
+            <p class="subtitle">LOVE, MUSIC & TOGETHERNESS</p>
+            <div class="ornament" aria-hidden="true">
+              <span></span>✧<span></span>
+            </div>
+          </div>
+          <div class="events-shell">
+            <p class="events-total">
+              {content.events.length} CELEBRATIONS · ALL OUR FAVOURITE TRADITIONS
+            </p>
+            <div
+              id="events-carousel"
+              class="events-carousel"
+              aria-label="Wedding events"
+              tabindex="0"
+            >
+              {Array.from({ length: Math.ceil(content.events.length / 3) }, (_, page) => (
+                <div class="event-slide" role="group" aria-label={`Event page ${page + 1}`}>
+                  <div class="event-list">
+                    {content.events.slice(page * 3, page * 3 + 3).map((event) => (
+                      <article
+                        class="event-card flip-card"
+                        data-event={event.id}
+                        tabindex="0"
+                        role="button"
+                        aria-expanded="false"
+                        aria-label={`${event.title} celebration photograph. Tap to flip card and reveal event details and date.`}
+                      >
+                        <div class="flip-card-inner">
+                          <!-- FRONT: Ceremony Photograph Keepsake Card -->
+                          <div class="flip-card-front paper-card">
+                            <div class="front-photo-frame">
+                              <img
+                                src={content.assets[event.art]}
+                                alt={`${event.title} celebration photograph`}
+                                loading="lazy"
+                                class="event-photo"
+                              />
+                            </div>
+                            <div class="front-content">
+                              <div class="front-kicker-row" aria-hidden="true">
+                                <span class="front-station-badge">CEREMONY</span>
+                                <span class="front-spark">✧</span>
+                              </div>
+                              <h3 class="front-title">{event.title}</h3>
+                              <p class="front-tagline">“{event.tagline}”</p>
+                              <div class="front-flip-hint" aria-hidden="true">
+                                <span class="flip-hint-icon">↻</span>
+                                <span class="flip-hint-text">Tap to reveal date</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- BACK: Royal Wedding Invitation Details Card -->
+                          <div class="flip-card-back paper-card">
+                            <div class="back-ornament-header" aria-hidden="true">
+                              <span class="back-spark">✧</span>
+                              <span class="back-ornament-title">INVITATION DETAILS</span>
+                              <span class="back-spark">✧</span>
+                            </div>
+
+                            <h3 class="back-title">{event.title}</h3>
+
+                            <div class="back-details-grid">
+                              <div class:list={['back-date-badge', { 'date-tbc': event.dateTBC }]}>
+                                <strong class="back-date-day">{event.day}</strong>
+                                <span class="back-date-month">{event.month}</span>
+                                <small class="back-date-year">{event.year}</small>
+                              </div>
+
+                              <div class="back-meta-block">
+                                <p class="back-meta-row back-time-row">
+                                  <span class="back-meta-icon" aria-hidden="true">
+                                    🕒
+                                  </span>
+                                  <span class="back-time-text">{event.time}</span>
+                                </p>
+                                <p class="back-meta-row back-place-row">
+                                  <span class="back-meta-icon" aria-hidden="true">
+                                    ⌖
+                                  </span>
+                                  <span class="back-place-text">{event.place}</span>
+                                </p>
+                              </div>
+                            </div>
+
+                            <p class="back-tagline">“{event.tagline}”</p>
+
+                            <div class="back-return-cue" aria-hidden="true">
+                              <span class="back-return-icon">↺</span>
+                              <span class="back-return-text">Tap to view photograph</span>
+                            </div>
+                          </div>
+                        </div>
+                      </article>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div class="events-navigation">
+              <button id="events-prev" type="button" aria-label="Previous events">
+                ←
+              </button>
+              <div class="events-dots" role="tablist" aria-label="Event slide indicator">
+                {Array.from({ length: Math.ceil(content.events.length / 3) }, (_, i) => (
+                  <button
+                    type="button"
+                    role="tab"
+                    class:list={['event-dot', { active: i === 0 }]}
+                    data-slide={i}
+                    aria-label={`Go to event slide ${i + 1}`}
+                    aria-selected={i === 0 ? 'true' : 'false'}
+                  />
+                ))}
+              </div>
+              <span id="events-count" aria-live="polite">
+                1 / {Math.ceil(content.events.length / 3)}
+              </span>
+              <button id="events-next" type="button" aria-label="Next events">
+                →
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        id="memories"
+        class="page memories-page"
+        aria-label="Our memories"
+        data-label="Our memories"
+      >
+        <div class="scene bridge-scene" aria-hidden="true">
+          <video
+            class="scene-video"
+            muted
+            loop
+            playsinline
+            preload="none"
+            poster={import.meta.env.BASE_URL + content.assets.bridge}
+            aria-hidden="true"
+            tabindex="-1"
+          >
+            <source src={import.meta.env.BASE_URL + 'assets/train2.mp4'} type="video/mp4" />
+          </video>
+        </div>
+        <div class="haze" aria-hidden="true"></div>
+        <div class="page-content">
+          <div class="page-heading reveal">
+            <p class="stop-label">STOP 05 · COASTAL WEDDING EXPRESS</p>
+            <h2>Our Memories</h2>
+            <p class="subtitle">MOMENTS THAT LEAD US HERE</p>
+            <div class="ornament" aria-hidden="true">
+              <span></span>✧<span></span>
+            </div>
+          </div>
+          <div class="memory-album reveal">
+            <div class="memory-grid memory-train-window-grid">
+              <article class="memory-photo-card" data-memory-index="0">
+                <div
+                  class="memory-window-wrapper portrait-window-wrapper"
+                  tabindex="0"
+                  role="button"
+                  aria-expanded="false"
+                  aria-label="Tap to open curtains and reveal Memory 1: Our favourite place is together."
+                  data-photo="memory1"
+                  data-caption="Our favourite place is together."
+                >
+                  <img
+                    src={content.assets.memory1Framed}
+                    alt="Aarav and Meera, memory 1: Our favourite place is together."
+                    class="portrait-train-window memory-framed-img"
+                    loading="lazy"
+                  />
+                  <!-- Luxury Velvet Coach Curtains inside Window Opening -->
+                  <div class="window-curtain-container" aria-hidden="true">
+                    <div class="curtain-rod">
+                      <span class="rod-finial finial-left"></span>
+                      <span class="rod-bar"></span>
+                      <span class="rod-finial finial-right"></span>
+                    </div>
+                    <div class="curtain-panel curtain-left">
+                      <div class="curtain-fabric">
+                        <span class="pleat p1"></span>
+                        <span class="pleat p2"></span>
+                        <span class="pleat p3"></span>
+                      </div>
+                      <div class="curtain-gold-fringe"></div>
+                      <div class="curtain-tieback">
+                        <span class="tassel-braid"></span>
+                        <span class="tassel-skirt"></span>
+                      </div>
+                    </div>
+                    <div class="curtain-panel curtain-right">
+                      <div class="curtain-fabric">
+                        <span class="pleat p1"></span>
+                        <span class="pleat p2"></span>
+                        <span class="pleat p3"></span>
+                      </div>
+                      <div class="curtain-gold-fringe"></div>
+                      <div class="curtain-tieback">
+                        <span class="tassel-braid"></span>
+                        <span class="tassel-skirt"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="window-tap-cue" aria-hidden="true">
+                    <span class="tap-hand">👆</span>
+                    <span class="tap-text">Tap to open</span>
+                  </div>
+                  <canvas class="portrait-confetti-canvas memory-confetti-canvas" aria-hidden="true"></canvas>
+                </div>
+                <div class="memory-caption-wrap">
+                  <span class="memory-badge">01 · A LITTLE CLOSER</span>
+                  <p class="memory-caption-text">Our favourite place is together.</p>
+                </div>
+              </article>
+
+              <article class="memory-photo-card" data-memory-index="1">
+                <div
+                  class="memory-window-wrapper portrait-window-wrapper"
+                  tabindex="0"
+                  role="button"
+                  aria-expanded="false"
+                  aria-label="Tap to open curtains and reveal Memory 2: A little sunset, a lot of love."
+                  data-photo="memory2"
+                  data-caption="A little sunset, a lot of love."
+                >
+                  <img
+                    src={content.assets.memory2Framed}
+                    alt="Aarav and Meera, memory 2: A little sunset, a lot of love."
+                    class="portrait-train-window memory-framed-img"
+                    loading="lazy"
+                  />
+                  <!-- Luxury Velvet Coach Curtains inside Window Opening -->
+                  <div class="window-curtain-container" aria-hidden="true">
+                    <div class="curtain-rod">
+                      <span class="rod-finial finial-left"></span>
+                      <span class="rod-bar"></span>
+                      <span class="rod-finial finial-right"></span>
+                    </div>
+                    <div class="curtain-panel curtain-left">
+                      <div class="curtain-fabric">
+                        <span class="pleat p1"></span>
+                        <span class="pleat p2"></span>
+                        <span class="pleat p3"></span>
+                      </div>
+                      <div class="curtain-gold-fringe"></div>
+                      <div class="curtain-tieback">
+                        <span class="tassel-braid"></span>
+                        <span class="tassel-skirt"></span>
+                      </div>
+                    </div>
+                    <div class="curtain-panel curtain-right">
+                      <div class="curtain-fabric">
+                        <span class="pleat p1"></span>
+                        <span class="pleat p2"></span>
+                        <span class="pleat p3"></span>
+                      </div>
+                      <div class="curtain-gold-fringe"></div>
+                      <div class="curtain-tieback">
+                        <span class="tassel-braid"></span>
+                        <span class="tassel-skirt"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="window-tap-cue" aria-hidden="true">
+                    <span class="tap-hand">👆</span>
+                    <span class="tap-text">Tap to open</span>
+                  </div>
+                  <canvas class="portrait-confetti-canvas memory-confetti-canvas" aria-hidden="true"></canvas>
+                </div>
+                <div class="memory-caption-wrap">
+                  <span class="memory-badge">02 · GOLDEN HOUR</span>
+                  <p class="memory-caption-text">A little sunset, a lot of love.</p>
+                </div>
+              </article>
+
+              <article class="memory-photo-card" data-memory-index="2">
+                <div
+                  class="memory-window-wrapper portrait-window-wrapper"
+                  tabindex="0"
+                  role="button"
+                  aria-expanded="false"
+                  aria-label="Tap to open curtains and reveal Memory 3: The little moments, always."
+                  data-photo="memory3"
+                  data-caption="The little moments, always."
+                >
+                  <img
+                    src={content.assets.memory3Framed}
+                    alt="Aarav and Meera, memory 3: The little moments, always."
+                    class="portrait-train-window memory-framed-img"
+                    loading="lazy"
+                  />
+                  <!-- Luxury Velvet Coach Curtains inside Window Opening -->
+                  <div class="window-curtain-container" aria-hidden="true">
+                    <div class="curtain-rod">
+                      <span class="rod-finial finial-left"></span>
+                      <span class="rod-bar"></span>
+                      <span class="rod-finial finial-right"></span>
+                    </div>
+                    <div class="curtain-panel curtain-left">
+                      <div class="curtain-fabric">
+                        <span class="pleat p1"></span>
+                        <span class="pleat p2"></span>
+                        <span class="pleat p3"></span>
+                      </div>
+                      <div class="curtain-gold-fringe"></div>
+                      <div class="curtain-tieback">
+                        <span class="tassel-braid"></span>
+                        <span class="tassel-skirt"></span>
+                      </div>
+                    </div>
+                    <div class="curtain-panel curtain-right">
+                      <div class="curtain-fabric">
+                        <span class="pleat p1"></span>
+                        <span class="pleat p2"></span>
+                        <span class="pleat p3"></span>
+                      </div>
+                      <div class="curtain-gold-fringe"></div>
+                      <div class="curtain-tieback">
+                        <span class="tassel-braid"></span>
+                        <span class="tassel-skirt"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="window-tap-cue" aria-hidden="true">
+                    <span class="tap-hand">👆</span>
+                    <span class="tap-text">Tap to open</span>
+                  </div>
+                  <canvas class="portrait-confetti-canvas memory-confetti-canvas" aria-hidden="true"></canvas>
+                </div>
+                <div class="memory-caption-wrap">
+                  <span class="memory-badge">03 · OUR HAPPY PLACE</span>
+                  <p class="memory-caption-text">The little moments, always.</p>
+                </div>
+              </article>
+
+              <article class="memory-photo-card" data-memory-index="3">
+                <div
+                  class="memory-window-wrapper portrait-window-wrapper"
+                  tabindex="0"
+                  role="button"
+                  aria-expanded="false"
+                  aria-label="Tap to open curtains and reveal Memory 4: Same travellers. Forever."
+                  data-photo="memory4"
+                  data-caption="Same travellers. Forever."
+                >
+                  <img
+                    src={content.assets.memory4Framed}
+                    alt="Aarav and Meera, memory 4: Same travellers. Forever."
+                    class="portrait-train-window memory-framed-img"
+                    loading="lazy"
+                  />
+                  <!-- Luxury Velvet Coach Curtains inside Window Opening -->
+                  <div class="window-curtain-container" aria-hidden="true">
+                    <div class="curtain-rod">
+                      <span class="rod-finial finial-left"></span>
+                      <span class="rod-bar"></span>
+                      <span class="rod-finial finial-right"></span>
+                    </div>
+                    <div class="curtain-panel curtain-left">
+                      <div class="curtain-fabric">
+                        <span class="pleat p1"></span>
+                        <span class="pleat p2"></span>
+                        <span class="pleat p3"></span>
+                      </div>
+                      <div class="curtain-gold-fringe"></div>
+                      <div class="curtain-tieback">
+                        <span class="tassel-braid"></span>
+                        <span class="tassel-skirt"></span>
+                      </div>
+                    </div>
+                    <div class="curtain-panel curtain-right">
+                      <div class="curtain-fabric">
+                        <span class="pleat p1"></span>
+                        <span class="pleat p2"></span>
+                        <span class="pleat p3"></span>
+                      </div>
+                      <div class="curtain-gold-fringe"></div>
+                      <div class="curtain-tieback">
+                        <span class="tassel-braid"></span>
+                        <span class="tassel-skirt"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="window-tap-cue" aria-hidden="true">
+                    <span class="tap-hand">👆</span>
+                    <span class="tap-text">Tap to open</span>
+                  </div>
+                  <canvas class="portrait-confetti-canvas memory-confetti-canvas" aria-hidden="true"></canvas>
+                </div>
+                <div class="memory-caption-wrap">
+                  <span class="memory-badge">04 · ALWAYS, TOGETHER</span>
+                  <p class="memory-caption-text">Same travellers. Forever.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+          <p class="photo-hint">TAP A WINDOW TO DRAW THE CURTAINS & REVEAL THE MEMORY</p>
+        </div>
+      </section>
+      <section
+        id="venue"
+        class="page venue-page"
+        aria-label="Venue & travel"
+        data-label="Venue & travel"
+      >
+        <div class="scene garden-scene" aria-hidden="true"></div>
+        <div class="haze" aria-hidden="true"></div>
+        <div class="page-content">
+          <div class="page-heading reveal">
+            <p class="stop-label">STOP 06 · COASTAL WEDDING EXPRESS</p>
+            <h2>Venue & Travel</h2>
+            <p class="subtitle">OUR DESTINATION</p>
+            <div class="ornament" aria-hidden="true">
+              <span></span>✧<span></span>
+            </div>
+          </div>
+          <div class="venue-picture reveal">
+            <img
+              src={content.assets.venue}
+              alt="A floral wedding pavilion overlooking the sea"
+              class=""
+              loading="lazy"
+            />
+          </div>
+          <div class="venue-ticket paper-card reveal">
+            <h3>
+              {content.venue}
+              <br />
+              <span>{content.location}</span>
+            </h3>
+            <p>
+              A seaside celebration amidst
+              <br />
+              palm trees and ocean breezes.
+            </p>
+            <a
+              href="https://maps.google.com/?q=The+Palm+Pavilion+Goa"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="primary-button venue-map-link"
+            >
+              VIEW ON GOOGLE MAPS <span>↗</span>
+            </a>
+          </div>
+          <div class="travel-map reveal">
+            <img
+              src={content.assets.map}
+              alt="Illustrative coastal map with sea, palm groves and railway"
+              class=""
+              loading="lazy"
+            />
+            <div class="map-venue">
+              ⌖ {content.venue}
+              <small>GOA</small>
+            </div>
+            <div class="map-airport">
+              ✈ GOA AIRPORT
+              <br />
+              <small>28 KM · PDF REFERENCE</small>
+            </div>
+            <div class="map-station">
+              ▣ MADGAON STATION
+              <br />
+              <small>12 KM · PDF REFERENCE</small>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="rsvp" class="page rsvp-page" aria-label="RSVP" data-label="RSVP">
+        <div class="scene bridge-scene" aria-hidden="true">
+          <video
+            class="scene-video"
+            muted
+            loop
+            playsinline
+            preload="none"
+            poster={import.meta.env.BASE_URL + content.assets.bridge}
+            aria-hidden="true"
+            tabindex="-1"
+          >
+            <source src={import.meta.env.BASE_URL + 'assets/train2.mp4'} type="video/mp4" />
+          </video>
+        </div>
+        <div class="haze" aria-hidden="true"></div>
+        <div class="page-content">
+          <div class="page-heading reveal">
+            <p class="stop-label">STOP 07 · COASTAL WEDDING EXPRESS</p>
+            <h2>RSVP</h2>
+            <p class="subtitle">KINDLY CONFIRM YOUR SEAT</p>
+            <div class="ornament" aria-hidden="true">
+              <span></span>✧<span></span>
+            </div>
+          </div>
+          <form id="rsvp-form" class="rsvp-form paper-card rsvp-ticket-card reveal">
+            <div class="ticket-notch notch-left" aria-hidden="true"></div>
+            <div class="ticket-notch notch-right" aria-hidden="true"></div>
+
+            <div class="rsvp-ticket-heading">
+              <div class="ticket-class-badge" aria-hidden="true">
+                <span class="ticket-star">★</span>
+                <span>FIRST CLASS PASSENGER RESERVATION</span>
+                <span class="ticket-star">★</span>
+              </div>
+              <span class="eyebrow">YOUR PLACE ON OUR JOURNEY</span>
+              <h3>Save your seat</h3>
+              <p>We would love to celebrate with you on board the Coastal Wedding Express.</p>
+              <div class="ticket-perforation-divider" aria-hidden="true"></div>
+            </div>
+
+            <div class="form-group-block">
+              <label for="guest-name">
+                YOUR NAME <span class="required-mark">*</span>
+              </label>
+              <input
+                id="guest-name"
+                name="name"
+                required
+                autocomplete="name"
+                maxlength="100"
+                placeholder="e.g. Rohan Mehta"
+              />
+            </div>
+
+            <fieldset class="rsvp-custom-fieldset">
+              <legend>
+                WILL YOU BE JOINING US? <span class="required-mark">*</span>
+              </legend>
+              <div class="radio-options ticket-radio-group">
+                <label class="ticket-radio-option" id="radio-card-yes">
+                  <input type="radio" name="attending" value="yes" checked required />
+                  <div class="radio-option-body">
+                    <span class="radio-station-icon">🚂</span>
+                    <div class="radio-text-wrap">
+                      <strong class="radio-title">Yes, can't wait!</strong>
+                      <span class="radio-sub">Reserving my seat for the celebrations</span>
+                    </div>
+                    <span class="radio-check-marker">✓</span>
+                  </div>
+                </label>
+                <label class="ticket-radio-option" id="radio-card-no">
+                  <input type="radio" name="attending" value="no" />
+                  <div class="radio-option-body">
+                    <span class="radio-station-icon">💌</span>
+                    <div class="radio-text-wrap">
+                      <strong class="radio-title">Sorry, can't make it</strong>
+                      <span class="radio-sub">Celebrating in spirit from afar</span>
+                    </div>
+                    <span class="radio-check-marker">✓</span>
+                  </div>
+                </label>
+              </div>
+            </fieldset>
+
+            <div class="form-group-block guest-stepper-container" id="guest-stepper-wrap">
+              <label for="guests">
+                NUMBER OF GUESTS <span class="required-mark">*</span>
+              </label>
+              <div class="luxury-passenger-stepper" aria-hidden="true">
+                <button type="button" class="stepper-action-btn minus-btn" id="guest-minus" aria-label="Decrease guest count">−</button>
+                <div class="stepper-count-readout">
+                  <span class="stepper-digit" id="stepper-digit">1</span>
+                  <span class="stepper-unit" id="stepper-unit">GUEST (FIRST CLASS)</span>
+                </div>
+                <button type="button" class="stepper-action-btn plus-btn" id="guest-plus" aria-label="Increase guest count">+</button>
+              </div>
+              <select id="guests" name="guests" class="stepper-sync-select">
+                <option value="1">1 Guest</option>
+                <option value="2">2 Guests</option>
+                <option value="3">3 Guests</option>
+                <option value="4">4 Guests</option>
+                <option value="5">5 Guests</option>
+                <option value="6">6 Guests</option>
+              </select>
+            </div>
+
+            <div class="form-group-block">
+              <label for="notes">
+                ANY SPECIAL NOTES? <small>(OPTIONAL)</small>
+              </label>
+              <textarea
+                id="notes"
+                name="notes"
+                rows="3"
+                maxlength="500"
+                placeholder="e.g. Dietary preferences or musical blessings"
+              ></textarea>
+            </div>
+
+            <button type="submit" class="primary-button rsvp-submit-btn">
+              <span> RSVP</span> <span>⟶</span>
+            </button>
+            <p class="draft-note">Design preview only. Your response is not sent or saved.</p>
+            <p id="rsvp-result" class="rsvp-result" role="status" hidden></p>
+          </form>
+        </div> 
+      </section>
+      <section id="guide" class="page guide-page" aria-label="Guest guide" data-label="Guest guide">
+        <div class="scene garden-scene" aria-hidden="true"></div>
+        <div class="haze" aria-hidden="true"></div>
+        <div class="page-content">
+          <div class="page-heading reveal">
+            <p class="stop-label">STOP 08 · COASTAL WEDDING EXPRESS</p>
+            <h2>Guest Guide</h2>
+            <p class="subtitle">EVERYTHING FOR A SMOOTH JOURNEY</p>
+            <div class="ornament" aria-hidden="true">
+              <span></span>✧<span></span>
+            </div>
+          </div>
+          <div class="guide-list">
+            <article class="guide-card paper-card reveal">
+              <div class="guide-icon">
+                <svg
+                  viewBox="0 0 32 32"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M8 7 12 4h8l4 3 5 8-5 3-3-5v16H11V13l-3 5-5-3Z M12 4q4 8 8 0" />
+                </svg>
+                <span>Attire</span>
+              </div>
+              <div>
+                <h3>Dress Code</h3>
+                <p>
+                  Festive Indian Attire
+                  <br />
+                  Brights, Pastels & Beach Chic
+                </p>
+              </div>
+            </article>
+            <article class="guide-card paper-card reveal">
+              <div class="guide-icon">
+                <svg
+                  viewBox="0 0 32 32"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M5 16V9h22v7 M3 28V17h26v11 M3 23h26 M7 13h6m6 0h6" />
+                </svg>
+                <span>Stay</span>
+              </div>
+              <div>
+                <h3>Stay</h3>
+                <p>A comfortable stay, close to the celebration.</p>
+                <button class="text-button" data-info="stay">
+                  VIEW STAY OPTIONS<span>⟶</span>
+                </button>
+              </div>
+            </article>
+            <article class="guide-card paper-card reveal">
+              <div class="guide-icon">
+                <svg
+                  viewBox="0 0 32 32"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M4 25 28 7M17 6l11 1-2 11M5 7h7M4 12h4M7 27h19" />
+                </svg>
+                <span>Travel</span>
+              </div>
+              <div>
+                <h3>Travel</h3>
+                <p>
+                  Airport: Goa (GOI)
+                  <br />
+                  Railway: Madgaon (MAO)
+                </p>
+                <button class="text-button" data-info="travel">
+                  TRAVEL INFO<span>⟶</span>
+                </button>
+              </div>
+            </article>
+            <article class="guide-card paper-card reveal">
+              <div class="guide-icon">
+                <svg
+                  viewBox="0 0 32 32"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M6 8h20v16H6Z M6 8l10 9L26 8 M12 27h8" />
+                </svg>
+                <span>Contact</span>
+              </div>
+              <div>
+                <h3>Contact</h3>
+                <p>For any queries, reach out to our wedding team.</p>
+                <button class="text-button" data-info="contact">
+                  GET IN TOUCH<span>⟶</span>
+                </button>
+              </div>
+            </article>
+          </div>
+          <div class="farewell postcard tilted reveal">
+            <img src={content.assets.postmark} alt="" class="stamp" loading="lazy" />
+            <p>See you on board!</p>
+            <span class="heart">♡</span>
+            <h3>
+              {content.groom.toUpperCase()} &amp; {content.bride.toUpperCase()}
+            </h3>
+            <small>{content.dateLabel}</small>
+          </div>
+          <a href="#welcome" class="back-top">
+            BACK TO THE BEGINNING ↑
+          </a>
+        </div>
+      </section>
+    </main>
+    <div class="journey-controls">
+      <button id="previous" aria-label="Previous page">
+        ←
+      </button>
+      <button id="page-index" aria-label="Open page navigation">
+        <span id="current-page">01</span>
+        <span class="index-line"></span>
+        <span>08</span>
+      </button>
+      <button id="next" aria-label="Next page">
+        →
+      </button>
+      <span class="controls-divider"></span>
+      <button id="motion" aria-pressed="false" aria-label="Pause animations">
+        Ⅱ
+      </button>
+      {content.music.enabled && (
+        <button id="music" aria-label="Play music" aria-pressed="false">
+          ♫
+        </button>
+      )}
+    </div>
+  </div>
+  <dialog id="info-dialog">
+    <button class="dialog-close" aria-label="Close information">
+      ×
+    </button>
+    <p class="eyebrow">COASTAL WEDDING EXPRESS</p>
+    <div class="ornament" aria-hidden="true">
+      <span></span>✧<span></span>
+    </div>
+    <h2 id="info-title"></h2>
+    <div id="info-body"></div>
+    <button class="primary-button dialog-done">
+      BACK TO THE JOURNEY <span>⟶</span>
+    </button>
+  </dialog>
+  <dialog id="photo-dialog">
+    <button class="dialog-close" aria-label="Close photograph">
+      ×
+    </button>
+    <img id="large-photo" alt="" />
+    <p id="photo-caption"></p>
+  </dialog>
+</Layout>

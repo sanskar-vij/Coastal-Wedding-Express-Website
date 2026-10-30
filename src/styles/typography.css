@@ -1,0 +1,88 @@
+.stop-label {
+  font:
+    8px Arial,
+    sans-serif;
+  letter-spacing: 2px;
+  color: #647773;
+  margin: 0 0 14px;
+}
+.subtitle {
+  font-size: 9px;
+  letter-spacing: 1.8px;
+  line-height: 1.6;
+  font-weight: bold;
+  margin: 0 auto 9px;
+  max-width: 440px;
+}
+.eyebrow {
+  font-size: 10px;
+  letter-spacing: 2px;
+  line-height: 1.9;
+  font-weight: bold;
+  margin: 0;
+}
+.ornament {
+  color: #a78047;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  font-size: 24px;
+  line-height: 1.2;
+}
+.ornament span {
+  height: 1px;
+  width: 62px;
+  background: linear-gradient(90deg, transparent, #a78047);
+}
+.ornament span:last-child {
+  transform: rotate(180deg);
+}
+h1 {
+  font-weight: 400;
+  letter-spacing: -4px;
+  font-size: 86px;
+  line-height: 0.88;
+  margin: 12px 0 0;
+  color: #132524;
+  text-shadow: 0 1px 12px #f8f4dd80;
+}
+h1 em {
+  font-size: 0.68em;
+  letter-spacing: -7px;
+  font-weight: 400;
+}
+h1 span {
+  padding-left: 20px;
+}
+.date {
+  font-size: 13px;
+  letter-spacing: 3.4px;
+  margin: 22px 0 9px;
+}
+.postcard .eyebrow {
+  padding-right: 80px;
+  text-align: center;
+  line-height: 1.9;
+  letter-spacing: 2px;
+  font-size: 11px;
+}
+dialog .eyebrow {
+  font-size: 9px;
+}
+
+@font-face {
+  font-family: Lora;
+  src: url('/assets/fonts/lora.ttf') format('truetype');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'DM Sans';
+  src: url('/assets/fonts/dm-sans.ttf') format('truetype');
+  font-display: swap;
+}
+/* Local fonts are available; preserve the reviewed Georgia invitation typography by default. */
+:root {
+  --font-display: Georgia, 'Times New Roman', serif;
+  --font-ui: Arial, sans-serif;
+}

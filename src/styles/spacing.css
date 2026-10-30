@@ -1,0 +1,371 @@
+@media (min-width: 1100px) {
+  .desktop-label {
+    display: flex;
+    position: fixed;
+    left: calc(50% - 500px);
+    top: 50%;
+    transform: translateY(-50%);
+    width: 200px;
+    color: #d7e1ce;
+    flex-direction: column;
+  }
+  .desktop-label > span:first-child {
+    font: 9px Arial;
+    letter-spacing: 3px;
+  }
+  .desktop-label strong {
+    font-weight: 400;
+    font-size: 42px;
+    line-height: 1.05;
+    margin: 14px 0 23px;
+    color: #e6d6ae;
+  }
+  .desktop-label i {
+    width: 55px;
+    height: 1px;
+    background: #b2945d;
+    margin-bottom: 24px;
+  }
+  .desktop-label small {
+    font-size: 8px;
+    letter-spacing: 1.8px;
+    line-height: 2;
+  }
+  .desktop-label .draft-label {
+    font: 8px Arial;
+    letter-spacing: 2px;
+    margin-top: 50px;
+    opacity: 0.55;
+  }
+  .desktop-route {
+    display: block;
+    position: fixed;
+    left: calc(50% + 315px);
+    top: 50%;
+    transform: translateY(-50%);
+    color: #d8e0cb;
+  }
+  .desktop-route > p {
+    font: 8px Arial;
+    letter-spacing: 2.5px;
+    margin-bottom: 22px;
+  }
+  .desktop-route ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .desktop-route a {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 11px;
+    line-height: 3;
+    text-decoration: none;
+    opacity: 0.5;
+    transition:
+      opacity 0.3s,
+      color 0.3s;
+  }
+  .desktop-route a b {
+    font-weight: 400;
+  }
+  .desktop-route a span {
+    font-size: 13px;
+  }
+  .desktop-route a[aria-current='page'],
+  .desktop-route a:hover {
+    opacity: 1;
+    color: #f4d99f;
+  }
+}
+
+@media (max-width: 520px) {
+  .page {
+    min-height: 920px;
+  }
+  .page-content {
+    padding: 90px 14px 200px;
+  }
+  .page h2 {
+    font-size: 34px;
+  }
+  .stop-label {
+    font-size: 7px;
+    letter-spacing: 1.5px;
+  }
+  .subtitle {
+    font-size: 8px;
+    letter-spacing: 1.3px;
+  }
+  .cover-content {
+    padding-top: 105px;
+  }
+  .hanging-sign > div {
+    font-size: clamp(26px, 7.5vw, 39px);
+    padding: 15px 0;
+  }
+  .cover-intro {
+    margin-top: 30px;
+  }
+  h1 {
+    font-size: clamp(60px, 16.5vw, 86px);
+  }
+  .date {
+    font-size: 11px;
+    letter-spacing: 2.6px;
+  }
+  .eyebrow {
+    font-size: 9px;
+  }
+  .cover-rail {
+    height: 290px;
+    bottom: 0;
+  }
+  .couple-grid {
+    gap: 12px;
+  }
+  .portrait-card > img {
+    height: 230px;
+  }
+  .portrait-card h3 {
+    font-size: 20px;
+  }
+  .portrait-card p {
+    font-size: 11px;
+  }
+  .postcard .eyebrow {
+    font-size: 9px;
+  }
+  .tilted {
+    margin: 30px 7px 0;
+  }
+  .story-card {
+    gap: 11px;
+    padding: 11px;
+    min-height: 148px;
+  }
+  .story-card > img {
+    height: 132px;
+  }
+  .story-card h3 {
+    font-size: 13px;
+  }
+  .story-card h4 {
+    font-size: 12px;
+  }
+  .story-card p {
+    font-size: 11px;
+  }
+  .story-card time {
+    font-size: 8px;
+    letter-spacing: 0.6px;
+  }
+  .event-card {
+    grid-template-columns: 44px 1fr clamp(48px, 13vw, 68px);
+    gap: 7px;
+    padding: 9px 10px 9px 7px;
+    min-height: 125px;
+  }
+  .event-card > img {
+    width: 65px;
+    height: 65px;
+  }
+  .event-details h3,
+  .event-title {
+    font-size: clamp(12.5px, 3.4vw, 17px);
+    white-space: nowrap !important;
+  }
+  .event-day strong {
+    font-size: 24px;
+  }
+  .event-day span {
+    font-size: 10.5px;
+  }
+  .event-details > small,
+  .event-tagline {
+    font-size: clamp(7.2px, 1.9vw, 8.8px);
+    white-space: nowrap !important;
+  }
+  .event-place {
+    font-size: clamp(7.4px, 1.9vw, 9px);
+    white-space: nowrap !important;
+  }
+  .memory-photo {
+    height: 210px;
+  }
+  .album-caption p {
+    font-size: 22px;
+  }
+  .album-caption img {
+    width: 105px;
+  }
+  .venue-picture {
+    margin: 0 -22px;
+    height: 190px;
+  }
+  .travel-map {
+    margin: 0 -22px;
+    height: 300px;
+  }
+  .venue-ticket h3 {
+    font-size: 22px;
+  }
+  .venue-page {
+    min-height: 1070px;
+  }
+  .rsvp-form {
+    padding: 30px 19px 20px;
+  }
+  .radio-options {
+    gap: 6px;
+  }
+  .radio-options label {
+    font-size: 10px;
+    padding: 12px 5px;
+  }
+  .guide-card {
+    grid-template-columns: 60px 1fr;
+    gap: 13px;
+    padding: 13px 13px 13px 7px;
+    min-height: 111px;
+  }
+  .guide-card h3 {
+    font-size: 19px;
+  }
+  .guide-card p {
+    font-size: 11px;
+  }
+  .guide-icon {
+    height: 74px;
+  }
+  .guide-icon img {
+    width: 48px;
+  }
+  .farewell > p {
+    font-size: 29px;
+  }
+  .guide-page {
+    min-height: 1120px;
+  }
+  .guide-page .page-content {
+    padding-bottom: 210px;
+  }
+}
+
+@media (max-width: 360px) {
+  .page-content {
+    padding-inline: 17px;
+  }
+  .page h2 {
+    font-size: 30px;
+  }
+  .cover-content {
+    padding-top: 98px;
+  }
+  .hanging-sign {
+    margin-left: 9%;
+  }
+  .cover-intro {
+    margin-left: 22%;
+    margin-top: 28px;
+  }
+  .eyebrow {
+    font-size: 8px;
+  }
+  h1 {
+    font-size: 58px;
+  }
+  .date {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+  .primary-button {
+    font-size: 9px;
+    gap: 8px;
+  }
+  .portrait-card > img {
+    height: 205px;
+  }
+  .portrait-card p {
+    font-size: 10px;
+  }
+  .story-card {
+    grid-template-columns: 42% 1fr;
+    gap: 9px;
+  }
+  .story-card h3 {
+    font-size: 12px;
+  }
+  .story-card p {
+    font-size: 10px;
+  }
+  .event-card {
+    grid-template-columns: 40px 1fr 58px;
+    gap: 6px;
+    padding: 8px 8px 8px 6px;
+    min-height: 118px;
+  }
+  .event-card > img {
+    width: 58px;
+    height: 58px;
+  }
+  .event-details h3,
+  .event-title {
+    font-size: 14px;
+    white-space: nowrap !important;
+  }
+  .event-day strong {
+    font-size: 22px;
+  }
+  .event-place {
+    font-size: 7.8px;
+    white-space: nowrap !important;
+  }
+  .event-details > small,
+  .event-tagline {
+    font-size: 7.4px;
+    white-space: nowrap !important;
+  }
+  .memory-photo {
+    height: 185px;
+  }
+  .guide-card {
+    grid-template-columns: 50px 1fr;
+    gap: 11px;
+  }
+  .guide-icon img {
+    width: 40px;
+  }
+  .guide-card p {
+    font-size: 10px;
+  }
+  .radio-options label {
+    font-size: 9px;
+  }
+  .farewell > p {
+    font-size: 25px;
+  }
+  .venue-picture,
+  .travel-map {
+    margin-inline: -17px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  body:not(.motion-enabled) * {
+    animation: none !important;
+    transition: none !important;
+  }
+  body:not(.motion-enabled) .reveal {
+    opacity: 1;
+    transform: none;
+  }
+  body:not(.motion-enabled) .train-motion {
+    transform: scale(0.95);
+    opacity: 1;
+  }
+}

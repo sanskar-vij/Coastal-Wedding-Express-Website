@@ -1,0 +1,2195 @@
+/* ==========================================================================
+   REDESIGNED LUXURY COASTAL STATION CHRONOMETER COUNTDOWN
+   ========================================================================== */
+.station-countdown {
+  position: absolute;
+  left: auto;
+  right: clamp(14px, 4vw, 36px);
+  bottom: clamp(58px, 8.5vh, 76px);
+  width: min(264px, calc(100vw - 28px));
+  margin-inline: auto;
+  padding: 8px 12px 9px;
+  color: #f9e6b8;
+  background: linear-gradient(150deg, rgba(14, 52, 54, 0.9) 0%, rgba(6, 26, 28, 0.95) 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(226, 201, 142, 0.65);
+  border-radius: 16px;
+  box-shadow:
+    0 12px 28px rgba(3, 18, 20, 0.45),
+    0 2px 8px rgba(0, 0, 0, 0.25),
+    inset 0 1px 1px rgba(255, 255, 255, 0.22),
+    inset 0 0 16px rgba(214, 184, 120, 0.1);
+  z-index: 5;
+  transition:
+    transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.3s ease;
+}
+.station-countdown:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 16px 36px rgba(3, 18, 20, 0.6),
+    0 4px 10px rgba(0, 0, 0, 0.3),
+    inset 0 1px 1px rgba(255, 255, 255, 0.3),
+    inset 0 0 20px rgba(214, 184, 120, 0.16);
+}
+.station-countdown::before,
+.station-countdown::after {
+  display: none !important;
+}
+
+.station-countdown .countdown-panel {
+  position: static;
+  color: inherit;
+  background: transparent;
+  padding: 0;
+  border: 0;
+  box-shadow: none;
+  text-align: center;
+}
+
+.countdown-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 1px;
+}
+.countdown-spark {
+  color: #e5c37e;
+  font-size: 7.5px;
+  opacity: 0.85;
+  user-select: none;
+}
+.station-countdown .board-kicker {
+  display: inline-block;
+  font-family: 'Lora', Georgia, serif;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #f7d998;
+  margin: 0;
+  text-transform: uppercase;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  line-height: 1.2;
+}
+.station-countdown .board-subtitle {
+  display: block;
+  font-size: 6.5px;
+  font-weight: 500;
+  letter-spacing: 1.2px;
+  color: #c7e2dd;
+  margin: 0 0 6px;
+  text-transform: uppercase;
+  line-height: 1.2;
+  opacity: 0.85;
+}
+
+.station-countdown #countdown {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3px;
+  margin-top: 0;
+}
+.time-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-width: 32px;
+  padding: 4px 2px 3px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.09) 0%, rgba(3, 20, 22, 0.45) 100%);
+  border: 1px solid rgba(222, 194, 137, 0.45);
+  border-radius: 7px;
+  box-shadow:
+    inset 0 1px 2px rgba(0, 0, 0, 0.45),
+    0 2px 4px rgba(0, 0, 0, 0.15);
+}
+.station-countdown #countdown b {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: #fff9e8;
+  line-height: 1.05;
+  text-shadow: 0 1px 3px rgba(224, 196, 136, 0.3);
+  letter-spacing: 0.5px;
+}
+.time-box small {
+  font-size: 6.2px;
+  font-weight: 600;
+  letter-spacing: 1.1px;
+  color: #e0c893;
+  text-transform: uppercase;
+  margin-top: 2px;
+  line-height: 1;
+}
+.time-sep {
+  color: rgba(224, 196, 136, 0.65);
+  font-family: 'Lora', Georgia, serif;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 7px;
+  user-select: none;
+}
+#welcome .scroll-cue {
+  bottom: 2%;
+}
+
+/* Matching engraved medallions for all four guest-guide categories. */
+.guide-card {
+  grid-template-columns: 76px 1fr;
+  gap: 18px;
+  padding: 20px;
+}
+.guide-icon {
+  width: 76px;
+  height: 82px;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 4px;
+  color: #0f5558;
+  background: radial-gradient(circle at 35% 25%, #fff9e8, #e7d5ac);
+  border: 1px solid #b99a60;
+  border-radius: 38px 38px 14px 14px;
+  box-shadow:
+    inset 0 0 0 4px #fff6df,
+    0 3px 8px #59422d18;
+}
+.guide-icon svg {
+  width: 37px;
+  height: 37px;
+}
+.guide-icon span {
+  font:
+    7px Arial,
+    sans-serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.guide-card h3 {
+  color: #164b4c;
+}
+
+/* An invitation ticket, with generous touch targets and a clear reading order. */
+.rsvp-form {
+  max-width: 620px;
+  margin: 30px auto 0;
+  padding: 30px 26px;
+  border: 1px solid #bb9b63;
+  background: linear-gradient(145deg, #fffaf0, #f4e7cc);
+  box-shadow: 0 16px 35px #183b3926;
+}
+.rsvp-ticket-heading {
+  text-align: center;
+  margin-bottom: 28px;
+  padding-bottom: 22px;
+  border-bottom: 1px dashed #b59a68;
+}
+.rsvp-ticket-heading .eyebrow {
+  font-size: 8px;
+  color: #8d6f3c;
+}
+.rsvp-ticket-heading h3 {
+  font-size: 34px;
+  font-weight: normal;
+  margin: 12px 0 8px;
+  color: #134b4d;
+}
+.rsvp-ticket-heading p {
+  font-size: 14px;
+  margin: 0;
+}
+.rsvp-form input:not([type='radio']),
+.rsvp-form select,
+.rsvp-form textarea {
+  background: #fffdf8;
+  border: 1px solid #bdc5ba;
+  border-radius: 10px;
+  min-height: 50px;
+  font-size: 15px;
+}
+.rsvp-form :is(input, select, textarea):focus-visible {
+  outline: 3px solid #d4b36d;
+  outline-offset: 2px;
+}
+.rsvp-form .radio-options {
+  gap: 10px;
+}
+.rsvp-form .radio-options label {
+  min-height: 58px;
+  border-radius: 10px;
+  padding: 10px 8px;
+}
+.rsvp-form .radio-options label:has(input:checked) {
+  background: #e0ece2;
+  border-color: #1b6565;
+  box-shadow: inset 0 0 0 1px #1b6565;
+}
+.rsvp-form .primary-button {
+  margin-top: 22px;
+}
+.rsvp-form .draft-note {
+  color: #4f635a;
+  line-height: 1.6;
+}
+
+/* Noticeable breeze, isolated from content and the background composition. */
+.scene-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+}
+
+.welcome-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center !important;
+  pointer-events: none;
+}
+
+/* Ensure the first page fits the viewport completely so the video, clock, and train are 100% visible */
+#welcome.page {
+  height: 100vh !important;
+  height: 100dvh !important;
+  min-height: 100vh !important;
+  min-height: 100dvh !important;
+  max-height: 100vh !important;
+  max-height: 100dvh !important;
+  overflow: hidden !important;
+  position: relative !important;
+}
+
+#welcome .cover-content {
+  padding-top: clamp(24px, 5vh, 60px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  height: 100% !important;
+  box-sizing: border-box !important;
+}
+
+#welcome .cover-intro {
+  margin-top: clamp(8px, 1.8vh, 18px) !important;
+  text-align: center;
+}
+
+#welcome .cover-intro h1 {
+  font-size: clamp(42px, 10vw, 76px) !important;
+  margin: 0 0 6px !important;
+  line-height: 1.02 !important;
+}
+
+#welcome .cover-intro .date {
+  font-size: clamp(10px, 2.5vw, 12px) !important;
+  letter-spacing: 2px !important;
+  margin: 4px 0 !important;
+}
+
+#welcome .cover-intro .ornament {
+  margin: 4px 0 10px !important;
+}
+
+#welcome .primary-button {
+  min-height: 42px !important;
+  padding: 8px 18px !important;
+  font-size: 10.5px !important;
+}
+.breeze-art {
+  position: absolute;
+  pointer-events: none;
+  z-index: 3;
+  object-fit: contain;
+}
+.breeze-palm {
+  top: -22px;
+  right: -38px;
+  width: clamp(120px, 31%, 250px);
+  transform-origin: top right;
+  animation: palm-breeze 5s ease-in-out infinite alternate;
+}
+.breeze-vine {
+  left: -38px;
+  top: 38%;
+  width: clamp(65px, 16%, 120px);
+  transform-origin: top left;
+  animation: vine-breeze 4.6s ease-in-out infinite alternate;
+}
+.breeze-art {
+  animation-delay: var(--breeze-delay);
+}
+.foreground {
+  animation: flower-breeze 4s ease-in-out infinite alternate;
+}
+.page:has(.scene-video) > .foreground {
+  animation: none;
+}
+@keyframes palm-breeze {
+  from {
+    rotate: -5deg;
+    translate: -3px 0;
+  }
+  to {
+    rotate: 7deg;
+    translate: 6px 7px;
+  }
+}
+@keyframes vine-breeze {
+  from {
+    rotate: -4deg;
+  }
+  to {
+    rotate: 6deg;
+    translate: 8px 3px;
+  }
+}
+@keyframes flower-breeze {
+  from {
+    rotate: -3deg;
+  }
+  to {
+    rotate: 5deg;
+    translate: 6px -6px;
+  }
+}
+.foliage-offscreen .breeze-art {
+  animation-play-state: paused;
+}
+/* ==========================================================================
+   FEATURE: 3D INTERACTIVE EVENT PHOTO FLIP ANIMATION
+   ========================================================================== */
+
+/* Overall card arrival on carousel slide */
+.event-slide.events-entered .event-card {
+  animation: card-fade-slide 0.8s cubic-bezier(0.2, 0.85, 0.25, 1) both;
+}
+.event-slide.events-entered .event-card:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.event-slide.events-entered .event-card:nth-child(2) {
+  animation-delay: 0.7s;
+}
+.event-slide.events-entered .event-card:nth-child(3) {
+  animation-delay: 1.2s;
+}
+
+@keyframes card-fade-slide {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 3D Scene Container */
+.event-card.flip-card {
+  perspective: 1200px !important;
+  -webkit-perspective: 1200px !important;
+  position: relative !important;
+  display: block !important;
+  grid-template-columns: none !important;
+  width: 100% !important;
+  height: clamp(140px, 19.5vh, 154px) !important;
+  min-height: 140px !important;
+  max-height: 154px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  cursor: pointer;
+  outline: none;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: filter 0.3s ease;
+  box-sizing: border-box !important;
+  overflow: visible !important;
+}
+
+.event-card.flip-card::after {
+  display: none !important;
+}
+
+.event-card.flip-card:focus-visible {
+  outline: 2px solid #bba06b;
+  outline-offset: 3px;
+  border-radius: 18px;
+}
+
+/* 3D Rotating Flippable Core */
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+/* Card Hover Elevation */
+.event-card.flip-card:hover {
+  filter: drop-shadow(0 8px 18px rgba(18, 52, 53, 0.18));
+}
+
+/* Tap / Click Active Flipped State */
+.event-card.flip-card.is-flipped .flip-card-inner {
+  transform: rotateY(180deg) !important;
+}
+
+.event-card.flip-card.is-flipped {
+  filter: drop-shadow(0 10px 22px rgba(18, 52, 53, 0.24));
+}
+
+/* Base Card Faces */
+.flip-card-front,
+.flip-card-back {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+  border-radius: 18px !important;
+  border: 1.5px solid #cfb98d !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+}
+
+/* ==========================================================================
+   FRONT FACE: Ceremony Photograph Keepsake Card
+   ========================================================================== */
+.flip-card-front {
+  transform: rotateY(0deg);
+  z-index: 2;
+  display: flex !important;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px 10px 10px !important;
+  background: linear-gradient(145deg, #fffcf5 0%, #faefe0 100%) !important;
+  box-shadow: 0 4px 14px rgba(18, 52, 53, 0.08);
+}
+
+.flip-card-front::after {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border-radius: 13px;
+  border: 1px solid rgba(214, 197, 160, 0.6);
+  pointer-events: none;
+}
+
+/* Photograph Matting Frame */
+.front-photo-frame {
+  flex-shrink: 0;
+  width: clamp(74px, 20vw, 88px);
+  height: clamp(74px, 20vw, 88px);
+  border-radius: 14px;
+  background: linear-gradient(135deg, #f7ecd7 0%, #ebd7b5 100%);
+  border: 1.5px solid #d9c298;
+  box-shadow:
+    inset 0 1px 3px rgba(255, 255, 255, 0.8),
+    0 3px 8px rgba(32, 22, 10, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.event-card.flip-card:hover .front-photo-frame {
+  transform: scale(1.03);
+}
+
+.front-photo-frame img.event-photo {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  object-fit: contain !important;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.14));
+}
+
+/* Front Content */
+.front-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+  z-index: 1;
+}
+
+.front-kicker-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.front-station-badge {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  color: #a84846;
+  text-transform: uppercase;
+}
+
+.front-spark {
+  color: #cca45e;
+  font-size: 8px;
+}
+
+.front-title {
+  font-family: 'Lora', Georgia, serif;
+  font-size: clamp(14px, 3.8vw, 18px) !important;
+  font-weight: 600 !important;
+  color: #8c322d !important;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin: 0;
+  line-height: 1.15;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.front-tagline {
+  font-size: clamp(7.6px, 2vw, 9.4px);
+  font-style: italic;
+  color: #553425;
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.25;
+  border-top: 1px dashed rgba(186, 151, 90, 0.45);
+  padding-top: 3px;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.front-flip-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 3px;
+  padding: 2.5px 8px;
+  background: rgba(18, 52, 53, 0.06);
+  border: 1px solid rgba(186, 151, 90, 0.5);
+  border-radius: 10px;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.flip-hint-icon {
+  font-size: 11px;
+  color: #123432;
+  transition: transform 0.4s ease;
+}
+
+.event-card.flip-card.is-flipped .flip-hint-icon {
+  transform: rotate(180deg);
+}
+
+.flip-hint-text {
+  font-size: clamp(7.4px, 1.9vw, 8.8px);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #123432;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   BACK FACE: Royal Wedding Invitation Reverse
+   ========================================================================== */
+.flip-card-back {
+  transform: rotateY(180deg);
+  z-index: 1;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 8px 12px 7px !important;
+  background: linear-gradient(145deg, #fffdf8 0%, #fbf4e6 50%, #f7ecd7 100%) !important;
+  box-shadow: inset 0 0 16px rgba(214, 184, 120, 0.15);
+  text-align: left;
+}
+
+.flip-card-back::after {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border-radius: 14px;
+  border: 1px dashed rgba(186, 151, 90, 0.5);
+  pointer-events: none;
+}
+
+.back-ornament-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  user-select: none;
+  margin-bottom: 1px;
+}
+
+.back-spark {
+  color: #cca45e;
+  font-size: 8px;
+}
+
+.back-ornament-title {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  color: #724f37;
+  text-transform: uppercase;
+}
+
+.back-title {
+  font-family: 'Lora', Georgia, serif;
+  font-size: clamp(13.5px, 3.6vw, 17px) !important;
+  font-weight: 700 !important;
+  color: #8c322d !important;
+  text-transform: uppercase;
+  letter-spacing: 0.25px;
+  margin: 0;
+  line-height: 1.15;
+  text-align: center;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.back-details-grid {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 2px 0;
+  min-width: 0;
+}
+
+.back-date-badge {
+  background: linear-gradient(140deg, #a84846, #822b30);
+  color: #fff0d7;
+  text-align: center;
+  padding: 6px 3px 4px;
+  clip-path: polygon(10% 0, 90% 0, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0 90%, 0 10%);
+  width: 44px;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  box-shadow: 0 2px 6px rgba(130, 43, 48, 0.25);
+}
+
+.back-date-badge.date-tbc strong {
+  font-size: 16px;
+  letter-spacing: 0.5px;
+}
+
+.back-date-day {
+  display: block;
+  font-family: 'Lora', Georgia, serif;
+  font-weight: 400;
+  font-size: 23px;
+  line-height: 1;
+}
+
+.back-date-month {
+  display: block;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-top: 1px;
+}
+
+.back-date-year {
+  display: block;
+  font-size: 7px;
+  letter-spacing: 1px;
+  opacity: 0.9;
+}
+
+.back-meta-block {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+}
+
+.back-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 0;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  line-height: 1.25;
+}
+
+.back-meta-icon {
+  font-size: 10px;
+  flex-shrink: 0;
+}
+
+.back-time-text {
+  font-size: clamp(8.4px, 2.2vw, 10.2px);
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  color: #123432;
+  white-space: nowrap;
+}
+
+.back-place-text {
+  font-size: clamp(8px, 2.1vw, 9.8px);
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  color: #2b4541;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.back-tagline {
+  font-size: clamp(7.4px, 1.9vw, 9px);
+  font-style: italic;
+  color: #553425;
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.2;
+  text-align: center;
+  border-top: 1px dashed rgba(186, 151, 90, 0.4);
+  padding-top: 3px;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.back-return-cue {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 7.5px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  color: #724f37;
+  text-transform: uppercase;
+  opacity: 0.8;
+  margin-top: 1px;
+}
+
+.back-return-icon {
+  font-size: 9px;
+}
+
+/* Dedicated styling for Engagement event card */
+.event-card[data-event='engagement'] .front-title,
+.event-card[data-event='engagement'] .back-title {
+  font-size: clamp(13px, 3.4vw, 17px) !important;
+  letter-spacing: 0.2px !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 360px) {
+  .event-card.flip-card {
+    height: 138px !important;
+    min-height: 138px !important;
+  }
+  .front-photo-frame {
+    width: 68px;
+    height: 68px;
+    padding: 4px;
+  }
+  .front-title {
+    font-size: 13px !important;
+  }
+  .front-tagline {
+    font-size: 7.2px;
+  }
+  .front-flip-hint {
+    padding: 2px 6px;
+  }
+  .flip-hint-text {
+    font-size: 7px;
+  }
+  .back-title {
+    font-size: 12.8px !important;
+  }
+  .back-date-badge {
+    width: 38px;
+    padding: 4px 2px 3px;
+  }
+  .back-date-day {
+    font-size: 20px;
+  }
+  .back-date-month {
+    font-size: 9px;
+  }
+  .back-time-text {
+    font-size: 8px;
+  }
+  .back-place-text {
+    font-size: 7.6px;
+  }
+  .back-tagline {
+    font-size: 7px;
+  }
+}
+@media (max-width: 360px) {
+  .guide-card {
+    grid-template-columns: 60px 1fr;
+    gap: 12px;
+    padding: 15px;
+  }
+  .guide-icon {
+    width: 60px;
+  }
+  .rsvp-form {
+    padding: 24px 18px;
+  }
+  .station-countdown {
+    left: auto;
+    right: 10px;
+    width: min(236px, calc(100vw - 20px));
+    padding: 6px 8px 7px;
+    bottom: 56px;
+  }
+  .time-box {
+    min-width: 28px;
+    padding: 3px 2px;
+  }
+  .station-countdown #countdown b {
+    font-size: 15px;
+  }
+  .time-box small {
+    font-size: 5.6px;
+  }
+  .time-sep {
+    font-size: 11px;
+    margin-bottom: 6px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .breeze-art,
+  .foreground,
+  .event-slide.events-entered .event-card,
+  .event-slide.events-entered .event-card > img,
+  .event-slide.events-entered .event-card .event-day,
+  .event-slide.events-entered .event-card .event-details,
+  .event-card.swiped > img,
+  .event-card.swiped .event-day {
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
+.station-countdown .countdown-panel {
+  background: transparent;
+  padding: 0;
+  border: 0;
+  box-shadow: none;
+}
+
+/* ==========================================================================
+   RSVP CONFIRMATION & VENUE MAP BUTTON ENHANCEMENTS
+   ========================================================================== */
+
+.venue-map-link {
+  width: auto;
+  max-width: 280px;
+  margin: 18px auto 0;
+  display: inline-flex;
+}
+
+.rsvp-confirmation-card {
+  text-align: left;
+  background: #fcf8ee;
+  border: 2px solid #b89b65;
+  border-radius: 8px;
+  padding: 22px 18px;
+  color: #1a3c3d;
+  box-shadow: 0 4px 18px rgba(18, 59, 62, 0.12);
+}
+
+.rsvp-confirm-badge {
+  font-family: Arial, sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #165b5e;
+  border-bottom: 1px dashed #c4ad7e;
+  padding-bottom: 6px;
+  margin-bottom: 12px;
+}
+
+.rsvp-confirmation-card h4 {
+  font-size: 22px;
+  font-weight: 400;
+  margin: 0 0 10px;
+  color: #123e40;
+}
+
+.rsvp-confirm-status {
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 0 0 8px;
+}
+
+.rsvp-attending-yes {
+  color: #1a6d58;
+  font-weight: 700;
+}
+
+.rsvp-attending-no {
+  color: #8f3434;
+  font-weight: 700;
+}
+
+.rsvp-confirm-notes {
+  font-size: 12px;
+  font-style: italic;
+  color: #49635e;
+  margin: 6px 0 12px;
+  padding: 6px 10px;
+  background: #f4ecda;
+  border-left: 3px solid #bba06b;
+}
+
+.rsvp-integration-notice {
+  font-size: 11px;
+  line-height: 1.5;
+  color: #556e67;
+  border-top: 1px solid #dfcfb1;
+  padding-top: 10px;
+  margin-top: 10px;
+}
+
+.rsvp-edit-btn {
+  margin-top: 14px;
+}
+
+/* ==========================================================================
+   PAGE 2: TRAIN COACH WINDOW PORTRAIT FRAMES
+   ========================================================================== */
+#couple .page-content {
+  padding-inline: clamp(8px, 2.5vw, 16px) !important;
+}
+
+.couple-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: clamp(8px, 2vw, 14px) !important;
+  width: 100% !important;
+  max-width: 504px !important;
+  margin: 10px auto 0 !important;
+}
+
+.portrait-card {
+  background: linear-gradient(145deg, #fffcf5 0%, #faefe0 100%) !important;
+  border: 1.5px solid #cfb98d !important;
+  border-radius: 16px !important;
+  padding: 4px 4px 12px !important;
+  box-shadow: 0 8px 24px rgba(18, 52, 53, 0.12) !important;
+  overflow: hidden !important;
+  text-align: center;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease !important;
+}
+
+.portrait-card:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 12px 28px rgba(18, 52, 53, 0.18) !important;
+}
+
+.portrait-window-wrapper {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #122;
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.16),
+    inset 0 1px 1px rgba(255, 255, 255, 0.25);
+  position: relative !important;
+  display: block;
+  cursor: pointer !important;
+  user-select: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+  outline: none !important;
+}
+
+.portrait-window-wrapper:focus-visible {
+  box-shadow: 0 0 0 3px #d4af37, 0 8px 24px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* The window sash container masking the glass area of the brass frame */
+.window-sash-container {
+  position: absolute !important;
+  left: 20.76% !important;
+  top: 16.8% !important;
+  width: 60.8% !important;
+  height: 59.18% !important;
+  border-radius: 16.5% / 13.5% !important;
+  overflow: hidden !important;
+  z-index: 3 !important;
+  pointer-events: none !important;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* The sliding window sash (glass pane + train interior + brass pull handle) */
+.window-sash {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  transform: translateY(0) !important;
+  transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  background: #191b1d !important;
+}
+
+.window-sash .sash-image {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+
+/* When the window is open: slides up smoothly into the carriage frame pocket */
+.portrait-window-wrapper.is-open .window-sash {
+  transform: translateY(-94%) !important;
+}
+
+/* Brass pull handle at bottom of window sash */
+.sash-brass-handle {
+  position: absolute !important;
+  bottom: 8px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: 44px !important;
+  height: 12px !important;
+  border: 1.5px solid #ecd69f !important;
+  border-radius: 3px !important;
+  background: linear-gradient(180deg, #d4af37 0%, #a27c26 100%) !important;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7), inset 0 1px 1px #fff !important;
+}
+
+.sash-brass-handle .handle-bar {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Floating interactive cue telling the user to tap - subtle, small & elegant */
+.window-tap-cue {
+  position: absolute !important;
+  bottom: 11% !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  z-index: 4 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 3.5px !important;
+  padding: 3px 8px 3.5px !important;
+  background: rgba(8, 28, 32, 0.92) !important;
+  border: 1px solid rgba(236, 214, 159, 0.8) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5), 0 0 6px rgba(236, 214, 159, 0.35) !important;
+  color: #fff9ed !important;
+  font-family: 'Lora', Georgia, serif !important;
+  font-size: 7px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.8px !important;
+  text-transform: uppercase !important;
+  pointer-events: none !important;
+  white-space: nowrap !important;
+  animation: cuePulse 2.4s ease-in-out infinite alternate !important;
+  transition: opacity 0.3s ease, visibility 0.3s ease !important;
+}
+
+.window-tap-cue .tap-hand {
+  font-size: 8.5px !important;
+  display: inline-block !important;
+  animation: handBounce 1.5s ease-in-out infinite !important;
+}
+
+/* Remove the close text completely when the window is open */
+.portrait-window-wrapper.is-open .window-tap-cue {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+@keyframes cuePulse {
+  0% {
+    transform: translateX(-50%) scale(1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5), 0 0 4px rgba(236, 214, 159, 0.25);
+  }
+  100% {
+    transform: translateX(-50%) scale(1.05);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.65), 0 0 10px rgba(236, 214, 159, 0.55);
+  }
+}
+
+@keyframes handBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+
+/* Confetti canvas covering the portrait */
+.portrait-confetti-canvas {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: none !important;
+  z-index: 5 !important;
+}
+
+.portrait-card > img,
+.portrait-train-window {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 819 / 1024 !important;
+  object-fit: cover !important;
+  border-radius: 14px !important;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+}
+
+.portrait-card:hover .portrait-train-window {
+  transform: scale(1.025);
+}
+
+.portrait-card h3 {
+  font-family: 'Lora', Georgia, serif;
+  font-size: clamp(17px, 4vw, 22px);
+  color: #853e35;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 11px 0 6px;
+  line-height: 1.15;
+}
+
+.portrait-card p {
+  font-size: clamp(9.5px, 2.3vw, 12px);
+  line-height: 1.45;
+  color: #493325;
+  margin: 0;
+}
+
+/* ==========================================================================
+   ASTRO DEV TOOLBAR REMOVAL
+   ========================================================================== */
+astro-dev-toolbar,
+#astro-dev-toolbar,
+div:has(> astro-dev-toolbar),
+[data-astro-dev-toolbar] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  height: 0 !important;
+  width: 0 !important;
+  overflow: hidden !important;
+}
+
+/* ==========================================================================
+   PAGE 3: INTERACTIVE OUR STORY SCRATCH-TO-REVEAL CARDS
+   ========================================================================== */
+.story-interactive-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 4vh, 36px);
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.story-card.paper-card {
+  position: relative;
+  background: linear-gradient(175deg, #fffcf5 0%, #fdf6e9 100%);
+  border: 1.5px solid #d4af37;
+  border-radius: 18px;
+  padding: clamp(16px, 3.5vw, 22px);
+  box-shadow:
+    0 10px 28px rgba(7, 37, 40, 0.12),
+    0 2px 6px rgba(0, 0, 0, 0.05),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease;
+}
+
+.story-card.paper-card:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 16px 36px rgba(7, 37, 40, 0.18),
+    0 4px 10px rgba(0, 0, 0, 0.08),
+    inset 0 0 0 1px #fff;
+}
+
+.story-station-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px dashed rgba(212, 175, 55, 0.45);
+  padding-bottom: 8px;
+}
+
+.story-station-header .stop-number {
+  position: static !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  background: linear-gradient(135deg, #0d3f44, #061e22);
+  color: #f7e0a3;
+  font-family: 'Lora', Georgia, serif;
+  font-weight: 700;
+  font-size: 13px;
+  border-radius: 50%;
+  border: 1px solid #d4af37;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.story-station-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.story-rail-stop {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #8b3b30;
+  text-transform: uppercase;
+}
+
+.story-milestone-tag {
+  font-size: 7.5px;
+  letter-spacing: 1.5px;
+  color: #0b454b;
+  background: rgba(11, 69, 75, 0.1);
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-weight: 600;
+  border: 0.8px solid rgba(11, 69, 75, 0.25);
+}
+
+.story-scratch-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  touch-action: none;
+  user-select: none;
+  cursor: grab;
+  background: #f0e6d2;
+}
+
+.story-scratch-container:active {
+  cursor: grabbing;
+}
+
+.story-photo-wrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.story-photo-wrapper .story-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.story-card:hover .story-photo {
+  transform: scale(1.03);
+}
+
+.story-scratch-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  transition: opacity 0.6s ease;
+  will-change: opacity;
+}
+
+.story-scratch-container.is-revealed .story-scratch-canvas {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.scratch-cue {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, rgba(13, 63, 68, 0.94), rgba(6, 30, 34, 0.96));
+  color: #fff4d1;
+  padding: 5px 12px;
+  border-radius: 20px;
+  border: 1px solid rgba(236, 214, 159, 0.7);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  font-family: 'Lora', Georgia, serif;
+  font-size: 8.5px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  animation: scratchCueBounce 2.5s ease-in-out infinite;
+}
+
+@keyframes scratchCueBounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-3px); }
+}
+
+.story-scratch-container.is-revealed .scratch-cue,
+.story-scratch-container.is-revealed .scratch-reveal-btn {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.scratch-reveal-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 3;
+  background: rgba(255, 255, 255, 0.9);
+  color: #7d3329;
+  border: 1px solid #d4af37;
+  border-radius: 14px;
+  padding: 3px 9px;
+  font-family: 'Lora', Georgia, serif;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+}
+
+.scratch-reveal-btn:hover {
+  background: #f7e0a3;
+  color: #0d3f44;
+  transform: scale(1.05);
+}
+
+.story-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.story-card-body h4 {
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: #0d3f44;
+  text-transform: uppercase;
+  margin: 0;
+  font-weight: 700;
+}
+
+.story-card-body h3 {
+  font-family: 'Lora', Georgia, serif;
+  font-size: clamp(16px, 3.8vw, 20px);
+  color: #8b3b30;
+  margin: 2px 0 4px;
+  line-height: 1.2;
+}
+
+.story-card-body time {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  color: #aa771c;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.story-cal-spark {
+  color: #d4af37;
+  font-size: 8px;
+}
+
+.story-card-body p {
+  font-size: clamp(10.5px, 2.5vw, 13px);
+  line-height: 1.55;
+  color: #493325;
+  margin: 0;
+}
+
+/* ==========================================================================
+   PAGE 7: REDESIGNED RSVP LUXURY PASSENGER RESERVATION TICKET
+   ========================================================================== */
+.rsvp-ticket-card {
+  position: relative !important;
+  background: linear-gradient(165deg, #fffefb 0%, #fbf5e6 100%) !important;
+  border: 2px solid #d4af37 !important;
+  border-radius: 20px !important;
+  padding: clamp(24px, 5vw, 36px) clamp(18px, 4.5vw, 28px) !important;
+  box-shadow:
+    0 16px 40px rgba(7, 37, 40, 0.2),
+    0 2px 8px rgba(0, 0, 0, 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.9),
+    inset 0 0 24px rgba(212, 175, 55, 0.08) !important;
+  margin-top: 24px !important;
+  max-width: 480px !important;
+  margin-inline: auto !important;
+  overflow: visible !important;
+}
+
+/* Authentic train ticket punch notches */
+.ticket-notch {
+  position: absolute;
+  top: 96px;
+  width: 22px;
+  height: 22px;
+  background: #061e22;
+  border-radius: 50%;
+  border: 2px solid #d4af37;
+  z-index: 3;
+}
+.ticket-notch.notch-left {
+  left: -12px;
+  clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
+}
+.ticket-notch.notch-right {
+  right: -12px;
+  clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+}
+
+.ticket-class-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-family: 'Lora', Georgia, serif;
+  font-size: 8px;
+  letter-spacing: 2px;
+  color: #7d3329;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: rgba(212, 175, 55, 0.14);
+  padding: 3px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  margin-bottom: 6px;
+}
+
+.ticket-star {
+  color: #aa771c;
+  font-size: 9px;
+}
+
+.ticket-perforation-divider {
+  width: 100%;
+  height: 1px;
+  border-bottom: 2px dashed rgba(212, 175, 55, 0.55);
+  margin: 16px 0 20px;
+}
+
+.form-group-block {
+  margin-bottom: 18px;
+  text-align: left;
+}
+
+.form-group-block label,
+.rsvp-custom-fieldset legend {
+  display: block;
+  font-family: 'Lora', Georgia, serif;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  color: #7d3329;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.required-mark {
+  color: #ba2818;
+}
+
+.form-group-block input,
+.form-group-block textarea {
+  width: 100%;
+  box-sizing: border-box;
+  background: #ffffff !important;
+  border: 1.5px solid #d5c39c !important;
+  border-radius: 10px !important;
+  padding: 11px 14px !important;
+  font-size: 13px !important;
+  color: #1e3335 !important;
+  transition: all 0.25s ease !important;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+}
+
+.form-group-block input:focus,
+.form-group-block textarea:focus {
+  outline: none !important;
+  border-color: #aa771c !important;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.25), inset 0 1px 2px rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Custom interactive attending radio option cards */
+.rsvp-custom-fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0 0 20px;
+  text-align: left;
+}
+
+.ticket-radio-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+@media (max-width: 480px) {
+  .ticket-radio-group {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ticket-radio-option {
+  position: relative;
+  display: block;
+  cursor: pointer;
+  border: 1.5px solid #ded0b4;
+  background: #fff;
+  border-radius: 12px;
+  padding: 10px 12px;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.ticket-radio-option:hover {
+  border-color: #aa771c;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.ticket-radio-option input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.ticket-radio-option:has(input:checked) {
+  border-color: #0b454b !important;
+  background: linear-gradient(145deg, #f0f7f7 0%, #e3f0f0 100%) !important;
+  box-shadow: 0 4px 14px rgba(11, 69, 75, 0.16), 0 0 0 1px #0b454b inset !important;
+}
+
+.radio-option-body {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.radio-station-icon {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.radio-text-wrap {
+  flex: 1;
+  min-width: 0;
+}
+
+.radio-title {
+  display: block;
+  font-family: 'Lora', Georgia, serif;
+  font-size: 11.5px;
+  color: #0d3f44;
+  line-height: 1.2;
+}
+
+.radio-sub {
+  display: block;
+  font-size: 8.5px;
+  color: #637775;
+  margin-top: 2px;
+  line-height: 1.25;
+}
+
+.radio-check-marker {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1.5px solid #c9b48b;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: bold;
+  color: transparent;
+  transition: all 0.2s ease;
+}
+
+.ticket-radio-option:has(input:checked) .radio-check-marker {
+  background: #0b454b;
+  border-color: #0b454b;
+  color: #fff;
+}
+
+/* Luxury Passenger Stepper */
+.luxury-passenger-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  border: 1.5px solid #d5c39c;
+  border-radius: 12px;
+  padding: 6px 10px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.stepper-action-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid #d4af37;
+  background: linear-gradient(135deg, #fbf4e2 0%, #ecd69f 100%);
+  color: #0b454b;
+  font-size: 18px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 0;
+  line-height: 1;
+}
+
+.stepper-action-btn:hover:not(:disabled) {
+  transform: scale(1.08);
+  background: linear-gradient(135deg, #fff3d1 0%, #dfbe7d 100%);
+}
+
+.stepper-action-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.stepper-count-readout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.stepper-digit {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #8b3b30;
+  line-height: 1;
+}
+
+.stepper-unit {
+  font-size: 7.5px;
+  letter-spacing: 1.5px;
+  color: #0b454b;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+/* Hidden native select for accessible form submission */
+.stepper-sync-select {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  height: 0;
+  width: 0;
+}
+
+.guest-stepper-container.is-disabled {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.rsvp-submit-btn {
+   margin-top: 10px !important;
+  padding: 13px 20px !important;
+  font-size: 11px !important;
+  letter-spacing: 2px !important;
+}
+
+/* Boarding pass confirmation styling */
+.rsvp-confirmation-card {
+  position: relative;
+  background: linear-gradient(155deg, #072528 0%, #031518 100%);
+  border: 1.5px solid #ecd69f;
+  border-radius: 14px;
+  padding: 20px 18px;
+  color: #fff9ea;
+  text-align: left;
+  margin-top: 18px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4), inset 0 0 16px rgba(212, 175, 55, 0.15);
+}
+
+.rsvp-confirm-badge {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 8.5px;
+  letter-spacing: 2.2px;
+  color: #ecd69f;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.rsvp-confirmation-card h4 {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 18px;
+  color: #ffffff;
+  margin: 0 0 10px;
+}
+
+.rsvp-confirm-status {
+  font-size: 11.5px;
+  color: #d1e5e2;
+  margin: 0 0 8px;
+  line-height: 1.4;
+}
+
+.rsvp-attending-yes {
+  color: #79eccb;
+  font-weight: 600;
+}
+
+.rsvp-attending-no {
+  color: #ffb8a8;
+  font-weight: 600;
+}
+
+.rsvp-confirm-notes {
+  font-size: 11px;
+  color: #e2d1ae;
+  font-style: italic;
+  margin: 0 0 10px;
+}
+
+.rsvp-integration-notice {
+  font-size: 9px;
+  line-height: 1.4;
+  color: #9cb5b2;
+  border-top: 1px dashed rgba(236, 214, 159, 0.3);
+  padding-top: 10px;
+  margin-top: 10px;
+}
+
+/* ==========================================================================
+   PAGE 5: MEMORY TRAIN WINDOWS WITH VELVET CURTAIN REVEAL ANIMATION
+   ========================================================================== */
+#memories.page,
+.memories-page {
+  min-height: 0 !important;
+  height: auto !important;
+}
+
+#memories .page-content {
+  padding-top: clamp(40px, 5vh, 65px) !important;
+  padding-bottom: clamp(50px, 7vh, 80px) !important;
+  max-width: 460px !important;
+  margin-inline: auto !important;
+}
+
+#memories .page-heading {
+  margin-bottom: 10px !important;
+}
+
+#memories .photo-hint {
+  margin-top: 10px !important;
+  font-size: 7.5px !important;
+  letter-spacing: 1.4px !important;
+  opacity: 0.85 !important;
+}
+
+/* Always keep 2 photos in line (2 columns on all devices) */
+.memory-train-window-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  grid-auto-flow: row !important;
+  gap: clamp(8px, 2.2vw, 14px) clamp(6px, 1.8vw, 12px) !important;
+  width: 100% !important;
+  max-width: min(420px, 100%) !important;
+  margin: 8px auto 0 !important;
+  padding: 0 !important;
+  align-items: start !important;
+  box-sizing: border-box !important;
+}
+
+.memory-photo-card {
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  background: linear-gradient(175deg, #fffcf5 0%, #fbf5e8 100%) !important;
+  border: 1.2px solid #d4af37 !important;
+  border-radius: 12px !important;
+  padding: 4px 4px 6px !important;
+  box-shadow:
+    0 6px 14px rgba(7, 37, 40, 0.12),
+    0 1px 4px rgba(0, 0, 0, 0.05),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.85) !important;
+  transform: none !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+  box-sizing: border-box !important;
+}
+
+.memory-photo-card:hover {
+  transform: translateY(-2px) !important;
+  box-shadow:
+    0 10px 20px rgba(7, 37, 40, 0.18),
+    0 2px 6px rgba(0, 0, 0, 0.08),
+    inset 0 0 0 1px #fff !important;
+}
+
+.memory-photo-card .portrait-train-window {
+  border-radius: 9px !important;
+}
+
+/* The window curtain container masking the exact inner brass opening */
+.window-curtain-container {
+  position: absolute !important;
+  left: 20.76% !important;
+  top: 16.8% !important;
+  width: 60.8% !important;
+  height: 59.18% !important;
+  border-radius: 16.5% / 13.5% !important;
+  overflow: hidden !important;
+  z-index: 3 !important;
+  pointer-events: none !important;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.65) !important;
+}
+
+/* Brass curtain rod across the top */
+.curtain-rod {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: 4px;
+  height: 5px;
+  background: linear-gradient(180deg, #fff0c7 0%, #d4af37 40%, #875e14 100%);
+  border-radius: 3px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+  z-index: 6;
+}
+
+.rod-finial {
+  position: absolute;
+  top: -2px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #fff5d6 0%, #d4af37 60%, #5e3f05 100%);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+.rod-finial.finial-left { left: -3px; }
+.rod-finial.finial-right { right: -3px; }
+
+/* The left and right velvet curtains */
+.curtain-panel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 54%;
+  z-index: 4;
+  overflow: hidden;
+  transition:
+    transform 0.85s cubic-bezier(0.25, 1, 0.5, 1),
+    box-shadow 0.85s ease;
+  will-change: transform;
+}
+
+.curtain-panel.curtain-left {
+  left: 0;
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.5);
+  transform-origin: left center;
+}
+
+.curtain-panel.curtain-right {
+  right: 0;
+  box-shadow: -4px 0 10px rgba(0, 0, 0, 0.5);
+  transform-origin: right center;
+}
+
+/* Open State: Curtains draw back gracefully to the sides */
+.memory-window-wrapper.is-open .curtain-left {
+  transform: translateX(-84%) scaleX(0.42) !important;
+  box-shadow: 6px 0 16px rgba(0, 0, 0, 0.7) !important;
+}
+
+.memory-window-wrapper.is-open .curtain-right {
+  transform: translateX(84%) scaleX(0.42) !important;
+  box-shadow: -6px 0 16px rgba(0, 0, 0, 0.7) !important;
+}
+
+/* Rich royal ruby/burgundy velvet fabric drapes */
+.curtain-fabric {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    #2e0404 0%,
+    #590c0c 15%,
+    #871717 32%,
+    #4a0707 50%,
+    #7a1414 68%,
+    #961c1c 82%,
+    #3b0505 100%
+  );
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.6);
+}
+
+.curtain-fabric .pleat {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 255, 255, 0.12) 50%, transparent 100%);
+  filter: blur(0.5px);
+}
+.pleat.p1 { left: 24%; }
+.pleat.p2 { left: 50%; }
+.pleat.p3 { left: 76%; }
+
+/* Golden braided fringe trim along the scalloped bottom border */
+.curtain-gold-fringe {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: repeating-linear-gradient(
+    90deg,
+    #d4af37 0px,
+    #d4af37 3px,
+    #875e14 3px,
+    #875e14 5px
+  );
+  box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.4);
+  border-top: 1px solid #ffe89e;
+}
+
+.curtain-left .curtain-gold-fringe {
+  border-right: 2px solid #ecd69f;
+}
+.curtain-right .curtain-gold-fringe {
+  border-left: 2px solid #ecd69f;
+}
+
+/* Golden curtain tie-back tassel */
+.curtain-tieback {
+  position: absolute;
+  top: 60%;
+  width: 16px;
+  height: 20px;
+  z-index: 5;
+  transition: opacity 0.4s ease, transform 0.85s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.curtain-left .curtain-tieback {
+  right: 4px;
+}
+.curtain-right .curtain-tieback {
+  left: 4px;
+}
+
+.curtain-tieback .tassel-braid {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #ecd69f, #aa791e);
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.curtain-tieback .tassel-skirt {
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 12px;
+  background: linear-gradient(180deg, #d4af37 0%, #aa771c 100%);
+  border-radius: 1px 1px 3px 3px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* When open, the tie-backs cinch neatly into place */
+.memory-window-wrapper.is-open .curtain-left .curtain-tieback {
+  transform: translateX(-10px) scale(0.9);
+}
+.memory-window-wrapper.is-open .curtain-right .curtain-tieback {
+  transform: translateX(10px) scale(0.9);
+}
+
+/* Memory card caption and badge */
+.memory-caption-wrap {
+  text-align: center;
+  padding: 4px 2px 0;
+}
+
+.memory-badge {
+  display: inline-block;
+  font-family: 'Lora', Georgia, serif;
+  font-size: 6.5px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  color: #7d3329;
+  text-transform: uppercase;
+  background: rgba(212, 175, 55, 0.15);
+  padding: 1.5px 6px;
+  border-radius: 8px;
+  border: 0.8px solid rgba(212, 175, 55, 0.4);
+  margin-bottom: 2px;
+}
+
+.memory-caption-text {
+  font-family: 'Lora', Georgia, serif;
+  font-size: clamp(8.5px, 2.2vw, 10.5px);
+  color: #4a3424;
+  margin: 0;
+  line-height: 1.25;
+  font-style: italic;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN: MOBILE-FIRST INVITATION FLOW WITH LUXURY LAPTOP / DESKTOP VIEW
+   ========================================================================== */
+
+/* Unified Mobile-First Dimension Constraints */
+.site-shell {
+  position: relative !important;
+  width: 100% !important;
+  max-width: 480px !important;
+  margin-inline: auto !important;
+  background: #061e22 !important;
+  box-sizing: border-box !important;
+}
+
+.page-content {
+  width: 100% !important;
+  max-width: 480px !important;
+  margin-inline: auto !important;
+  box-sizing: border-box !important;
+}
+
+.cover-content {
+  width: 100% !important;
+  max-width: 480px !important;
+  margin-inline: auto !important;
+  box-sizing: border-box !important;
+}
+
+/* Mobile Screen Mode (<= 520px): Full Edge-to-Edge Experience */
+@media (max-width: 520px) {
+  html, body {
+    background: #061e22 !important;
+    overflow-x: hidden !important;
+  }
+  .site-shell {
+    max-width: 100% !important;
+    margin: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+}
+
+/* Laptop, Desktop & Tablet Presentation (> 520px): Centered Luxury Showcase */
+@media (min-width: 521px) {
+  html {
+    background: #020c0e !important;
+  }
+  body {
+    background: radial-gradient(circle at 50% 25%, #0c363c 0%, #061e22 50%, #020b0d 100%) fixed !important;
+    min-height: 100vh !important;
+    overflow-x: hidden !important;
+  }
+  .site-shell {
+    margin: 24px auto 44px !important;
+    border-radius: 26px !important;
+    border: 2px solid rgba(212, 175, 55, 0.45) !important;
+    box-shadow:
+      0 24px 80px rgba(0, 0, 0, 0.75),
+      0 4px 16px rgba(0, 0, 0, 0.4),
+      0 0 0 1px rgba(255, 255, 255, 0.08),
+      0 0 36px rgba(212, 175, 55, 0.16) !important;
+    overflow: hidden !important;
+  }
+  .page {
+    overflow: hidden !important;
+  }
+  #welcome.page {
+    border-top-left-radius: 24px !important;
+    border-top-right-radius: 24px !important;
+  }
+  #guide.page {
+    border-bottom-left-radius: 24px !important;
+    border-bottom-right-radius: 24px !important;
+  }
+}
+
+/* Journey Controls Navigation on Larger Screens */
+.journey-controls {
+  position: fixed !important;
+  z-index: 100 !important;
+  bottom: max(14px, env(safe-area-inset-bottom)) !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5) !important;
+}

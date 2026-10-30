@@ -1,0 +1,31 @@
+---
+import { content } from '../data/content';
+---
+
+{content.entrance.enabled && (
+  <section
+    id="palace-entrance"
+    class="palace-entrance"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Welcome to our wedding invitation"
+  >
+    <img src={content.entrance.background} alt="Grand station entrance" class="entrance-bg-img" />
+    <div class="entrance-overlay" aria-hidden="true"></div>
+    <div class="entrance-saloon-card">
+      <div class="entrance-station-badge">COASTAL WEDDING EXPRESS</div>
+      <p class="entrance-kicker">{content.entrance.label}</p>
+      <h2>
+        {content.groom} <span class="amp">&amp;</span> {content.bride}
+      </h2>
+      <p class="entrance-date">{content.dateLabel} · GOA</p>
+      <div class="entrance-ornament" aria-hidden="true">
+        <span></span>✧<span></span>
+      </div>
+      <button id="entrance-board" class="primary-button entrance-main-btn" aria-label="Begin your journey and play wedding music">
+        <span>BEGIN YOUR JOURNEY</span> <span class="btn-arrow">⟶</span>
+      </button>
+      <p class="entrance-audio-notice">♫ Tap above to enter with wedding music</p>
+    </div>
+  </section>
+)}

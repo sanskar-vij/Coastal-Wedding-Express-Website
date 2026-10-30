@@ -1,0 +1,1 @@
+Build, asset checks and verification passed. Browser mobile check at 390px: 19 independent botanical layers, no broken images, no horizontal overflow. RSVP preview submission works without sending or saving data. Event entrance delays verified at 0, 0.25 and 0.5 seconds. Countdown is inside welcome; old strip removed. Source formatted with Prettier.

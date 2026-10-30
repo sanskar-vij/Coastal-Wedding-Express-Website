@@ -1,0 +1,103 @@
+.foreground {
+  position: absolute;
+  z-index: 3;
+  left: -55px;
+  bottom: -25px;
+  width: 210px;
+  pointer-events: none;
+  transform-origin: bottom left;
+  animation: foliage 8s ease-in-out infinite alternate;
+}
+#story > .foreground {
+  width: 145px;
+  left: -55px;
+  transform: rotate(180deg);
+}
+.shimmer {
+  position: absolute;
+  top: 66%;
+  right: 0;
+  width: 48%;
+  height: 13%;
+  z-index: -2;
+  background: repeating-linear-gradient(
+    175deg,
+    transparent 0 14px,
+    #fff4 15px,
+    transparent 16px 27px
+  );
+  mask-image: linear-gradient(90deg, transparent, #000, transparent);
+  animation: shimmer 8s ease-in-out infinite alternate;
+}
+.petals {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 4;
+}
+.petals i {
+  position: absolute;
+  top: -20px;
+  left: 7%;
+  width: 9px;
+  height: 15px;
+  border-radius: 90% 10% 80% 20%;
+  background: #cf4569;
+  animation: petal 19s linear infinite;
+  opacity: 0;
+}
+.petals i:nth-child(2) {
+  left: 25%;
+  animation-delay: 5s;
+  animation-duration: 23s;
+}
+.petals i:nth-child(3) {
+  left: 45%;
+  animation-delay: 11s;
+  width: 6px;
+}
+.petals i:nth-child(4) {
+  left: 85%;
+  animation-delay: 14s;
+  animation-duration: 25s;
+}
+@keyframes float {
+  to {
+    transform: translateY(-6px);
+  }
+}
+@keyframes foliage {
+  to {
+    rotate: 2deg;
+  }
+}
+@keyframes shimmer {
+  to {
+    transform: translateX(17px);
+    opacity: 0.3;
+  }
+}
+@keyframes petal {
+  0% {
+    transform: translate(0, 0) rotate(0);
+    opacity: 0;
+  }
+  8%,
+  90% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate(90px, 1100px) rotate(420deg);
+    opacity: 0;
+  }
+}
+
+.foliage-offscreen .foreground,
+.foliage-offscreen .petals i,
+.foliage-offscreen .event-card > img {
+  animation-play-state: paused;
+}
+.foliage-disabled .foreground,
+.foliage-disabled .petals i {
+  animation: none;
+}
