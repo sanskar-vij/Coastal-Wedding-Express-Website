@@ -642,5 +642,10 @@
     });
 
     syncGuestDisplay(1);
-  }
+  }window.addEventListener("pagehide", () => {
+  document.querySelectorAll("audio").forEach(audio => {
+    audio.pause();
+    audio.currentTime = 0;
+  });
+});
 })();
