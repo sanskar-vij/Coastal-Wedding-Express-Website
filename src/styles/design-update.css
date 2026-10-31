@@ -237,14 +237,23 @@
 }
 
 /* Noticeable breeze, isolated from content and the background composition. */
+.scene {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: -4 !important;
+  background-position: center center !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+}
+
 .scene-video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  pointer-events: none;
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  pointer-events: none !important;
 }
 
 .welcome-video {
@@ -267,6 +276,43 @@
   max-height: 100dvh !important;
   overflow: hidden !important;
   position: relative !important;
+}
+
+/* Page 1 Welcome Tropical Palm Canopy Framing */
+.welcome-palms-frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: clamp(140px, 24vh, 220px);
+  pointer-events: none;
+  z-index: 3;
+  overflow: hidden;
+}
+
+.welcome-palm-frond {
+  position: absolute;
+  width: clamp(140px, 32vw, 220px);
+  height: auto;
+  opacity: 0.9;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.55));
+  pointer-events: none;
+  user-select: none;
+}
+
+.palm-top-left {
+  top: -18px;
+  left: -24px;
+  transform-origin: top left;
+  animation: palmBreezeLeft 8s ease-in-out infinite alternate;
+}
+
+.palm-top-right {
+  top: -18px;
+  right: -24px;
+  transform: scaleX(-1);
+  transform-origin: top right;
+  animation: palmBreezeRight 8s ease-in-out infinite alternate -4s;
 }
 
 #welcome .cover-content {
@@ -1223,37 +1269,150 @@ div:has(> astro-dev-toolbar),
 }
 
 /* ==========================================================================
-   PAGE 3: INTERACTIVE OUR STORY SCRATCH-TO-REVEAL CARDS
+   PAGE 3: OUR STORY REDESIGN — UNSTRETCHED BACKGROUND & STATION CAROUSEL
    ========================================================================== */
-.story-interactive-timeline {
+#story.page,
+.story-page {
+  min-height: 100vh !important;
+  min-height: 100dvh !important;
+  height: auto !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+#story .scene {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: -4 !important;
+}
+
+#story .scene-video {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  pointer-events: none !important;
+}
+
+.story-content {
+  padding-top: clamp(28px, 4vh, 48px) !important;
+  padding-bottom: clamp(65px, 7.5vh, 90px) !important;
+  padding-inline: clamp(14px, 3.5vw, 24px) !important;
+  max-width: 460px !important;
+  margin-inline: auto !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
+
+/* Railway Station Stop Pills Navigation */
+.story-station-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 10px 0 16px;
+  width: 100%;
+}
+
+.story-station-pill {
+  flex: 1;
+  max-width: 125px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 6px 8px;
+  background: rgba(8, 28, 32, 0.85);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  border-radius: 20px;
+  color: #c8dedb;
+  font-family: 'Lora', Georgia, serif;
+  font-size: 8.5px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.story-station-pill:hover {
+  background: rgba(13, 63, 68, 0.95);
+  border-color: #d4af37;
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.story-station-pill.active {
+  background: linear-gradient(135deg, #134f55 0%, #08292d 100%);
+  border: 1.5px solid #d4af37;
+  color: #fff8e5;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35), 0 0 10px rgba(212, 175, 55, 0.4);
+}
+
+.story-station-pill .pill-number {
+  color: #d4af37;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+/* Carousel Container */
+.story-carousel-container {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: clamp(24px, 4vh, 36px);
-  margin: 20px 0 0;
-  padding: 0;
-  list-style: none;
+  align-items: center;
+}
+
+.story-carousel {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  border-radius: 18px;
+  touch-action: pan-y;
+  padding: 4px 2px 8px;
+  margin: 0;
+}
+
+.story-track {
+  display: flex;
+  width: 100%;
+  transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
 }
 
 .story-card.paper-card {
+  flex: 0 0 100%;
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
   position: relative;
   background: linear-gradient(175deg, #fffcf5 0%, #fdf6e9 100%);
   border: 1.5px solid #d4af37;
   border-radius: 18px;
-  padding: clamp(16px, 3.5vw, 22px);
+  padding: clamp(14px, 3.2vw, 18px);
   box-shadow:
-    0 10px 28px rgba(7, 37, 40, 0.12),
-    0 2px 6px rgba(0, 0, 0, 0.05),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+    0 10px 28px rgba(7, 37, 40, 0.16),
+    0 2px 6px rgba(0, 0, 0, 0.06),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.85);
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 10px;
+  box-sizing: border-box;
   transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease;
 }
 
 .story-card.paper-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-2px);
   box-shadow:
-    0 16px 36px rgba(7, 37, 40, 0.18),
+    0 14px 34px rgba(7, 37, 40, 0.2),
     0 4px 10px rgba(0, 0, 0, 0.08),
     inset 0 0 0 1px #fff;
 }
@@ -1263,24 +1422,7 @@ div:has(> astro-dev-toolbar),
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px dashed rgba(212, 175, 55, 0.45);
-  padding-bottom: 8px;
-}
-
-.story-station-header .stop-number {
-  position: static !important;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 26px;
-  height: 26px;
-  background: linear-gradient(135deg, #0d3f44, #061e22);
-  color: #f7e0a3;
-  font-family: 'Lora', Georgia, serif;
-  font-weight: 700;
-  font-size: 13px;
-  border-radius: 50%;
-  border: 1px solid #d4af37;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  padding-bottom: 6px;
 }
 
 .story-station-meta {
@@ -1289,9 +1431,20 @@ div:has(> astro-dev-toolbar),
   gap: 8px;
 }
 
+.story-stop-badge {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #0b454b;
+  background: rgba(11, 69, 75, 0.12);
+  padding: 2px 6px;
+  border-radius: 6px;
+  border: 0.8px solid rgba(11, 69, 75, 0.25);
+}
+
 .story-rail-stop {
   font-family: 'Lora', Georgia, serif;
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 700;
   letter-spacing: 2px;
   color: #8b3b30;
@@ -1299,38 +1452,24 @@ div:has(> astro-dev-toolbar),
 }
 
 .story-milestone-tag {
-  font-size: 7.5px;
+  font-size: 8px;
   letter-spacing: 1.5px;
-  color: #0b454b;
-  background: rgba(11, 69, 75, 0.1);
-  padding: 2px 8px;
-  border-radius: 10px;
-  font-weight: 600;
-  border: 0.8px solid rgba(11, 69, 75, 0.25);
+  color: #aa771c;
+  font-weight: 700;
 }
 
-.story-scratch-container {
+/* Crisp unobstructed photo without leaves */
+.story-photo-wrapper {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 10;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
-  touch-action: none;
-  user-select: none;
-  cursor: grab;
-  background: #f0e6d2;
-}
-
-.story-scratch-container:active {
-  cursor: grabbing;
-}
-
-.story-photo-wrapper {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.16),
+    inset 0 1px 1px rgba(255, 255, 255, 0.25);
+  border: 1.5px solid rgba(212, 175, 55, 0.45);
+  background: #081d20;
 }
 
 .story-photo-wrapper .story-photo {
@@ -1345,90 +1484,14 @@ div:has(> astro-dev-toolbar),
   transform: scale(1.03);
 }
 
-.story-scratch-canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
-  transition: opacity 0.6s ease;
-  will-change: opacity;
-}
-
-.story-scratch-container.is-revealed .story-scratch-canvas {
-  opacity: 0 !important;
-  pointer-events: none !important;
-}
-
-.scratch-cue {
-  position: absolute;
-  bottom: 12px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 3;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: linear-gradient(135deg, rgba(13, 63, 68, 0.94), rgba(6, 30, 34, 0.96));
-  color: #fff4d1;
-  padding: 5px 12px;
-  border-radius: 20px;
-  border: 1px solid rgba(236, 214, 159, 0.7);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
-  font-family: 'Lora', Georgia, serif;
-  font-size: 8.5px;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
-  pointer-events: none;
-  transition: opacity 0.4s ease, transform 0.4s ease;
-  animation: scratchCueBounce 2.5s ease-in-out infinite;
-}
-
-@keyframes scratchCueBounce {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(-3px); }
-}
-
-.story-scratch-container.is-revealed .scratch-cue,
-.story-scratch-container.is-revealed .scratch-reveal-btn {
-  opacity: 0 !important;
-  pointer-events: none !important;
-}
-
-.scratch-reveal-btn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  z-index: 3;
-  background: rgba(255, 255, 255, 0.9);
-  color: #7d3329;
-  border: 1px solid #d4af37;
-  border-radius: 14px;
-  padding: 3px 9px;
-  font-family: 'Lora', Georgia, serif;
-  font-size: 8px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  transition: all 0.2s ease;
-}
-
-.scratch-reveal-btn:hover {
-  background: #f7e0a3;
-  color: #0d3f44;
-  transform: scale(1.05);
-}
-
 .story-card-body {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 2px;
 }
 
 .story-card-body h4 {
-  font-size: 9px;
+  font-size: 8.5px;
   letter-spacing: 2px;
   color: #0d3f44;
   text-transform: uppercase;
@@ -1438,22 +1501,22 @@ div:has(> astro-dev-toolbar),
 
 .story-card-body h3 {
   font-family: 'Lora', Georgia, serif;
-  font-size: clamp(16px, 3.8vw, 20px);
+  font-size: clamp(16px, 3.8vw, 19px);
   color: #8b3b30;
-  margin: 2px 0 4px;
-  line-height: 1.2;
+  margin: 2px 0;
+  line-height: 1.18;
 }
 
 .story-card-body time {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  font-size: 9px;
+  font-size: 8.5px;
   letter-spacing: 1.5px;
   color: #aa771c;
   font-weight: 600;
   text-transform: uppercase;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .story-cal-spark {
@@ -1462,15 +1525,124 @@ div:has(> astro-dev-toolbar),
 }
 
 .story-card-body p {
-  font-size: clamp(10.5px, 2.5vw, 13px);
-  line-height: 1.55;
+  font-size: clamp(10.5px, 2.4vw, 12.5px);
+  line-height: 1.5;
   color: #493325;
   margin: 0;
 }
 
+/* Navigation Controls (Arrows & Dots) */
+.story-nav-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.story-arrow-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(8, 28, 32, 0.88);
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  color: #f7e0a3;
+  display: grid;
+  place-items: center;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.story-arrow-btn:hover:not(:disabled) {
+  background: #104c52;
+  border-color: #d4af37;
+  color: #fff;
+  transform: scale(1.08);
+}
+
+.story-arrow-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.story-dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.story-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(212, 175, 55, 0.35);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.story-dot.active {
+  background: #d4af37;
+  width: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+}
+
 /* ==========================================================================
-   PAGE 7: REDESIGNED RSVP LUXURY PASSENGER RESERVATION TICKET
+   PAGE 7: REDESIGNED RSVP LUXURY PASSENGER RESERVATION TICKET & BALANCED BACKGROUND
    ========================================================================== */
+#rsvp.page,
+.rsvp-page {
+  min-height: 0 !important;
+  height: auto !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+#rsvp .scene,
+.rsvp-page .scene {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-size: cover !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  z-index: -4 !important;
+}
+
+#rsvp .scene-video,
+.rsvp-page .scene-video {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  pointer-events: none !important;
+}
+
+#rsvp .page-content,
+.rsvp-page .page-content {
+  padding-top: clamp(36px, 4.5vh, 58px) !important;
+  padding-bottom: clamp(40px, 5vh, 65px) !important;
+  padding-inline: clamp(14px, 3.5vw, 24px) !important;
+  max-width: 480px !important;
+  margin-inline: auto !important;
+  box-sizing: border-box !important;
+}
+
+#rsvp .page-heading {
+  margin-bottom: 12px !important;
+}
+
+#rsvp .page-heading h2 {
+  margin: 0 0 6px !important;
+}
+
 .rsvp-ticket-card {
   position: relative !important;
   background: linear-gradient(165deg, #fffefb 0%, #fbf5e6 100%) !important;
@@ -1482,7 +1654,7 @@ div:has(> astro-dev-toolbar),
     0 2px 8px rgba(0, 0, 0, 0.08),
     inset 0 0 0 1px rgba(255, 255, 255, 0.9),
     inset 0 0 24px rgba(212, 175, 55, 0.08) !important;
-  margin-top: 24px !important;
+  margin-top: 14px !important;
   max-width: 480px !important;
   margin-inline: auto !important;
   overflow: visible !important;

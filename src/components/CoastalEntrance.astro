@@ -12,6 +12,7 @@ import { content } from '../data/content';
   >
     <img src={content.entrance.background} alt="Grand station entrance" class="entrance-bg-img" />
     <div class="entrance-overlay" aria-hidden="true"></div>
+
     <div class="entrance-saloon-card">
       <div class="entrance-station-badge">COASTAL WEDDING EXPRESS</div>
       <p class="entrance-kicker">{content.entrance.label}</p>
@@ -22,10 +23,14 @@ import { content } from '../data/content';
       <div class="entrance-ornament" aria-hidden="true">
         <span></span>✧<span></span>
       </div>
+
       <button id="entrance-board" class="primary-button entrance-main-btn" aria-label="Begin your journey and play wedding music">
-        <span>BEGIN YOUR JOURNEY</span> <span class="btn-arrow">⟶</span>
+        <span>BEGIN YOUR JOURNEY</span>
+        <span class="btn-arrow" aria-hidden="true">⟶</span>
       </button>
-      <p class="entrance-audio-notice">♫ Tap above to enter with wedding music</p>
+
+      <canvas class="entrance-confetti-canvas" aria-hidden="true"></canvas>
+      <p class="entrance-audio-notice">✧ Tap to begin your journey with music ✧</p>
     </div>
   </section>
 )}

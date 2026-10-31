@@ -439,7 +439,8 @@ textarea {
   position: relative;
   height: 260px;
   background-image: var(--bridge);
-  background-size: 100% 100%;
+  background-size: cover;
+  background-position: center;
   overflow: hidden;
   margin-top: 0;
 }

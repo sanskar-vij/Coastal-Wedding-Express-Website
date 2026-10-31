@@ -6,7 +6,7 @@
 [![Astro](https://img.shields.io/badge/Astro-7.4-FF5D01.svg?logo=astro&logoColor=white)](https://astro.build)
 [![Node.js](https://img.shields.io/badge/Node.js-%3E%3D22.22-339933.svg?logo=node.js&logoColor=white)](https://nodejs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-3178C6.svg?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Status](https://img.shields.io/badge/Build-Passing-brightgreen.svg)]()
+[![Status](https://img.shields.io/badge/Build-Passing-brightgreen.svg)]
 [![License](https://img.shields.io/badge/License-MIT-gold.svg)]()
 
 ---
@@ -240,5 +240,6 @@ The `dist/` folder contains pure static files ready for deployment on any static
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
-#   C o a s t a l - W e d d i n g - E x p r e s s - W e b s i t e  
+#   C o a s t a l - W e d d i n g - E x p r e s s - W e b s i t e 
+ 
  

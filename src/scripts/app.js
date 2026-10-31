@@ -142,7 +142,10 @@ addEventListener('resize', updatePage);
 updatePage();
 function goTo(index) {
   const page = pages[Math.max(0, Math.min(pages.length - 1, index))];
-  location.hash = page.id;
+  if (page) {
+    page.scrollIntoView({ behavior: paused ? 'auto' : 'smooth', block: 'start' });
+    location.hash = page.id;
+  }
 }
 document.querySelector('#previous').addEventListener('click', () => goTo(current - 1));
 document.querySelector('#next').addEventListener('click', () => goTo(current + 1));

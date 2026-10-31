@@ -298,7 +298,7 @@ import { content } from '../data/content';
           </div>
         </div>
       </section>
-      <section id="story" class="page" aria-label="Our story" data-label="Our story">
+      <section id="story" class="page story-page" aria-label="Our story" data-label="Our story">
         <div class="scene bridge-scene" aria-hidden="true">
           <video
             class="scene-video"
@@ -314,7 +314,7 @@ import { content } from '../data/content';
           </video>
         </div>
         <div class="haze" aria-hidden="true"></div>
-        <div class="page-content">
+        <div class="page-content story-content">
           <div class="page-heading reveal">
             <p class="stop-label">STOP 03 · COASTAL WEDDING EXPRESS</p>
             <h2>Our Story</h2>
@@ -323,56 +323,89 @@ import { content } from '../data/content';
               <span></span>✧<span></span>
             </div>
           </div>
-          <ol class="timeline story-interactive-timeline">
-            {content.stories.map((story, index) => (
-              <li class="story-card paper-card reveal" data-story-index={index}>
-                <div class="story-station-header">
-                  <span class="story-rail-stop">{story.city.toUpperCase()}</span>
-                  <span class="story-milestone-tag">MILESTONE</span>
-                </div>
 
-                <div
-                  class="story-scratch-container"
-                  tabindex="0"
-                  role="region"
-                  aria-label={`Interactive scratch card: scratch to reveal memory of ${story.title} in ${story.city}`}
-                >
-                  <div class="story-photo-wrapper">
-                    <img
-                      src={content.assets[story.image]}
-                      alt={`${story.title} in ${story.city}`}
-                      loading="lazy"
-                      class="story-photo"
-                    />
-                    <div class="story-photo-shimmer" aria-hidden="true"></div>
-                  </div>
-                  <canvas class="story-scratch-canvas" aria-hidden="true"></canvas>
-                  <div class="scratch-cue" aria-hidden="true">
-                    <span class="scratch-hand">✨</span>
-                    <span class="scratch-text">Scratch to reveal</span>
-                  </div>
+          <!-- Railway Station Stop Pills Navigation -->
+          <nav class="story-station-nav" aria-label="Story chapters navigation">
+            {content.stories.map((story, index) => (
+              <button
+                type="button"
+                class:list={['story-station-pill', { active: index === 0 }]}
+                data-story-target={index}
+                aria-selected={index === 0 ? 'true' : 'false'}
+                aria-label={`Jump to stop ${index + 1}: ${story.city}`}
+              >
+                <span class="pill-number">0{index + 1}</span>
+                <span class="pill-city">{story.city.toUpperCase()}</span>
+              </button>
+            ))}
+          </nav>
+
+          <!-- Horizontal Smooth Hardware-Accelerated Story Track (No stretching!) -->
+          <div class="story-carousel-container">
+            <div id="story-carousel" class="story-carousel" tabindex="0" aria-label="Our story chapters">
+              <div class="story-track" id="story-track">
+                {content.stories.map((story, index) => (
+                  <article
+                    class:list={['story-card', 'paper-card', { active: index === 0 }]}
+                    data-story-index={index}
+                    role="group"
+                    aria-label={`Milestone ${index + 1}: ${story.title} in ${story.city}`}
+                  >
+                    <div class="story-station-header">
+                      <div class="story-station-meta">
+                        <span class="story-stop-badge">STOP 0{index + 1}</span>
+                        <span class="story-rail-stop">{story.city.toUpperCase()}</span>
+                      </div>
+                      <span class="story-milestone-tag">MILESTONE</span>
+                    </div>
+
+                    <!-- Clean memory photo without any leaves or scratch foil -->
+                    <div class="story-photo-wrapper">
+                      <img
+                        src={content.assets[story.image]}
+                        alt={`${story.title} in ${story.city}`}
+                        loading="lazy"
+                        class="story-photo"
+                      />
+                      <div class="story-photo-shimmer" aria-hidden="true"></div>
+                    </div>
+
+                    <div class="story-card-body">
+                      <h4>{story.city}</h4>
+                      <h3>{story.title}</h3>
+                      <time datetime={story.iso}>
+                        <span class="story-cal-spark" aria-hidden="true">✧</span> {story.date}
+                      </time>
+                      <p>{story.description}</p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+
+            <!-- Controls: Previous, Dot Indicators, Next -->
+            <div class="story-nav-controls" aria-label="Story carousel controls">
+              <button id="story-prev" class="story-arrow-btn" aria-label="Previous story stop" disabled>
+                ←
+              </button>
+              <div class="story-dots" role="tablist" aria-label="Story stops">
+                {content.stories.map((_, i) => (
                   <button
                     type="button"
-                    class="scratch-reveal-btn"
-                    aria-label={`Tap to reveal ${story.title}`}
-                  >
-                    Tap to reveal
-                  </button>
-                </div>
-
-                <div class="story-card-body">
-                  <h4>{story.city}</h4>
-                  <h3>{story.title}</h3>
-                  <time datetime={story.iso}>
-                    <span class="story-cal-spark" aria-hidden="true">✧</span> {story.date}
-                  </time>
-                  <p>{story.description}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
+                    class:list={['story-dot', { active: i === 0 }]}
+                    data-dot-index={i}
+                    role="tab"
+                    aria-selected={i === 0 ? 'true' : 'false'}
+                    aria-label={`Go to stop ${i + 1}`}
+                  ></button>
+                ))}
+              </div>
+              <button id="story-next" class="story-arrow-btn" aria-label="Next story stop">
+                →
+              </button>
+            </div>
+          </div>
         </div>
-        <img src={content.assets.vine} alt="" class="foreground" loading="lazy" />
       </section>
       <section
         id="celebrations"

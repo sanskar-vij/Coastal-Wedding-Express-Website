@@ -161,6 +161,8 @@
   }
   const audio = document.querySelector('#wedding-music'),
     music = document.querySelector('#music');
+  let wasPlayingBeforeHidden = false;
+
   if (audio && music) {
     audio.volume = content.music.volume;
     function reflect() {
@@ -170,59 +172,131 @@
     }
     music.addEventListener('click', async () => {
       if (audio.paused) {
+        wasPlayingBeforeHidden = false;
         try {
           await audio.play();
         } catch {
           music.setAttribute('aria-label', 'Play music');
         }
-      } else audio.pause();
+      } else {
+        wasPlayingBeforeHidden = false;
+        audio.pause();
+      }
       reflect();
     });
     audio.addEventListener('play', reflect);
     audio.addEventListener('pause', reflect);
     reflect();
+
+    // Cross-device audio lifecycle handlers: pause music on tab switch, minimize,
+    // backgrounding, lock screen or window close on all devices (mobile iOS/Android and desktop).
+    function handleVisibilityChange() {
+      if (!audio) return;
+      if (document.hidden) {
+        if (!audio.paused) {
+          wasPlayingBeforeHidden = true;
+          audio.pause();
+        }
+      } else {
+        if (wasPlayingBeforeHidden && !document.body.classList.contains('paused')) {
+          audio.play().catch(() => {});
+        }
+        wasPlayingBeforeHidden = false;
+      }
+    }
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    window.addEventListener('pagehide', () => {
+      if (audio && !audio.paused) {
+        wasPlayingBeforeHidden = true;
+        audio.pause();
+      }
+    });
+
+    window.addEventListener('beforeunload', () => {
+      if (audio) {
+        audio.pause();
+      }
+    });
+
+    window.addEventListener('blur', () => {
+      if (document.hidden && audio && !audio.paused) {
+        wasPlayingBeforeHidden = true;
+        audio.pause();
+      }
+    });
+
+    window.addEventListener('focus', () => {
+      if (!document.hidden && wasPlayingBeforeHidden && audio && !document.body.classList.contains('paused')) {
+        audio.play().catch(() => {});
+        wasPlayingBeforeHidden = false;
+      }
+    });
+
     if (content.music.playOnBoard)
       document
         .querySelector('.cover .primary-button')
         ?.addEventListener('click', () => audio.play().catch(() => {}));
   }
-  const entrance = document.querySelector('#palace-entrance');
-  if (entrance) {
-    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-    window.scrollTo(0, 0);
-    const shell = document.querySelector('.site-shell');
-    if (shell) shell.inert = true;
-    document.body.style.overflow = 'hidden';
-    function enter(play) {
-      window.scrollTo(0, 0);
-      document.documentElement.scrollTop = 0;
-      document.body.scrollTop = 0;
-      document.querySelector('#welcome')?.scrollIntoView({ behavior: 'instant', block: 'start' });
+  // ==========================================================================
+  // CENTRALIZED SCROLL LOCK MANAGER
+  // ==========================================================================
+  const ScrollLock = {
+    isLocked: false,
+    lockKeys: new Set(['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Space', ' ', 'Home', 'End']),
 
-      entrance.classList.add('entrance-closing');
-      setTimeout(() => {
-        entrance.hidden = true;
-        if (shell) shell.inert = false;
-        document.body.style.overflow = '';
-        window.scrollTo(0, 0);
-      }, 600);
-      if (play && audio) {
-        audio.volume = content.music.volume || 0.45;
-        const playPromise = audio.play();
-        if (playPromise && playPromise.catch) {
-          playPromise.catch(() => {});
-        }
+    handleWheel(e) {
+      if (!ScrollLock.isLocked) return;
+      if (e.target.closest?.('.entrance-scrollable')) return;
+      e.preventDefault();
+    },
+
+    handleTouchMove(e) {
+      if (!ScrollLock.isLocked) return;
+      if (e.target.closest?.('.entrance-scrollable')) return;
+      e.preventDefault();
+    },
+
+    handleKeyDown(e) {
+      if (!ScrollLock.isLocked) return;
+      const tag = e.target?.tagName?.toLowerCase();
+      if (tag === 'input' || tag === 'textarea' || e.target?.isContentEditable) return;
+      if (ScrollLock.lockKeys.has(e.key)) {
+        e.preventDefault();
       }
-      document.querySelector('#page-index')?.focus();
+    },
+
+    lock() {
+      if (ScrollLock.isLocked) return;
+      ScrollLock.isLocked = true;
+      window.addEventListener('wheel', ScrollLock.handleWheel, { passive: false });
+      window.addEventListener('touchmove', ScrollLock.handleTouchMove, { passive: false });
+      window.addEventListener('keydown', ScrollLock.handleKeyDown, { passive: false });
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+    },
+
+    unlock() {
+      if (!ScrollLock.isLocked) return;
+      ScrollLock.isLocked = false;
+      window.removeEventListener('wheel', ScrollLock.handleWheel);
+      window.removeEventListener('touchmove', ScrollLock.handleTouchMove);
+      window.removeEventListener('keydown', ScrollLock.handleKeyDown);
+
+      // Clean up body and document styles
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
     }
-    document.querySelector('#entrance-board')?.addEventListener('click', () => enter(true));
-  }
+  };
+  window.ScrollLock = ScrollLock;
 
-  // --------------------------------------------------------------------------
-  // PAGE 2: INTERACTIVE GOLD TRAIN WINDOW OPEN & CELEBRATION CONFETTI
-  // --------------------------------------------------------------------------
-  const windowWrappers = document.querySelectorAll('.portrait-window-wrapper');
-
+  // ==========================================================================
+  // REUSABLE 24K GOLD CONFETTI PARTICLE SYSTEM
+  // ==========================================================================
   function triggerWindowConfetti(canvas) {
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
@@ -308,17 +382,28 @@
             ctx.fill();
           } else {
             // Star particle
+            const spikes = 4;
+            const outerRadius = p.size * 0.8;
+            const innerRadius = p.size * 0.35;
             ctx.beginPath();
-            for (let s = 0; s < 5; s++) {
-              ctx.lineTo(
-                Math.cos(((18 + s * 72) * Math.PI) / 180) * p.size,
-                -Math.sin(((18 + s * 72) * Math.PI) / 180) * p.size,
-              );
-              ctx.lineTo(
-                Math.cos(((54 + s * 72) * Math.PI) / 180) * (p.size * 0.48),
-                -Math.sin(((54 + s * 72) * Math.PI) / 180) * (p.size * 0.48),
-              );
+            let rot = (Math.PI / 2) * 3;
+            let cx = 0;
+            let cy = 0;
+            let step = Math.PI / spikes;
+
+            ctx.moveTo(cx, cy - outerRadius);
+            for (let s = 0; s < spikes; s++) {
+              cx = Math.cos(rot) * outerRadius;
+              cy = Math.sin(rot) * outerRadius;
+              ctx.lineTo(cx, cy);
+              rot += step;
+
+              cx = Math.cos(rot) * innerRadius;
+              cy = Math.sin(rot) * innerRadius;
+              ctx.lineTo(cx, cy);
+              rot += step;
             }
+            ctx.lineTo(0, -outerRadius);
             ctx.closePath();
             ctx.fill();
           }
@@ -336,6 +421,97 @@
 
     requestAnimationFrame(render);
   }
+
+  // ==========================================================================
+  // ENTRANCE MODAL DISMISSAL & SYNCHRONIZED SCROLL ACTIVATION
+  // ==========================================================================
+  const entrance = document.querySelector('#palace-entrance');
+  let entranceDismissed = false;
+
+  function dismissEntranceModal(playAudio = true) {
+    if (entranceDismissed) return;
+    entranceDismissed = true;
+
+    // 1. Success styling on the saloon card
+    const saloonCard = entrance?.querySelector('.entrance-saloon-card');
+    if (saloonCard) {
+      saloonCard.classList.add('saloon-card-success');
+    }
+
+    // 2. Celebratory gold confetti burst
+    const confettiCanvas = entrance?.querySelector('.entrance-confetti-canvas');
+    if (confettiCanvas) {
+      triggerWindowConfetti(confettiCanvas);
+    }
+
+    // 3. Play wedding song synchronously with user interaction
+    if (playAudio && audio) {
+      audio.volume = content.music.volume || 0.45;
+      const playPromise = audio.play();
+      if (playPromise && playPromise.catch) {
+        playPromise.catch(() => {});
+      }
+    }
+
+    // 4. Modal Exit Animation & Scroll Activation
+    setTimeout(() => {
+      if (!entrance) {
+        ScrollLock.unlock();
+        return;
+      }
+
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      document.querySelector('#welcome')?.scrollIntoView({ behavior: 'instant', block: 'start' });
+
+      entrance.classList.add('entrance-closing');
+
+      let unlocked = false;
+      const finalizeExit = () => {
+        if (unlocked) return;
+        unlocked = true;
+        entrance.hidden = true;
+        const shell = document.querySelector('.site-shell');
+        if (shell) shell.inert = false;
+
+        // SCROLL ACTIVATION: unlocked ONLY after modal exit transition finishes!
+        ScrollLock.unlock();
+        window.scrollTo(0, 0);
+        document.querySelector('#page-index')?.focus();
+      };
+
+      entrance.addEventListener('transitionend', finalizeExit, { once: true });
+      setTimeout(finalizeExit, 750);
+    }, 400);
+  }
+
+  if (entrance) {
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+    const shell = document.querySelector('.site-shell');
+    if (shell) shell.inert = true;
+
+    // Lock background scrolling initially while entrance modal is active
+    ScrollLock.lock();
+
+    // Interaction triggers:
+    // A. Click on "BEGIN YOUR JOURNEY" button
+    document.querySelector('#entrance-board')?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      dismissEntranceModal(true);
+    });
+
+    // B. Tap anywhere on entrance pavilion
+    entrance.addEventListener('click', () => {
+      dismissEntranceModal(true);
+    });
+  }
+
+  // --------------------------------------------------------------------------
+  // PAGE 2: INTERACTIVE GOLD TRAIN WINDOW OPEN & CELEBRATION CONFETTI
+  // --------------------------------------------------------------------------
+  const windowWrappers = document.querySelectorAll('.portrait-window-wrapper');
 
   windowWrappers.forEach((wrapper) => {
     const cue = wrapper.querySelector('.window-tap-cue');
@@ -419,183 +595,128 @@
   });
 
   // --------------------------------------------------------------------------
-  // PAGE 3: INTERACTIVE OUR STORY SCRATCH-TO-REVEAL CARDS
+  // PAGE 3: INTERACTIVE OUR STORY STATION CAROUSEL & HARDWARE SLIDER
   // --------------------------------------------------------------------------
-  const scratchContainers = document.querySelectorAll('.story-scratch-container');
+  const storyTrack = document.querySelector('#story-track');
+  const storyCarousel = document.querySelector('#story-carousel');
+  if (storyTrack && storyCarousel) {
+    const storyCards = [...storyTrack.querySelectorAll('.story-card')];
+    const storyPills = [...document.querySelectorAll('.story-station-pill')];
+    const storyDots = [...document.querySelectorAll('.story-dot')];
+    const storyPrev = document.querySelector('#story-prev');
+    const storyNext = document.querySelector('#story-next');
+    let currentStory = 0;
 
-  scratchContainers.forEach((container) => {
-    const canvas = container.querySelector('.story-scratch-canvas');
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+    function goToStory(index) {
+      if (index < 0 || index >= storyCards.length) return;
+      currentStory = index;
 
-    let isRevealed = false;
-    let isDrawing = false;
-    let lastX = 0;
-    let lastY = 0;
-    let checkCounter = 0;
+      // 1. Hardware-accelerated smooth slide (100% reliable across all browsers & devices)
+      storyTrack.style.transform = `translateX(-${currentStory * 100}%)`;
 
-    function initFoil() {
-      const rect = container.getBoundingClientRect();
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      canvas.width = Math.round(rect.width * dpr);
-      canvas.height = Math.round(rect.height * dpr);
+      // 2. Reflect active card
+      storyCards.forEach((card, i) => {
+        const isActive = i === currentStory;
+        card.classList.toggle('active', isActive);
+        card.setAttribute('aria-hidden', String(!isActive));
+      });
 
-      const w = canvas.width;
-      const h = canvas.height;
-      if (w === 0 || h === 0) return;
+      // 3. Reflect active station pill
+      storyPills.forEach((pill, i) => {
+        const isActive = i === currentStory;
+        pill.classList.toggle('active', isActive);
+        pill.setAttribute('aria-selected', String(isActive));
+      });
 
-      // Draw metallic gold foil coating
-      const grad = ctx.createLinearGradient(0, 0, w, h);
-      grad.addColorStop(0, '#d4af37');
-      grad.addColorStop(0.25, '#f5d77f');
-      grad.addColorStop(0.5, '#aa7a1e');
-      grad.addColorStop(0.75, '#ffe082');
-      grad.addColorStop(1, '#c99738');
+      // 4. Reflect active indicator dot
+      storyDots.forEach((dot, i) => {
+        const isActive = i === currentStory;
+        dot.classList.toggle('active', isActive);
+        dot.setAttribute('aria-selected', String(isActive));
+      });
 
-      ctx.globalCompositeOperation = 'source-over';
-      ctx.fillStyle = grad;
-      ctx.fillRect(0, 0, w, h);
-
-      // Subtle metallic noise / sparkle flecks
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.18)';
-      for (let i = 0; i < 40; i++) {
-        const rx = Math.random() * w;
-        const ry = Math.random() * h;
-        const rsize = Math.random() * 3 * dpr;
-        ctx.fillRect(rx, ry, rsize, rsize);
-      }
-
-      // Delicate engraved railway monogram & borders
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
-      ctx.lineWidth = 1.5 * dpr;
-      ctx.strokeRect(10 * dpr, 10 * dpr, w - 20 * dpr, h - 20 * dpr);
-
-      // Dashed inner border
-      ctx.strokeStyle = 'rgba(100, 68, 12, 0.35)';
-      ctx.lineWidth = 1 * dpr;
-      ctx.setLineDash([5 * dpr, 4 * dpr]);
-      ctx.strokeRect(15 * dpr, 15 * dpr, w - 30 * dpr, h - 30 * dpr);
-      ctx.setLineDash([]);
-
-      // Centered vintage lettering
-      ctx.fillStyle = '#422e0f';
-      ctx.shadowColor = 'rgba(255, 255, 255, 0.6)';
-      ctx.shadowOffsetY = 1 * dpr;
-      ctx.font = `bold ${Math.max(10, Math.round(12 * dpr))}px 'Lora', Georgia, serif`;
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillText('✧ SCRATCH TO REVEAL ✧', w / 2, h / 2 - 4 * dpr);
-
-      ctx.font = `${Math.max(7, Math.round(8.5 * dpr))}px sans-serif`;
-      ctx.fillStyle = '#5c4114';
-      ctx.fillText('COASTAL EXPRESS MEMORY', w / 2, h / 2 + 15 * dpr);
-      ctx.shadowColor = 'transparent';
+      // 5. Update arrow controls
+      if (storyPrev) storyPrev.disabled = currentStory === 0;
+      if (storyNext) storyNext.disabled = currentStory === storyCards.length - 1;
     }
 
-    initFoil();
-    window.addEventListener('resize', () => {
-      if (!isRevealed) initFoil();
+    // Station pill navigation
+    storyPills.forEach((pill) => {
+      pill.addEventListener('click', (e) => {
+        e.preventDefault();
+        const idx = parseInt(pill.getAttribute('data-story-target'), 10);
+        goToStory(idx);
+      });
     });
 
-    function scratch(clientX, clientY) {
-      if (isRevealed) return;
-      const rect = canvas.getBoundingClientRect();
-      const dpr = canvas.width / rect.width;
-      const curX = (clientX - rect.left) * dpr;
-      const curY = (clientY - rect.top) * dpr;
+    // Dot navigation
+    storyDots.forEach((dot) => {
+      dot.addEventListener('click', (e) => {
+        e.preventDefault();
+        const idx = parseInt(dot.getAttribute('data-dot-index'), 10);
+        goToStory(idx);
+      });
+    });
 
-      ctx.globalCompositeOperation = 'destination-out';
-      ctx.lineJoin = 'round';
-      ctx.lineCap = 'round';
-      ctx.lineWidth = 42 * dpr;
+    // Arrow navigation
+    storyPrev?.addEventListener('click', (e) => {
+      e.preventDefault();
+      goToStory(currentStory - 1);
+    });
 
-      ctx.beginPath();
-      if (lastX && lastY) {
-        ctx.moveTo(lastX, lastY);
-        ctx.lineTo(curX, curY);
-      } else {
-        ctx.arc(curX, curY, 21 * dpr, 0, Math.PI * 2);
+    storyNext?.addEventListener('click', (e) => {
+      e.preventDefault();
+      goToStory(currentStory + 1);
+    });
+
+    // Keyboard support: Left and Right arrow keys when focused
+    storyCarousel.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        goToStory(currentStory + 1);
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        goToStory(currentStory - 1);
       }
-      ctx.stroke();
+    });
 
-      lastX = curX;
-      lastY = curY;
+    // Touch swipe support (fluid horizontal swipe with vertical scroll preservation)
+    let startX = 0;
+    let startY = 0;
+    let isSwiping = false;
 
-      checkCounter++;
-      if (checkCounter % 12 === 0) {
-        checkClearedPercent();
-      }
-    }
+    storyCarousel.addEventListener(
+      'touchstart',
+      (e) => {
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        isSwiping = true;
+      },
+      { passive: true },
+    );
 
-    function checkClearedPercent() {
-      if (isRevealed) return;
-      const w = canvas.width;
-      const h = canvas.height;
-      if (w === 0 || h === 0) return;
+    storyCarousel.addEventListener(
+      'touchend',
+      (e) => {
+        if (!isSwiping) return;
+        isSwiping = false;
+        const diffX = e.changedTouches[0].clientX - startX;
+        const diffY = e.changedTouches[0].clientY - startY;
 
-      let cleared = 0;
-      const stepX = Math.floor(w / 10);
-      const stepY = Math.floor(h / 8);
-
-      try {
-        const imgData = ctx.getImageData(0, 0, w, h);
-        let sampled = 0;
-        for (let y = stepY; y < h - stepY; y += stepY) {
-          for (let x = stepX; x < w - stepX; x += stepX) {
-            sampled++;
-            const idx = (y * w + x) * 4 + 3;
-            if (imgData.data[idx] < 128) {
-              cleared++;
-            }
+        // If predominantly horizontal swipe with at least 35px threshold
+        if (Math.abs(diffX) > 35 && Math.abs(diffX) > Math.abs(diffY)) {
+          if (diffX < 0) {
+            goToStory(currentStory + 1); // Swipe left -> Next
+          } else {
+            goToStory(currentStory - 1); // Swipe right -> Previous
           }
         }
-        if (sampled > 0 && cleared / sampled >= 0.32) {
-          revealCard();
-        }
-      } catch (err) {
-        // Fallback for security/sampling restrictions
-      }
-    }
+      },
+      { passive: true },
+    );
 
-    function revealCard() {
-      if (isRevealed) return;
-      isRevealed = true;
-      container.classList.add('is-revealed');
-    }
-
-    // Pointer event listeners (supporting touch, mouse, stylus seamlessly)
-    container.addEventListener('pointerdown', (e) => {
-      if (isRevealed) return;
-      isDrawing = true;
-      const rect = canvas.getBoundingClientRect();
-      const dpr = canvas.width / rect.width;
-      lastX = (e.clientX - rect.left) * dpr;
-      lastY = (e.clientY - rect.top) * dpr;
-      scratch(e.clientX, e.clientY);
-    });
-
-    window.addEventListener('pointermove', (e) => {
-      if (!isDrawing || isRevealed) return;
-      scratch(e.clientX, e.clientY);
-    });
-
-    window.addEventListener('pointerup', () => {
-      if (isDrawing) {
-        isDrawing = false;
-        lastX = 0;
-        lastY = 0;
-        checkClearedPercent();
-      }
-    });
-
-    // Quick 1-tap reveal button
-    const quickBtn = container.querySelector('.scratch-reveal-btn');
-    quickBtn?.addEventListener('click', (e) => {
-      e.stopPropagation();
-      revealCard();
-    });
-  });
+    goToStory(0);
+  }
 
   // --------------------------------------------------------------------------
   // PAGE 7: INTERACTIVE RSVP TICKET STEPPER & SEAT SELECTOR

@@ -214,6 +214,55 @@
   opacity: 1;
 }
 
+.entrance-main-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 52px;
+  padding: 14px 24px;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #ecd69f 0%, #c9a86a 50%, #9e7a33 100%);
+  border: 1.5px solid #fff;
+  color: #072528;
+  font-family: 'Lora', Georgia, serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(236, 214, 159, 0.5),
+    inset 0 1px 1px #fff;
+  transition: all 0.25s ease;
+  animation: btnPulseGlow 2.5s ease-in-out infinite alternate;
+}
+
+.btn-leaf-icon {
+  font-size: 15px;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+}
+
+.entrance-confetti-canvas {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 20px !important;
+  pointer-events: none !important;
+  z-index: 10 !important;
+}
+
+.entrance-saloon-card.saloon-card-success {
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.7),
+    0 0 0 2px rgba(255, 255, 255, 0.5) inset,
+    0 0 55px rgba(236, 214, 159, 0.9) !important;
+  transition: box-shadow 0.6s ease;
+}
+
 .palace-entrance[hidden] {
   display: none !important;
 }
