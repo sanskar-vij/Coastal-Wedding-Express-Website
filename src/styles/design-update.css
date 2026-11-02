@@ -415,26 +415,32 @@
    FEATURE: 3D INTERACTIVE EVENT PHOTO FLIP ANIMATION
    ========================================================================== */
 
-/* Overall card arrival on carousel slide (plays once on initial view) */
-.event-slide.events-entered:not(.animation-done) .event-card:not(.animation-done) {
-  animation: card-fade-slide 0.8s cubic-bezier(0.2, 0.85, 0.25, 1) both;
+/* Overall card arrival on initial slide (plays once on initial view) */
+.event-slide:first-child.events-entered:not(.animation-done) .event-card:not(.animation-done) {
+  animation: card-fade-slide 0.75s cubic-bezier(0.2, 0.85, 0.25, 1) both !important;
 }
-.event-slide.events-entered:not(.animation-done) .event-card:not(.animation-done):nth-child(1) {
-  animation-delay: 0.2s;
+.event-slide:first-child.events-entered:not(.animation-done) .event-card:not(.animation-done):nth-child(1) {
+  animation-delay: 0.15s !important;
 }
-.event-slide.events-entered:not(.animation-done) .event-card:not(.animation-done):nth-child(2) {
-  animation-delay: 0.7s;
+.event-slide:first-child.events-entered:not(.animation-done) .event-card:not(.animation-done):nth-child(2) {
+  animation-delay: 0.45s !important;
 }
-.event-slide.events-entered:not(.animation-done) .event-card:not(.animation-done):nth-child(3) {
-  animation-delay: 1.2s;
+.event-slide:first-child.events-entered:not(.animation-done) .event-card:not(.animation-done):nth-child(3) {
+  animation-delay: 0.75s !important;
 }
 
-/* Once animated, cards stay visible; when coming back to the page, animation is removed (no re-animating) */
+/* Once animated or between page changes: completely stable, visible, with zero jerk */
+.event-card,
+.event-slide .event-card {
+  opacity: 1;
+  transform: none;
+}
 .event-card.animation-done,
-.event-slide.animation-done .event-card {
-  animation: none !important;
+.event-slide.animation-done .event-card,
+.event-slide:not(:first-child) .event-card {
   opacity: 1 !important;
   transform: none !important;
+  animation: none !important;
 }
 
 @keyframes card-fade-slide {
@@ -2402,4 +2408,293 @@ div:has(> astro-dev-toolbar),
   left: 50% !important;
   transform: translateX(-50%) !important;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5) !important;
+}
+
+
+/* ==========================================================================
+   FEATURE: INTERACTIVE GLOWING POSTMARK STAMP (TAP TO GLOW)
+   ========================================================================== */
+.stamp {
+  position: absolute !important;
+  cursor: pointer !important;
+  user-select: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+  outline: none !important;
+  z-index: 10 !important;
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), filter 0.3s ease, opacity 0.3s ease !important;
+  animation: stampGentleFloat 5s ease-in-out infinite !important;
+}
+
+.farewell .stamp {
+  opacity: 0.85 !important;
+}
+
+@keyframes stampGentleFloat {
+  0%, 100% {
+    transform: rotate(-5deg) scale(1);
+    filter: drop-shadow(0 2px 6px rgba(90, 60, 20, 0.28));
+  }
+  50% {
+    transform: rotate(-3deg) scale(1.02);
+    filter: drop-shadow(0 3px 10px rgba(201, 168, 106, 0.45)) drop-shadow(0 0 12px rgba(236, 214, 159, 0.35));
+  }
+}
+
+.stamp:hover,
+.stamp:focus-visible {
+  transform: rotate(-3deg) scale(1.05) !important;
+  opacity: 1 !important;
+  filter: drop-shadow(0 0 14px rgba(255, 230, 140, 0.9)) drop-shadow(0 0 28px rgba(212, 175, 55, 0.65)) drop-shadow(0 4px 10px rgba(70, 45, 15, 0.3)) !important;
+}
+
+/* Luxurious Warm Molten Gold Aura Pulse (no washout, crisp dark ink preservation) */
+.stamp.stamp-glow,
+.stamp:active {
+  animation: stampGoldBloom 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+  opacity: 1 !important;
+}
+
+@keyframes stampGoldBloom {
+  0% {
+    transform: scale(0.96) rotate(-5deg);
+    filter: drop-shadow(0 0 10px rgba(255, 230, 140, 0.9)) drop-shadow(0 0 20px rgba(212, 175, 55, 0.7));
+  }
+  25% {
+    transform: scale(1.08) rotate(-3deg);
+    filter: drop-shadow(0 0 16px rgba(255, 245, 190, 1)) drop-shadow(0 0 35px rgba(236, 200, 100, 0.95)) drop-shadow(0 0 60px rgba(212, 175, 55, 0.85)) drop-shadow(0 0 90px rgba(184, 134, 11, 0.5));
+  }
+  55% {
+    transform: scale(1.03) rotate(-4deg);
+    filter: drop-shadow(0 0 14px rgba(255, 230, 140, 0.85)) drop-shadow(0 0 28px rgba(212, 175, 55, 0.75)) drop-shadow(0 0 45px rgba(184, 134, 11, 0.5));
+  }
+  100% {
+    transform: scale(1) rotate(-5deg);
+    filter: drop-shadow(0 0 8px rgba(236, 214, 159, 0.65)) drop-shadow(0 3px 8px rgba(90, 60, 20, 0.3));
+  }
+}
+
+/* Expanding Golden Halo Ring on Tap */
+.stamp-halo-ring {
+  position: absolute !important;
+  pointer-events: none !important;
+  border-radius: 50% !important;
+  border: 2px solid rgba(255, 225, 120, 0.85) !important;
+  box-shadow: 0 0 16px rgba(236, 200, 100, 0.8), inset 0 0 12px rgba(255, 230, 140, 0.6) !important;
+  z-index: 5 !important;
+  animation: stampHaloExpand 1.2s cubic-bezier(0.1, 0.8, 0.25, 1) forwards !important;
+}
+
+@keyframes stampHaloExpand {
+  0% {
+    transform: translate(-50%, -50%) scale(0.35);
+    opacity: 0.95;
+  }
+  60% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.6);
+    opacity: 0;
+  }
+}
+
+/* Dynamic stamp particle sparkle */
+.stamp-particle {
+  position: absolute !important;
+  pointer-events: none !important;
+  font-size: 15px !important;
+  color: #fff4d0 !important;
+  text-shadow: 0 0 8px #ffd700, 0 0 18px #ecd69f !important;
+  z-index: 6 !important;
+  animation: stampParticleBurst 1.2s cubic-bezier(0.2, 0.8, 0.3, 1) forwards !important;
+}
+
+@keyframes stampParticleBurst {
+  0% {
+    transform: translate(0, 0) scale(0.4) rotate(0deg);
+    opacity: 1;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--tx), var(--ty)) scale(1.4) rotate(var(--rot));
+    opacity: 0;
+  }
+}
+
+/* ==========================================================================
+   FEATURE: "SEE YOU ON BOARD!" SPARKLE ANIMATION (SINGLE LINE & ELEGANT HARMONIOUS POSITION)
+   ========================================================================== */
+.see-you-wrap {
+  position: relative !important;
+  display: inline-flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  margin: 14px auto 12px auto !important;
+  padding: 6px 18px 8px 18px !important;
+  width: auto !important;
+  max-width: 100% !important;
+  white-space: nowrap !important;
+  flex-wrap: nowrap !important;
+  cursor: pointer !important;
+  user-select: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+  outline: none !important;
+  transition: transform 0.25s ease !important;
+  z-index: 30 !important;
+}
+
+.see-you-wrap:hover,
+.see-you-wrap:focus-visible {
+  transform: scale(1.03) !important;
+}
+
+.see-you-wrap:active {
+  transform: scale(0.98) !important;
+}
+
+/* The calligraphy text: strictly on one line, centered and with expanded background-size */
+.see-you-text {
+  font-family: 'Lora', Georgia, serif !important;
+  font-size: clamp(20px, 4.8vw, 26px) !important;
+  font-style: italic !important;
+  font-weight: 700 !important;
+  transform: rotate(-3deg) !important;
+  transform-origin: center center !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+  word-break: keep-all !important;
+  margin: 0 !important;
+  position: relative !important;
+  z-index: 30 !important;
+  background: linear-gradient(115deg, #422d16 0%, #9e7534 22%, #fff5d6 50%, #b88f48 78%, #422d16 100%) !important;
+  background-size: 3000% 100% !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  filter: drop-shadow(0 0 6px rgba(236, 214, 159, 0.45)) !important;
+  animation: seeYouTextShimmer 4s ease-in-out infinite alternate !important;
+  line-height: 1.25 !important;
+}
+
+@keyframes seeYouTextShimmer {
+  0% {
+    background-position: 0% 50%;
+    filter: drop-shadow(0 0 4px rgba(236, 214, 159, 0.3));
+  }
+  100% {
+    background-position: 100% 50%;
+    filter: drop-shadow(0 0 10px rgba(255, 225, 120, 0.75)) drop-shadow(0 0 20px rgba(212, 175, 55, 0.4));
+  }
+}
+
+/* Animated Sparkles surrounding "See you on board!" */
+.sparkle-star {
+  position: absolute !important;
+  pointer-events: none !important;
+  user-select: none !important;
+  color: #fff2cc !important;
+  text-shadow: 0 0 8px #ffd700, 0 0 16px #ecd69f !important;
+  font-style: normal !important;
+  z-index: 31 !important;
+  animation: sparkleFloatTwinkle 2.8s ease-in-out infinite !important;
+}
+
+.sparkle-star.s-1 {
+  top: -8px;
+  left: 2px;
+  font-size: 16px;
+  animation-delay: 0s !important;
+}
+.sparkle-star.s-2 {
+  top: -12px;
+  right: 12px;
+  font-size: 18px;
+  animation-delay: 0.6s !important;
+}
+.sparkle-star.s-3 {
+  bottom: 8px;
+  left: -8px;
+  font-size: 13px;
+  animation-delay: 1.2s !important;
+}
+.sparkle-star.s-4 {
+  bottom: 6px;
+  right: -4px;
+  font-size: 15px;
+  animation-delay: 1.8s !important;
+}
+.sparkle-star.s-5 {
+  top: 50%;
+  right: -16px;
+  font-size: 14px;
+  animation-delay: 2.2s !important;
+}
+.sparkle-star.s-6 {
+  top: 45%;
+  left: -14px;
+  font-size: 12px;
+  animation-delay: 1.5s !important;
+}
+
+@keyframes sparkleFloatTwinkle {
+  0%, 100% {
+    transform: translateY(0) scale(0.65) rotate(0deg);
+    opacity: 0.35;
+    filter: drop-shadow(0 0 3px #ffd700);
+  }
+  50% {
+    transform: translateY(-5px) scale(1.3) rotate(180deg);
+    opacity: 1;
+    filter: drop-shadow(0 0 10px #ffffff) drop-shadow(0 0 22px #ffdf79);
+  }
+}
+
+/* Dynamic celebration sparkle burst */
+.celebration-sparkle {
+  position: absolute !important;
+  pointer-events: none !important;
+  font-size: 14px !important;
+  color: #fff9e6 !important;
+  text-shadow: 0 0 8px #ffd700, 0 0 18px #ffeb99 !important;
+  z-index: 25 !important;
+  animation: celebSparkleFly 1.4s cubic-bezier(0.15, 0.85, 0.35, 1) forwards !important;
+}
+
+@keyframes celebSparkleFly {
+  0% {
+    transform: translate(0, 0) scale(0.3) rotate(0deg);
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--cx), var(--cy)) scale(1.5) rotate(var(--crot));
+    opacity: 0;
+  }
+}
+
+/* Guarantee BEGIN YOUR JOURNEY stays on a single line with clean halved proportions */
+.entrance-main-btn {
+  display: inline-flex !important;
+  white-space: nowrap !important;
+  flex-wrap: nowrap !important;
+  max-width: fit-content !important;
+  width: auto !important;
+}
+
+.entrance-main-btn span {
+  font-size: clamp(8.5px, 2vw, 10.5px) !important;
+  letter-spacing: 1.5px !important;
+  white-space: nowrap !important;
+  line-height: 1 !important;
+}
+
+.entrance-main-btn .btn-arrow {
+  font-size: 11px !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
 }

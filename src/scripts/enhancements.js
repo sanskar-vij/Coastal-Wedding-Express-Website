@@ -102,12 +102,28 @@
     });
   });
 
+  let isNavigatingSlide = false;
+  let snapResetTimeout = null;
+
   function goToSlide(index) {
     const target = Math.max(0, Math.min(slides.length - 1, index));
+    if (target === selected && !isNavigatingSlide) return;
+
+    isNavigatingSlide = true;
+    carousel.style.scrollSnapType = 'none';
+
+    const targetLeft = slides[target].offsetLeft - slides[0].offsetLeft;
     carousel.scrollTo({
-      left: slides[target].offsetLeft - slides[0].offsetLeft,
+      left: targetLeft,
       behavior: document.body.classList.contains('paused') ? 'auto' : 'smooth',
     });
+
+    clearTimeout(snapResetTimeout);
+    snapResetTimeout = setTimeout(() => {
+      carousel.style.scrollSnapType = 'x mandatory';
+      isNavigatingSlide = false;
+      updateEvents();
+    }, 450);
   }
   function changeEvents(delta) {
     goToSlide(selected + delta);
@@ -762,5 +778,112 @@
     });
 
     syncGuestDisplay(1);
+  }
+
+  // --------------------------------------------------------------------------
+  // INTERACTIVE GLOWING STAMP & "SEE YOU ON BOARD!" SPARKLE CELEBRATION
+  // --------------------------------------------------------------------------
+
+  // Stamp glow, expanding halo ring & golden ember explosion
+  function createStampGlowEffects(stamp) {
+    const rect = stamp.getBoundingClientRect();
+    const parent = stamp.parentElement || document.body;
+    const parentRect = parent.getBoundingClientRect();
+    const centerX = rect.left - parentRect.left + rect.width / 2;
+    const centerY = rect.top - parentRect.top + rect.height / 2;
+
+    // Expanding golden halo ring
+    const halo = document.createElement('span');
+    halo.className = 'stamp-halo-ring';
+    halo.style.left = `${centerX}px`;
+    halo.style.top = `${centerY}px`;
+    halo.style.width = `${rect.width * 0.9}px`;
+    halo.style.height = `${rect.width * 0.9}px`;
+    parent.appendChild(halo);
+    setTimeout(() => halo.remove(), 1250);
+
+    // Warm golden ember sparks
+    const symbols = ['✧', '✦', '⋆', '★'];
+    for (let i = 0; i < 8; i++) {
+      const p = document.createElement('span');
+      p.className = 'stamp-particle';
+      p.textContent = symbols[i % symbols.length];
+      const angle = (i / 8) * (2 * Math.PI) + (Math.random() * 0.3 - 0.15);
+      const distance = 35 + Math.random() * 32;
+      p.style.setProperty('--tx', `${Math.cos(angle) * distance}px`);
+      p.style.setProperty('--ty', `${Math.sin(angle) * distance}px`);
+      p.style.setProperty('--rot', `${Math.floor(Math.random() * 360)}deg`);
+      p.style.left = `${centerX}px`;
+      p.style.top = `${centerY}px`;
+      parent.appendChild(p);
+      setTimeout(() => p.remove(), 1250);
+    }
+  }
+
+  const stamps = document.querySelectorAll('.stamp');
+  stamps.forEach((stamp) => {
+    let glowTimer = null;
+    function triggerStampGlow(e) {
+      if (e) e.stopPropagation();
+      stamp.classList.remove('stamp-glow');
+      void stamp.offsetWidth; // Force CSS reflow to re-trigger animation
+      stamp.classList.add('stamp-glow');
+      createStampGlowEffects(stamp);
+
+      // If stamp is inside farewell card, also trigger sparkles on "See you on board!"
+      if (stamp.closest('.farewell')) {
+        const wrap = stamp.parentElement?.querySelector('.see-you-wrap');
+        if (wrap) {
+          triggerCelebration(wrap);
+        }
+      }
+
+      clearTimeout(glowTimer);
+      glowTimer = setTimeout(() => {
+        stamp.classList.remove('stamp-glow');
+      }, 1650);
+    }
+
+    stamp.addEventListener('click', triggerStampGlow);
+    stamp.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        triggerStampGlow(e);
+      }
+    });
+  });
+
+  // "See you on board!" Sparkle Celebration
+  function triggerCelebration(wrap) {
+    const rect = wrap.getBoundingClientRect();
+    const symbols = ['✧', '✦', '⋆', '★', '✨'];
+    for (let i = 0; i < 12; i++) {
+      const s = document.createElement('span');
+      s.className = 'celebration-sparkle';
+      s.textContent = symbols[i % symbols.length];
+      const angle = (i / 12) * (2 * Math.PI) + (Math.random() * 0.4 - 0.2);
+      const dist = 30 + Math.random() * 45;
+      s.style.setProperty('--cx', `${Math.cos(angle) * dist}px`);
+      s.style.setProperty('--cy', `${Math.sin(angle) * dist - 8}px`);
+      s.style.setProperty('--crot', `${Math.floor(Math.random() * 360)}deg`);
+      s.style.left = `${rect.width / 2}px`;
+      s.style.top = `${rect.height / 2}px`;
+      wrap.appendChild(s);
+      setTimeout(() => s.remove(), 1450);
+    }
+  }
+
+  const seeYouWrap = document.querySelector('.see-you-wrap');
+  if (seeYouWrap) {
+    seeYouWrap.addEventListener('click', (e) => {
+      e.stopPropagation();
+      triggerCelebration(seeYouWrap);
+    });
+    seeYouWrap.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        triggerCelebration(seeYouWrap);
+      }
+    });
   }
 })();

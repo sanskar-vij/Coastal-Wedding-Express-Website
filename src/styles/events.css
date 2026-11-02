@@ -143,11 +143,13 @@
   display: flex;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
   scrollbar-width: none;
   gap: 20px;
   overscroll-behavior-x: contain;
   padding: 8px 6px 14px 6px;
   box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
 }
 .events-carousel::-webkit-scrollbar {
   display: none;
@@ -158,7 +160,7 @@
   box-sizing: border-box;
   padding: 0 2px;
   scroll-snap-align: start;
-  scroll-snap-stop: always;
+  scroll-snap-stop: normal;
 }
 .events-navigation {
   display: flex;

@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createTrainWhistle } from './make-whistle.mjs';
 export const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 export function readContent() {
   const source = fs.readFileSync(path.join(root, 'src/data/content.ts'), 'utf8');
@@ -10,6 +11,14 @@ export function readContent() {
 }
 export function sync() {
   const content = readContent();
+  if (!fs.existsSync(path.join(root, 'public/assets/train-whistle.wav'))) {
+    createTrainWhistle();
+  }
+  const userWhistleSrc = path.join(root, 'public/assets/train-whistle.mp3');
+  const userWhistleDist = path.join(root, 'dist/assets/train-whistle.mp3');
+  if (fs.existsSync(userWhistleSrc) && fs.existsSync(path.dirname(userWhistleDist))) {
+    fs.copyFileSync(userWhistleSrc, userWhistleDist);
+  }
   const write = (name, text) => fs.writeFileSync(path.join(root, 'public', name), text, 'utf8');
   write(
     'content.js',

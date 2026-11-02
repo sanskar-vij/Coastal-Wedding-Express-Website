@@ -294,7 +294,16 @@ import { content } from '../data/content';
               <br />
               TOGETHER
             </p>
-            <img src={content.assets.postmark} alt="" class="stamp" loading="lazy" />
+            <img
+              src={content.assets.postmark}
+              alt="Coastal Wedding Express Postmark Stamp"
+              class="stamp"
+              role="button"
+              tabindex="0"
+              aria-label="Coastal Wedding Express postmark stamp - tap to glow"
+              title="Tap stamp to make it glow ✧"
+              loading="lazy"
+            />
           </div>
         </div>
       </section>
@@ -1146,8 +1155,31 @@ import { content } from '../data/content';
             </article>
           </div>
           <div class="farewell postcard tilted reveal">
-            <img src={content.assets.postmark} alt="" class="stamp" loading="lazy" />
-            <p>See you on board!</p>
+            <img
+              src={content.assets.postmark}
+              alt="Coastal Wedding Express Postmark Stamp"
+              class="stamp"
+              role="button"
+              tabindex="0"
+              aria-label="Coastal Wedding Express postmark stamp - tap to glow"
+              title="Tap stamp to make it glow ✧"
+              loading="lazy"
+            />
+            <div
+              class="see-you-wrap"
+              role="button"
+              tabindex="0"
+              aria-label="See you on board!"
+              title="See you on board! ✧"
+            >
+              <span class="sparkle-star s-1" aria-hidden="true">✧</span>
+              <span class="sparkle-star s-2" aria-hidden="true">✦</span>
+              <span class="sparkle-star s-3" aria-hidden="true">⋆</span>
+              <span class="sparkle-star s-4" aria-hidden="true">✦</span>
+              <span class="sparkle-star s-5" aria-hidden="true">✧</span>
+              <span class="sparkle-star s-6" aria-hidden="true">★</span>
+              <p class="see-you-text">See you on board!</p>
+            </div>
             <span class="heart">♡</span>
             <h3>
               {content.groom.toUpperCase()} &amp; {content.bride.toUpperCase()}
