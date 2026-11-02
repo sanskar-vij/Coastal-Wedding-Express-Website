@@ -32,23 +32,48 @@
   );
   pages.forEach((page) => visibility.observe(page));
 
-  // Re-enter the three event cards in order on every carousel page.
+  // Event cards animate in ONCE on first view; no re-animation when coming back
   const celebrationsPage = document.querySelector('#celebrations');
   const carousel = document.querySelector('#events-carousel');
   const slides = document.querySelectorAll('.event-slide');
   let celebrationsVisible = false;
 
+  function markSlideEntered(slide) {
+    if (!slide || slide.classList.contains('events-entered')) return;
+    slide.classList.add('events-entered');
+    const cards = slide.querySelectorAll('.event-card');
+    cards.forEach((card) => {
+      card.addEventListener(
+        'animationend',
+        (e) => {
+          if (e.animationName === 'card-fade-slide') {
+            card.classList.add('animation-done');
+          }
+        },
+        { once: true },
+      );
+    });
+    // Safety fallback: ensure animation-done is set after animation finishes (2.2s)
+    setTimeout(() => {
+      cards.forEach((card) => card.classList.add('animation-done'));
+      slide.classList.add('animation-done');
+    }, 2200);
+  }
+
   function evaluateSlides() {
     if (!celebrationsVisible || !carousel) return;
     const parentRect = carousel.getBoundingClientRect();
     slides.forEach((slide) => {
+      if (slide.classList.contains('events-entered')) return;
       const rect = slide.getBoundingClientRect();
       const overlap = Math.max(
         0,
         Math.min(rect.right, parentRect.right) - Math.max(rect.left, parentRect.left),
       );
       const visibleRatio = parentRect.width > 0 ? overlap / parentRect.width : 0;
-      slide.classList.toggle('events-entered', visibleRatio > 0.55);
+      if (visibleRatio > 0.55) {
+        markSlideEntered(slide);
+      }
     });
   }
 
@@ -59,9 +84,8 @@
           celebrationsVisible = isIntersecting;
           if (isIntersecting) {
             evaluateSlides();
-          } else {
-            slides.forEach((s) => s.classList.remove('events-entered'));
           }
+          // Do NOT remove events-entered when leaving; cards stay visible and do NOT animate when coming back
         });
       },
       { threshold: 0.12 },
@@ -73,11 +97,10 @@
     const eventVisibility = new IntersectionObserver(
       (entries) => {
         entries.forEach(({ target, isIntersecting, intersectionRatio }) => {
-          if (!celebrationsVisible) {
-            target.classList.remove('events-entered');
-            return;
+          if (!celebrationsVisible) return;
+          if (isIntersecting && intersectionRatio > 0.55) {
+            markSlideEntered(target);
           }
-          target.classList.toggle('events-entered', isIntersecting && intersectionRatio > 0.55);
         });
       },
       { root: carousel, threshold: [0, 0.55, 0.8] },

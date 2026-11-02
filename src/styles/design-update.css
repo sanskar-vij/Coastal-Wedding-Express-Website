@@ -415,18 +415,26 @@
    FEATURE: 3D INTERACTIVE EVENT PHOTO FLIP ANIMATION
    ========================================================================== */
 
-/* Overall card arrival on carousel slide */
-.event-slide.events-entered .event-card {
+/* Overall card arrival on carousel slide (plays once on initial view) */
+.event-slide.events-entered:not(.animation-done) .event-card:not(.animation-done) {
   animation: card-fade-slide 0.8s cubic-bezier(0.2, 0.85, 0.25, 1) both;
 }
-.event-slide.events-entered .event-card:nth-child(1) {
+.event-slide.events-entered:not(.animation-done) .event-card:not(.animation-done):nth-child(1) {
   animation-delay: 0.2s;
 }
-.event-slide.events-entered .event-card:nth-child(2) {
+.event-slide.events-entered:not(.animation-done) .event-card:not(.animation-done):nth-child(2) {
   animation-delay: 0.7s;
 }
-.event-slide.events-entered .event-card:nth-child(3) {
+.event-slide.events-entered:not(.animation-done) .event-card:not(.animation-done):nth-child(3) {
   animation-delay: 1.2s;
+}
+
+/* Once animated, cards stay visible; when coming back to the page, animation is removed (no re-animating) */
+.event-card.animation-done,
+.event-slide.animation-done .event-card {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
 }
 
 @keyframes card-fade-slide {
@@ -2307,6 +2315,36 @@ div:has(> astro-dev-toolbar),
   box-sizing: border-box !important;
 }
 
+/* Gold Border Around Every Page */
+.page {
+  position: relative !important;
+  border: 2px solid #d4af37 !important;
+  box-sizing: border-box !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.12),
+    0 0 18px rgba(212, 175, 55, 0.22) !important;
+}
+
+.page::after {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  pointer-events: none;
+  z-index: 10;
+  border-radius: 4px;
+}
+
+#welcome.page::after {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+#guide.page::after {
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
 /* Mobile Screen Mode (<= 520px): Full Edge-to-Edge Experience */
 @media (max-width: 520px) {
   html, body {
@@ -2335,7 +2373,7 @@ div:has(> astro-dev-toolbar),
   .site-shell {
     margin: 24px auto 44px !important;
     border-radius: 26px !important;
-    border: 2px solid rgba(212, 175, 55, 0.45) !important;
+    border: 2px solid #d4af37 !important;
     box-shadow:
       0 24px 80px rgba(0, 0, 0, 0.75),
       0 4px 16px rgba(0, 0, 0, 0.4),

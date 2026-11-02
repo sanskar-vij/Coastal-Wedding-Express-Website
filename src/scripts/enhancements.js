@@ -103,7 +103,6 @@
   });
 
   function goToSlide(index) {
-    unflipAllCards();
     const target = Math.max(0, Math.min(slides.length - 1, index));
     carousel.scrollTo({
       left: slides[target].offsetLeft - slides[0].offsetLeft,
@@ -763,10 +762,5 @@
     });
 
     syncGuestDisplay(1);
-  }window.addEventListener("pagehide", () => {
-  document.querySelectorAll("audio").forEach(audio => {
-    audio.pause();
-    audio.currentTime = 0;
-  });
-});
+  }
 })();

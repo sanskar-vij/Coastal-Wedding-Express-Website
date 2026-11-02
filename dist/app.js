@@ -378,7 +378,6 @@ form.elements.name.addEventListener('input', () => form.elements.name.setCustomV
   });
 
   function goToSlide(index) {
-    unflipAllCards();
     const target = Math.max(0, Math.min(slides.length - 1, index));
     carousel.scrollTo({
       left: slides[target].offsetLeft - slides[0].offsetLeft,
