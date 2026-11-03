@@ -1,4 +1,4 @@
-# 🚂 Aarav & Meera — Coastal Wedding Express
+# Raj & Simran · Coastal Wedding Express
 
 ### A Luxury, Cinematic & Mobile-First Digital Wedding Invitation
 
@@ -16,11 +16,12 @@
 
 ## ✨ Overview
 
-**Coastal Wedding Express** is an immersive digital wedding invitation inspired by the romance of vintage coastal railway journeys and the timeless elegance of royal Indian celebrations.
+**Coastal Wedding Express** is an interactive, multi-sensory wedding invitation website designed with a nostalgic coastal vintage railway aesthetic. Styled after a royal luxury train journey traversing India’s scenic west coast from Mumbai down to Goa, the invitation guides guests through eight curated "stops" capturing Raj and Simran's love story, wedding ceremonies, travel details, and accommodation.
+
 
 Designed around a fictional luxury train journey travelling along India's scenic western coastline, from Mumbai to Goa, the experience takes guests through eight beautifully curated destinations.
 
-Each destination reveals a different chapter of Aarav and Meera's celebration, combining cinematic visuals, traditional Indian wedding aesthetics, tactile interactions, ambient animations, and elegant storytelling.
+Each destination reveals a different chapter of Raj and Simran's celebration, combining cinematic visuals, traditional Indian wedding aesthetics, tactile interactions, ambient animations, and elegant storytelling.
 
 Built using **Astro, TypeScript, modern CSS, and vanilla JavaScript**, the experience prioritizes mobile devices while presenting a refined, framed invitation on larger screens.
 
@@ -417,8 +418,8 @@ Modify the central content configuration:
 
 ```typescript
 export const content = {
-  groom: "Aarav",
-  bride: "Meera",
+  groom: "Raj",
+  bride: "Simran",
   date: "2027-11-20T18:00:00+05:30",
   dateLabel: "20 NOVEMBER 2027",
   venue: "The Palm Pavilion",

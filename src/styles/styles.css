@@ -358,7 +358,7 @@ button:disabled {
   margin: -15px 5px -10px;
   z-index: 2;
   padding: 18px 12px;
-  transform: rotate(-1deg);
+  transform: none;
 }
 .venue-ticket h3 {
   font-size: 24px;
@@ -720,9 +720,11 @@ dialog p {
 .tilted.reveal.visible {
   transform: rotate(-6deg);
 }
-.memory-album.reveal.visible,
-.venue-ticket.reveal.visible {
+.memory-album.reveal.visible {
   transform: rotate(-1deg);
+}
+.venue-ticket.reveal.visible {
+  transform: none;
 }
 .paused * {
   animation-play-state: paused !important;

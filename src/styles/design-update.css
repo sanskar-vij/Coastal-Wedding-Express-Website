@@ -977,6 +977,13 @@
    RSVP CONFIRMATION & VENUE MAP BUTTON ENHANCEMENTS
    ========================================================================== */
 
+.venue-ticket,
+.venue-ticket.paper-card,
+.venue-ticket.reveal,
+.venue-ticket.reveal.visible {
+  transform: none !important;
+}
+
 .venue-map-link {
   width: auto;
   max-width: 280px;

@@ -1,13 +1,13 @@
 /** Generated from src/data/content.ts. Edit the source, then npm run sync. */
 window.WEDDING={
   "site": {
-    "title": "Aarav & Meera · Coastal Wedding Express",
+    "title": "Raj & Simran · Coastal Wedding Express",
     "description": "Eight stops, one beautiful journey. A coastal wedding invitation.",
     "draft": true,
     "sampleSchedule": true
   },
-  "groom": "Aarav",
-  "bride": "Meera",
+  "groom": "Raj",
+  "bride": "Simran",
   "date": "2027-11-20T18:00:00+05:30",
   "dateLabel": "20 NOVEMBER 2027",
   "venue": "The Palm Pavilion",
@@ -26,8 +26,8 @@ window.WEDDING={
     "welcome": "assets/library/compositions__coastal-scenes__welcome-station-background__psa-local-000148__main__v01.webp",
     "bridge": "assets/library/compositions__coastal-scenes__coastal-bridge-background__psa-local-000149__user-reference__v02.png",
     "garden": "assets/library/compositions__coastal-scenes__guest-guide-garden-background__psa-local-000150__main__v01.webp",
-    "aarav": "assets/aarav-train-portrait.webp",
-    "meera": "assets/meera-train-portrait.webp",
+    "raj": "assets/raj-train-portrait.webp",
+    "simran": "assets/simran-train-portrait.webp",
     "trainWindow": "assets/train-window-original.jpg",
     "trainWindowFrame": "assets/train-window-frame.png",
     "trainWindowSash": "assets/train-window-sash.webp",

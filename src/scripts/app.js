@@ -165,7 +165,7 @@ const infoContent = {
   ],
   contact: [
     'Wedding Concierge & Team',
-    '<p>Our wedding hospitality desk is at your service for travel coordination, itinerary assistance, and special requests:</p><p><strong>Wedding Hospitality Desk</strong><br>Email: <em>hospitality@aaravmeera.wedding</em><br>Telephone: <em>+91 (0832) 274-2027</em></p><p><strong>Event Coordinators:</strong><br>Available on-site 24/7 across all celebrations from 17 to 21 November 2027.</p>',
+    '<p>Our wedding hospitality desk is at your service for travel coordination, itinerary assistance, and special requests:</p><p><strong>Wedding Hospitality Desk</strong><br>Email: <em>hospitality@rajsimran.wedding</em><br>Telephone: <em>+91 (0832) 274-2027</em></p><p><strong>Event Coordinators:</strong><br>Available on-site 24/7 across all celebrations from 17 to 21 November 2027.</p>',
   ],
 };
 document.querySelectorAll('[data-info]').forEach((b) =>
