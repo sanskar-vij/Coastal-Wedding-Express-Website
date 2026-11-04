@@ -251,29 +251,30 @@
   inset: 0 !important;
   width: 100% !important;
   height: 100% !important;
-  object-fit: cover !important;
+  object-fit: contain !important;
   object-position: center center !important;
   pointer-events: none !important;
+  transform: none !important;
 }
 
 .welcome-video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center !important;
-  pointer-events: none;
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+  pointer-events: none !important;
+  transform: none !important;
 }
 
 /* Ensure the first page fits the viewport completely so the video, clock, and train are 100% visible */
 #welcome.page {
-  height: 100vh !important;
-  height: 100dvh !important;
-  min-height: 100vh !important;
-  min-height: 100dvh !important;
-  max-height: 100vh !important;
-  max-height: 100dvh !important;
+  width: 100% !important;
+  aspect-ratio: 9 / 16 !important;
+  height: calc(min(100vw, 480px) * 16 / 9) !important;
+  min-height: 0 !important;
+  max-height: calc(min(100vw, 480px) * 16 / 9) !important;
   overflow: hidden !important;
   position: relative !important;
 }
@@ -1294,9 +1295,11 @@ div:has(> astro-dev-toolbar),
    ========================================================================== */
 #story.page,
 .story-page {
-  min-height: 100vh !important;
-  min-height: 100dvh !important;
-  height: auto !important;
+  width: 100% !important;
+  aspect-ratio: 9 / 16 !important;
+  height: calc(min(100vw, 480px) * 16 / 9) !important;
+  min-height: 0 !important;
+  max-height: calc(min(100vw, 480px) * 16 / 9) !important;
   position: relative !important;
   overflow: hidden !important;
 }
@@ -1314,9 +1317,10 @@ div:has(> astro-dev-toolbar),
   inset: 0 !important;
   width: 100% !important;
   height: 100% !important;
-  object-fit: cover !important;
+  object-fit: contain !important;
   object-position: center center !important;
   pointer-events: none !important;
+  transform: none !important;
 }
 
 .story-content {
@@ -1641,9 +1645,10 @@ div:has(> astro-dev-toolbar),
   inset: 0 !important;
   width: 100% !important;
   height: 100% !important;
-  object-fit: cover !important;
+  object-fit: contain !important;
   object-position: center center !important;
   pointer-events: none !important;
+  transform: none !important;
 }
 
 #rsvp .page-content,
@@ -2033,9 +2038,9 @@ div:has(> astro-dev-toolbar),
 }
 
 #memories .page-content {
-  padding-top: clamp(40px, 5vh, 65px) !important;
-  padding-bottom: clamp(50px, 7vh, 80px) !important;
-  max-width: 460px !important;
+  padding-top: clamp(10px, 2vh, 18px) !important;
+  padding-bottom: clamp(10px, 2vh, 18px) !important;
+  max-width: 440px !important;
   margin-inline: auto !important;
 }
 
@@ -2711,5 +2716,347 @@ div:has(> astro-dev-toolbar),
 .memory-album,
 .memory-album.reveal.visible,
 .memory-photo-card {
+  transform: none !important;
+}
+
+
+/* ==========================================================================
+   PAGES NOT SCROLLABLE: PERFECT 9:16 FRAME WITH FULL CONTENT FIT
+   ========================================================================== */
+.page:has(.scene-video),
+.page:has(.welcome-video),
+#welcome.page,
+#couple.page,
+#story.page,
+#celebrations.page,
+#memories.page,
+#rsvp.page {
+  width: 100% !important;
+  aspect-ratio: 9 / 16 !important;
+  height: calc(min(100vw, 480px) * 16 / 9) !important;
+  min-height: 0 !important;
+  max-height: calc(min(100vw, 480px) * 16 / 9) !important;
+  position: relative !important;
+  overflow: hidden !important;
+  overflow-y: hidden !important;
+  overflow-x: hidden !important;
+}
+
+/* Unified page-content structure that fills the 9:16 box with zero scrolling */
+.page:has(.scene-video) .page-content,
+.page:has(.welcome-video) .page-content,
+#couple .page-content,
+#story .page-content,
+#celebrations .page-content,
+#memories .page-content,
+#rsvp .page-content {
+  padding-top: clamp(12px, 2.2vh, 24px) !important;
+  padding-bottom: clamp(12px, 2.2vh, 24px) !important;
+  padding-inline: clamp(10px, 2.5vw, 18px) !important;
+  box-sizing: border-box !important;
+  min-height: 0 !important;
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  overflow: hidden !important;
+}
+
+/* Standardized compact page headings across 9:16 pages */
+.page:has(.scene-video) .page-heading,
+#couple .page-heading,
+#story .page-heading,
+#celebrations .page-heading,
+#memories .page-heading,
+#rsvp .page-heading {
+  margin-bottom: clamp(4px, 1vh, 8px) !important;
+}
+.page:has(.scene-video) .page-heading h2,
+#couple .page-heading h2,
+#story .page-heading h2,
+#celebrations .page-heading h2,
+#memories .page-heading h2,
+#rsvp .page-heading h2 {
+  font-size: clamp(22px, 5vw, 28px) !important;
+  line-height: 1.15 !important;
+  margin: 0 0 2px !important;
+}
+.page:has(.scene-video) .page-heading .stop-label,
+#couple .page-heading .stop-label,
+#story .page-heading .stop-label,
+#celebrations .page-heading .stop-label,
+#memories .page-heading .stop-label,
+#rsvp .page-heading .stop-label {
+  font-size: 7px !important;
+  letter-spacing: 1.5px !important;
+  margin: 0 0 4px !important;
+}
+.page:has(.scene-video) .page-heading .subtitle,
+#couple .page-heading .subtitle,
+#story .page-heading .subtitle,
+#celebrations .page-heading .subtitle,
+#memories .page-heading .subtitle,
+#rsvp .page-heading .subtitle {
+  font-size: 7.5px !important;
+  letter-spacing: 1.2px !important;
+  margin: 2px auto 4px !important;
+}
+.page:has(.scene-video) .page-heading .ornament,
+#couple .page-heading .ornament,
+#story .page-heading .ornament,
+#celebrations .page-heading .ornament,
+#memories .page-heading .ornament,
+#rsvp .page-heading .ornament {
+  font-size: 14px !important;
+  gap: 6px !important;
+  line-height: 1 !important;
+}
+.page:has(.scene-video) .page-heading .ornament span,
+#couple .page-heading .ornament span,
+#story .page-heading .ornament span,
+#celebrations .page-heading .ornament span,
+#memories .page-heading .ornament span,
+#rsvp .page-heading .ornament span {
+  width: 36px !important;
+}
+
+/* Page 2 (Couple): Portraits fit without scrolling */
+#couple .couple-grid {
+  gap: clamp(6px, 1.8vw, 12px) !important;
+  margin-top: 4px !important;
+}
+#couple .portrait-card {
+  padding: 3px 3px 6px !important;
+}
+#couple .portrait-card .portrait-train-window {
+  max-height: clamp(150px, 23vh, 205px) !important;
+}
+#couple .portrait-card h3 {
+  font-size: clamp(14px, 3.2vw, 17px) !important;
+  margin: 4px 0 2px !important;
+}
+#couple .portrait-card p {
+  font-size: clamp(8px, 1.8vw, 9.5px) !important;
+  line-height: 1.2 !important;
+}
+
+/* Page 3 (Story): Station carousel and milestone fit without scrolling */
+#story .story-station-nav {
+  margin: 4px 0 8px !important;
+  gap: 6px !important;
+}
+#story .story-station-pill {
+  padding: 4px 6px !important;
+  font-size: 7.5px !important;
+}
+#story .story-card.paper-card {
+  padding: clamp(8px, 2vw, 12px) !important;
+  gap: 6px !important;
+}
+#story .story-photo-wrapper {
+  aspect-ratio: 16 / 9 !important;
+  max-height: clamp(125px, 18vh, 165px) !important;
+}
+#story .story-card-body h3 {
+  font-size: clamp(13px, 3vw, 15px) !important;
+  margin: 1px 0 !important;
+}
+#story .story-card-body p {
+  font-size: clamp(9px, 2vw, 10.5px) !important;
+  line-height: 1.25 !important;
+}
+#story .story-nav-controls {
+  margin-top: 6px !important;
+}
+
+/* Page 4 (Celebrations): 3 flip cards fit cleanly without scrolling */
+#celebrations .events-total {
+  margin: 0 0 4px !important;
+  font-size: 7px !important;
+}
+#celebrations .events-carousel {
+  padding: 2px 2px 4px !important;
+  gap: 10px !important;
+}
+#celebrations .event-list {
+  gap: clamp(4px, 0.8vh, 7px) !important;
+}
+#celebrations .event-card.flip-card {
+  height: clamp(90px, 12.8vh, 108px) !important;
+  min-height: 90px !important;
+  max-height: 108px !important;
+}
+#celebrations .events-navigation {
+  margin: 6px auto 0 !important;
+  gap: 10px !important;
+}
+#celebrations .events-navigation button:not(.event-dot) {
+  width: 28px !important;
+  height: 28px !important;
+}
+
+/* Page 5 (Memories): Restored full 819/1024 framed train windows with perfect curtain alignment */
+#memories .memory-album {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 auto !important;
+  width: 100% !important;
+  max-width: 420px !important;
+  transform: none !important;
+}
+
+#memories .memory-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: clamp(6px, 1.5vw, 10px) clamp(6px, 1.5vw, 10px) !important;
+  margin: 2px auto 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+#memories .memory-photo-card {
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  background: linear-gradient(175deg, #fffcf5 0%, #fbf5e8 100%) !important;
+  border: 1.2px solid #d4af37 !important;
+  border-radius: 12px !important;
+  padding: 3px 3px 5px !important;
+  box-shadow: 0 4px 12px rgba(7, 37, 40, 0.12), inset 0 0 0 1px rgba(255, 255, 255, 0.85) !important;
+  transform: none !important;
+  box-sizing: border-box !important;
+}
+
+#memories .memory-window-wrapper {
+  position: relative !important;
+  width: 100% !important;
+  aspect-ratio: 819 / 1024 !important;
+  border-radius: 9px !important;
+  overflow: hidden !important;
+}
+
+#memories .memory-photo-card .portrait-train-window,
+#memories .memory-framed-img {
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 819 / 1024 !important;
+  object-fit: cover !important;
+  border-radius: 9px !important;
+  display: block !important;
+  max-height: none !important;
+}
+
+#memories .window-curtain-container {
+  position: absolute !important;
+  left: 20.76% !important;
+  top: 16.8% !important;
+  width: 60.8% !important;
+  height: 59.18% !important;
+  border-radius: 16.5% / 13.5% !important;
+  overflow: hidden !important;
+  z-index: 3 !important;
+  pointer-events: none !important;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.65) !important;
+}
+
+#memories .memory-caption-wrap {
+  text-align: center !important;
+  padding: 3px 2px 0 !important;
+}
+
+#memories .memory-badge {
+  display: inline-block !important;
+  font-family: 'Lora', Georgia, serif !important;
+  font-size: 6px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.2px !important;
+  color: #7d3329 !important;
+  text-transform: uppercase !important;
+  background: rgba(212, 175, 55, 0.15) !important;
+  padding: 1px 5px !important;
+  border-radius: 8px !important;
+  border: 0.8px solid rgba(212, 175, 55, 0.4) !important;
+  margin-bottom: 2px !important;
+}
+
+#memories .memory-caption-text {
+  font-family: 'Lora', Georgia, serif !important;
+  font-size: clamp(8px, 1.8vw, 9.5px) !important;
+  color: #4a3424 !important;
+  margin: 0 !important;
+  line-height: 1.2 !important;
+}
+
+/* Page 7 (RSVP): Form fits completely without scrolling */
+#rsvp .rsvp-form {
+  margin: 2px auto 0 !important;
+  padding: clamp(8px, 1.5vh, 12px) clamp(10px, 2.2vw, 16px) !important;
+  border-radius: 12px !important;
+}
+#rsvp .rsvp-ticket-heading {
+  margin-bottom: 5px !important;
+  padding-bottom: 4px !important;
+}
+#rsvp .rsvp-ticket-heading h3 {
+  font-size: clamp(17px, 3.8vw, 21px) !important;
+  margin: 2px 0 !important;
+}
+#rsvp .rsvp-ticket-heading p {
+  font-size: clamp(9px, 1.9vw, 10.5px) !important;
+  margin: 0 !important;
+}
+#rsvp .rsvp-form label {
+  font-size: 9.5px !important;
+  margin-bottom: 1px !important;
+}
+#rsvp .rsvp-form input:not([type='radio']),
+#rsvp .rsvp-form select {
+  min-height: clamp(28px, 3.8vh, 32px) !important;
+  height: clamp(28px, 3.8vh, 32px) !important;
+  font-size: 11px !important;
+  padding: 2px 8px !important;
+  border-radius: 7px !important;
+}
+#rsvp .rsvp-form textarea {
+  min-height: clamp(34px, 4.2vh, 40px) !important;
+  height: clamp(34px, 4.2vh, 40px) !important;
+  font-size: 11px !important;
+  padding: 3px 8px !important;
+  border-radius: 7px !important;
+}
+#rsvp .rsvp-form .radio-options {
+  gap: 4px !important;
+}
+#rsvp .rsvp-form .radio-options label {
+  min-height: clamp(26px, 3.4vh, 30px) !important;
+  padding: 2px 5px !important;
+  font-size: 9.5px !important;
+  border-radius: 7px !important;
+}
+#rsvp .rsvp-form .primary-button {
+  margin-top: 5px !important;
+  min-height: clamp(32px, 4vh, 36px) !important;
+  font-size: 9px !important;
+  padding: 4px 8px !important;
+}
+#rsvp .rsvp-form .draft-note {
+  font-size: 7.5px !important;
+  margin-top: 2px !important;
+}
+
+/* Video fills 100% of the 9:16 frame with zero zoom, zero crop, and zero gaps */
+video,
+.scene-video,
+.welcome-video {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  pointer-events: none !important;
   transform: none !important;
 }
