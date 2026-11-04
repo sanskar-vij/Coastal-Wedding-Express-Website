@@ -290,7 +290,7 @@ button:disabled {
   padding: 9px;
   background: #fff4df;
   box-shadow: 0 8px 25px #244c3b25;
-  transform: rotate(-1deg);
+  transform: none;
 }
 .memory-grid {
   display: grid;
@@ -721,7 +721,7 @@ dialog p {
   transform: rotate(-6deg);
 }
 .memory-album.reveal.visible {
-  transform: rotate(-1deg);
+  transform: none;
 }
 .venue-ticket.reveal.visible {
   transform: none;

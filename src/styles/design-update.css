@@ -2160,12 +2160,12 @@ div:has(> astro-dev-toolbar),
 
 /* Open State: Curtains draw back gracefully to the sides */
 .memory-window-wrapper.is-open .curtain-left {
-  transform: translateX(-84%) scaleX(0.42) !important;
+  transform: translateX(-78%) scaleX(0.38) !important;
   box-shadow: 6px 0 16px rgba(0, 0, 0, 0.7) !important;
 }
 
 .memory-window-wrapper.is-open .curtain-right {
-  transform: translateX(84%) scaleX(0.42) !important;
+  transform: translateX(78%) scaleX(0.38) !important;
   box-shadow: -6px 0 16px rgba(0, 0, 0, 0.7) !important;
 }
 
@@ -2704,4 +2704,12 @@ div:has(> astro-dev-toolbar),
   font-size: 11px !important;
   line-height: 1 !important;
   white-space: nowrap !important;
+}
+
+
+/* Straight, level memory album without rotation or tilt */
+.memory-album,
+.memory-album.reveal.visible,
+.memory-photo-card {
+  transform: none !important;
 }

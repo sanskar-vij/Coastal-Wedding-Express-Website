@@ -35,6 +35,9 @@ function updateBackgroundVideos(page) {
   const isVisible = bounds.bottom > -150 && bounds.top < innerHeight + 150;
   page.classList.toggle('video-visible', isVisible);
   page.querySelectorAll('.scene-video, .welcome-video').forEach((video) => {
+    video.muted = true;
+    video.defaultMuted = true;
+    video.volume = 0;
     if (paused || !isVisible) {
       video.pause();
     } else if (video.paused) {
